@@ -2,7 +2,7 @@
 
 <table>
   <base>CRM/Mailboxmailing</base>
-  <class>MailSettings</class>
+  <class>MailboxmailingMailSettings</class>
   <name>civicrm_mailboxmailing_mail_settings</name>
   <comment>Various email accounts for use by Mailboxmailing extension (and its processor)</comment>
   <log>true</log>

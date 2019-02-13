@@ -12,7 +12,7 @@
 /**
  * Database access object for the MailboxmailingMailSettings entity.
  */
-class CRM_Mailboxmailing_DAO_MailSettings extends CRM_Core_DAO {
+class CRM_Mailboxmailing_DAO_MailboxmailingMailSettings extends CRM_Core_DAO {
 
   /**
    * Static instance to hold the table name.
@@ -158,7 +158,7 @@ class CRM_Mailboxmailing_DAO_MailSettings extends CRM_Core_DAO {
           'required' => TRUE,
           'table_name' => 'civicrm_mailboxmailing_mail_settings',
           'entity' => 'MailboxmailingMailSettings',
-          'bao' => 'CRM_Mailboxmailing_DAO_MailSettings',
+          'bao' => 'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings',
           'localizable' => 0,
         ],
         'domain_id' => [
@@ -169,7 +169,7 @@ class CRM_Mailboxmailing_DAO_MailSettings extends CRM_Core_DAO {
           'required' => TRUE,
           'table_name' => 'civicrm_mailboxmailing_mail_settings',
           'entity' => 'MailboxmailingMailSettings',
-          'bao' => 'CRM_Mailboxmailing_DAO_MailSettings',
+          'bao' => 'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings',
           'localizable' => 0,
           'pseudoconstant' => [
             'table' => 'civicrm_domain',
@@ -186,7 +186,7 @@ class CRM_Mailboxmailing_DAO_MailSettings extends CRM_Core_DAO {
           'size' => CRM_Utils_Type::HUGE,
           'table_name' => 'civicrm_mailboxmailing_mail_settings',
           'entity' => 'MailboxmailingMailSettings',
-          'bao' => 'CRM_Mailboxmailing_DAO_MailSettings',
+          'bao' => 'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings',
           'localizable' => 0,
         ],
         'domain' => [
@@ -198,7 +198,7 @@ class CRM_Mailboxmailing_DAO_MailSettings extends CRM_Core_DAO {
           'size' => CRM_Utils_Type::HUGE,
           'table_name' => 'civicrm_mailboxmailing_mail_settings',
           'entity' => 'MailboxmailingMailSettings',
-          'bao' => 'CRM_Mailboxmailing_DAO_MailSettings',
+          'bao' => 'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings',
           'localizable' => 0,
         ],
         'localpart' => [
@@ -210,7 +210,7 @@ class CRM_Mailboxmailing_DAO_MailSettings extends CRM_Core_DAO {
           'size' => CRM_Utils_Type::HUGE,
           'table_name' => 'civicrm_mailboxmailing_mail_settings',
           'entity' => 'MailboxmailingMailSettings',
-          'bao' => 'CRM_Mailboxmailing_DAO_MailSettings',
+          'bao' => 'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings',
           'localizable' => 0,
         ],
         'return_path' => [
@@ -222,7 +222,7 @@ class CRM_Mailboxmailing_DAO_MailSettings extends CRM_Core_DAO {
           'size' => CRM_Utils_Type::HUGE,
           'table_name' => 'civicrm_mailboxmailing_mail_settings',
           'entity' => 'MailboxmailingMailSettings',
-          'bao' => 'CRM_Mailboxmailing_DAO_MailSettings',
+          'bao' => 'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings',
           'localizable' => 0,
         ],
         'protocol' => [
@@ -234,7 +234,7 @@ class CRM_Mailboxmailing_DAO_MailSettings extends CRM_Core_DAO {
           'size' => CRM_Utils_Type::HUGE,
           'table_name' => 'civicrm_mailboxmailing_mail_settings',
           'entity' => 'MailboxmailingMailSettings',
-          'bao' => 'CRM_Mailboxmailing_DAO_MailSettings',
+          'bao' => 'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings',
           'localizable' => 0,
           'html' => [
             'type' => 'Select',
@@ -253,7 +253,7 @@ class CRM_Mailboxmailing_DAO_MailSettings extends CRM_Core_DAO {
           'size' => CRM_Utils_Type::HUGE,
           'table_name' => 'civicrm_mailboxmailing_mail_settings',
           'entity' => 'MailboxmailingMailSettings',
-          'bao' => 'CRM_Mailboxmailing_DAO_MailSettings',
+          'bao' => 'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings',
           'localizable' => 0,
         ],
         'port' => [
@@ -263,7 +263,7 @@ class CRM_Mailboxmailing_DAO_MailSettings extends CRM_Core_DAO {
           'description' => CRM_Mailboxmailing_ExtensionUtil::ts('port to use when polling'),
           'table_name' => 'civicrm_mailboxmailing_mail_settings',
           'entity' => 'MailboxmailingMailSettings',
-          'bao' => 'CRM_Mailboxmailing_DAO_MailSettings',
+          'bao' => 'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings',
           'localizable' => 0,
         ],
         'username' => [
@@ -275,7 +275,7 @@ class CRM_Mailboxmailing_DAO_MailSettings extends CRM_Core_DAO {
           'size' => CRM_Utils_Type::HUGE,
           'table_name' => 'civicrm_mailboxmailing_mail_settings',
           'entity' => 'MailboxmailingMailSettings',
-          'bao' => 'CRM_Mailboxmailing_DAO_MailSettings',
+          'bao' => 'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings',
           'localizable' => 0,
         ],
         'password' => [
@@ -287,7 +287,7 @@ class CRM_Mailboxmailing_DAO_MailSettings extends CRM_Core_DAO {
           'size' => CRM_Utils_Type::HUGE,
           'table_name' => 'civicrm_mailboxmailing_mail_settings',
           'entity' => 'MailboxmailingMailSettings',
-          'bao' => 'CRM_Mailboxmailing_DAO_MailSettings',
+          'bao' => 'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings',
           'localizable' => 0,
         ],
         'is_ssl' => [
@@ -297,7 +297,7 @@ class CRM_Mailboxmailing_DAO_MailSettings extends CRM_Core_DAO {
           'description' => CRM_Mailboxmailing_ExtensionUtil::ts('whether to use SSL or not'),
           'table_name' => 'civicrm_mailboxmailing_mail_settings',
           'entity' => 'MailboxmailingMailSettings',
-          'bao' => 'CRM_Mailboxmailing_DAO_MailSettings',
+          'bao' => 'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings',
           'localizable' => 0,
         ],
         'source' => [
@@ -309,7 +309,7 @@ class CRM_Mailboxmailing_DAO_MailSettings extends CRM_Core_DAO {
           'size' => CRM_Utils_Type::HUGE,
           'table_name' => 'civicrm_mailboxmailing_mail_settings',
           'entity' => 'MailboxmailingMailSettings',
-          'bao' => 'CRM_Mailboxmailing_DAO_MailSettings',
+          'bao' => 'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings',
           'localizable' => 0,
         ],
       ];

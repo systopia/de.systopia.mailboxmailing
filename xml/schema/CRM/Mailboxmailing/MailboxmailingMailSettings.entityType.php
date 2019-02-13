@@ -5,7 +5,7 @@ return array (
   0 => 
   array (
     'name' => 'MailboxmailingMailSettings',
-    'class' => 'CRM_Mailboxmailing_DAO_MailSettings',
+    'class' => 'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings',
     'table' => 'civicrm_mailboxmailing_mail_settings',
   ),
 );

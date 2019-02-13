@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/admin/mailboxmailing</path>
+    <page_callback>CRM_Admin_Page_MailboxmailingMailSettings</page_callback>
+    <title>Mailboxmailing settings</title>
+    <access_arguments>access CiviCRM</access_arguments>
+    <desc>Configure Mailboxmailing extension</desc>
+    <adminGroup>CiviMail</adminGroup>
+    <icon>admin/duplicate_matching.png</icon>
+  </item>
+</menu>

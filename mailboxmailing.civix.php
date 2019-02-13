@@ -459,7 +459,7 @@ function _mailboxmailing_civix_civicrm_entityTypes(&$entityTypes) {
   $entityTypes = array_merge($entityTypes, array (
     'CRM_Mailboxmailing_DAO_MailSettings' => 
     array (
-      'name' => 'MailSettings',
+      'name' => 'MailboxmailingMailSettings',
       'class' => 'CRM_Mailboxmailing_DAO_MailSettings',
       'table' => 'civicrm_mailboxmailing_mail_settings',
     ),

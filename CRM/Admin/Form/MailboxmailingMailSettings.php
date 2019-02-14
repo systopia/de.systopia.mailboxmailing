@@ -60,7 +60,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
       + CRM_Contact_BAO_Group::getGroupsHierarchy(
         CRM_Core_PseudoConstant::group(),
         NULL,
-        '&nbsp;&nbsp;',
+        '└ ',
         TRUE
       )
     );
@@ -73,7 +73,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
       + CRM_Contact_BAO_Group::getGroupsHierarchy(
         CRM_Core_PseudoConstant::group(),
         NULL,
-        '&nbsp;&nbsp;',
+        '└ ',
         TRUE
       )
     );
@@ -101,7 +101,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
       'select',
       'notification_activity_type_id',
       E::ts('Notification Activity Type'),
-      array('' => E::ts('- none -')) + CRM_Activity_BAO_Activity::buildOptions('activity_type_id')
+      array('' => E::ts('- Do not create activities -')) + CRM_Activity_BAO_Activity::buildOptions('activity_type_id')
     );
 
     $this->add(

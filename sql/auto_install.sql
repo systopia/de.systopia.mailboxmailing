@@ -93,12 +93,22 @@ CREATE TABLE `civicrm_mailboxmailing_mail_settings` (
      `username` varchar(255)    COMMENT 'username to use when polling',
      `password` varchar(255)    COMMENT 'password to use when polling',
      `is_ssl` tinyint    COMMENT 'whether to use SSL or not',
-     `source` varchar(255)    COMMENT 'folder to poll from when using IMAP, path to poll from when using Maildir, etc.' 
+     `source` varchar(255)    COMMENT 'folder to poll from when using IMAP, path to poll from when using Maildir, etc.',
+     `sender_group_id` int unsigned    COMMENT 'The group of contacts allowed to send mailings using these MailSettings.',
+     `recipient_group_id` int unsigned    COMMENT 'The group of contacts to receive mailings using these MailSettings.',
+     `subject` varchar(255)    COMMENT 'A pattern to use as the subject for the Mailing.',
+     `notify_disallowed_sender` tinyint    COMMENT 'Whether to notify disallowed sender.',
+     `notify_sender_errors` tinyint    COMMENT 'Whether to notify senders about errors.',
+     `notification_activity_type_id` int unsigned    COMMENT 'The activity type to use for activities to notify senders about errors.',
+     `archive_mailing` tinyint    COMMENT 'Whether to archive mailings after sending.' 
 ,
         PRIMARY KEY (`id`)
  
- 
-,          CONSTRAINT FK_civicrm_mailboxmailing_mail_settings_domain_id FOREIGN KEY (`domain_id`) REFERENCES `civicrm_domain`(`id`) ON DELETE CASCADE  
+    ,     INDEX `UI_notification_activity_type_id`(
+        notification_activity_type_id
+  )
+  
+,          CONSTRAINT FK_civicrm_mailboxmailing_mail_settings_domain_id FOREIGN KEY (`domain_id`) REFERENCES `civicrm_domain`(`id`) ON DELETE CASCADE,          CONSTRAINT FK_civicrm_mailboxmailing_mail_settings_sender_group_id FOREIGN KEY (`sender_group_id`) REFERENCES `civicrm_group`(`id`) ON DELETE SET NULL,          CONSTRAINT FK_civicrm_mailboxmailing_mail_settings_recipient_group_id FOREIGN KEY (`recipient_group_id`) REFERENCES `civicrm_group`(`id`) ON DELETE SET NULL  
 )    ;
 
  

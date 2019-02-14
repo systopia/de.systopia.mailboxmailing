@@ -14,7 +14,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
    */
   public function buildQuickForm() {
     parent::buildQuickForm();
-    $this->setPageTitle(ts('Mail Account'));
+    $this->setPageTitle(E::ts('Mail Account'));
 
     if ($this->_action & CRM_Core_Action::DELETE) {
       return;
@@ -26,31 +26,89 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
     $attributes = CRM_Core_DAO::getAttribute('CRM_Mailboxmailing_DAO_MailboxmailingMailSettings');
 
     //build setting form
-    $this->add('text', 'name', ts('Name'), $attributes['name'], TRUE);
+    $this->add('text', 'name', E::ts('Name'), $attributes['name'], TRUE);
 
-    $this->add('text', 'domain', ts('Email Domain'), $attributes['domain'], TRUE);
-    $this->addRule('domain', ts('Email domain must use a valid internet domain format (e.g. \'example.org\').'), 'domain');
+    $this->add('text', 'domain', E::ts('Email Domain'), $attributes['domain'], TRUE);
+    $this->addRule('domain', E::ts('Email domain must use a valid internet domain format (e.g. \'example.org\').'), 'domain');
 
-    $this->add('text', 'localpart', ts('Localpart'), $attributes['localpart']);
+    $this->add('text', 'localpart', E::ts('Localpart'), $attributes['localpart']);
 
-    $this->add('text', 'return_path', ts('Return-Path'), $attributes['return_path']);
-    $this->addRule('return_path', ts('Return-Path must use a valid email address format.'), 'email');
+    $this->add('text', 'return_path', E::ts('Return-Path'), $attributes['return_path']);
+    $this->addRule('return_path', E::ts('Return-Path must use a valid email address format.'), 'email');
 
     $this->add('select', 'protocol',
-      ts('Protocol'),
-      array('' => ts('- select -')) + CRM_Core_PseudoConstant::get('CRM_Mailboxmailing_DAO_MailboxmailingMailSettings', 'protocol'),
+      E::ts('Protocol'),
+      array('' => E::ts('- select -')) + CRM_Core_PseudoConstant::get('CRM_Mailboxmailing_DAO_MailboxmailingMailSettings', 'protocol'),
       TRUE
     );
 
-    $this->add('text', 'server', ts('Server'), $attributes['server']);
+    $this->add('text', 'server', E::ts('Server'), $attributes['server']);
 
-    $this->add('text', 'username', ts('Username'), array('autocomplete' => 'off'));
+    $this->add('text', 'username', E::ts('Username'), array('autocomplete' => 'off'));
 
-    $this->add('password', 'password', ts('Password'), array('autocomplete' => 'off'));
+    $this->add('password', 'password', E::ts('Password'), array('autocomplete' => 'off'));
 
-    $this->add('text', 'source', ts('Source'), $attributes['source']);
+    $this->add('text', 'source', E::ts('Source'), $attributes['source']);
 
-    $this->add('checkbox', 'is_ssl', ts('Use SSL?'));
+    $this->add('checkbox', 'is_ssl', E::ts('Use SSL?'));
+
+    $this->add(
+      'select',
+      'sender_group_id',
+      E::ts('Sender Group'),
+      array('' => E::ts('- select group -'))
+      + CRM_Contact_BAO_Group::getGroupsHierarchy(
+        CRM_Core_PseudoConstant::group(),
+        NULL,
+        '&nbsp;&nbsp;',
+        TRUE
+      )
+    );
+
+    $this->add(
+      'select',
+      'recipient_group_id',
+      E::ts('Recipient Group'),
+      array('' => E::ts('- select group -'))
+      + CRM_Contact_BAO_Group::getGroupsHierarchy(
+        CRM_Core_PseudoConstant::group(),
+        NULL,
+        '&nbsp;&nbsp;',
+        TRUE
+      )
+    );
+
+    $this->add(
+      'text',
+      'subject',
+      ts('Subject'),
+      $attributes['subject']
+    );
+
+    $this->add(
+      'checkbox',
+      'notify_disallowed_sender',
+      E::ts('Notify disallowed sender')
+    );
+
+    $this->add(
+      'checkbox',
+      'notify_sender_errors',
+      E::ts('Notify sender about errors')
+    );
+
+    $this->add(
+      'select',
+      'notification_activity_type_id',
+      E::ts('Notification Activity Type'),
+      array('' => E::ts('- none -')) + CRM_Activity_BAO_Activity::buildOptions('activity_type_id')
+    );
+
+    $this->add(
+      'checkbox',
+      'archive_mailing',
+      E::ts('Archive Mailing')
+    );
   }
 
   /**
@@ -86,7 +144,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
     $errors = array();
     // Check for default from email address and organization (domain) name. Force them to change it.
     if ($fields['domain'] == 'EXAMPLE.ORG') {
-      $errors['domain'] = ts('Please enter a valid domain for this mailbox account (the part after @).');
+      $errors['domain'] = E::ts('Please enter a valid domain for this mailbox account (the part after @).');
     }
 
     return empty($errors) ? TRUE : $errors;
@@ -98,7 +156,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
   public function postProcess() {
     if ($this->_action & CRM_Core_Action::DELETE) {
       CRM_Mailboxmailing_BAO_MailboxmailingMailSettings::deleteMailSettings($this->_id);
-      CRM_Core_Session::setStatus("", ts('Mail Setting Deleted.'), "success");
+      CRM_Core_Session::setStatus("", E::ts('Mail Setting Deleted.'), "success");
       return;
     }
 
@@ -118,6 +176,13 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
       'password',
       'source',
       'is_ssl',
+      'sender_group_id',
+      'recipient_group_id',
+      'subject',
+      'notify_disallowed_sender',
+      'notify_sender_errors',
+      'notification_activity_type_id',
+      'archive_mailing',
     );
 
     $params = array();
@@ -135,19 +200,19 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
     $params['domain_id'] = CRM_Core_Config::domainID();
 
     // assign id only in update mode
-    $status = ts('Your New  Email Settings have been saved.');
+    $status = E::ts('Your New  Email Settings have been saved.');
     if ($this->_action & CRM_Core_Action::UPDATE) {
       $params['id'] = $this->_id;
-      $status = ts('Your Email Settings have been updated.');
+      $status = E::ts('Your Email Settings have been updated.');
     }
 
     $mailSettings = CRM_Mailboxmailing_BAO_MailboxmailingMailSettings::create($params);
 
     if ($mailSettings->id) {
-      CRM_Core_Session::setStatus($status, ts("Saved"), "success");
+      CRM_Core_Session::setStatus($status, E::ts("Saved"), "success");
     }
     else {
-      CRM_Core_Session::setStatus("", ts('Changes Not Saved.'), "info");
+      CRM_Core_Session::setStatus("", E::ts('Changes Not Saved.'), "info");
     }
   }
 

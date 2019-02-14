@@ -457,7 +457,7 @@ function _mailboxmailing_civix_civicrm_alterSettingsFolders(&$metaDataFolders = 
 
 function _mailboxmailing_civix_civicrm_entityTypes(&$entityTypes) {
   $entityTypes = array_merge($entityTypes, array (
-    'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings' =>
+    'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings' => 
     array (
       'name' => 'MailboxmailingMailSettings',
       'class' => 'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings',

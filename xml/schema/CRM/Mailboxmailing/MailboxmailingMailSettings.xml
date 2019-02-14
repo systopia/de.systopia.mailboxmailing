@@ -125,6 +125,7 @@
     <comment>password to use when polling</comment>
     <add>2.2</add>
   </field>
+
   <field>
     <name>is_ssl</name>
     <title>Mail Account Uses SSL</title>
@@ -139,6 +140,104 @@
     <type>varchar</type>
     <length>255</length>
     <comment>folder to poll from when using IMAP, path to poll from when using Maildir, etc.</comment>
+    <add>2.2</add>
+  </field>
+
+  <field>
+    <name>sender_group_id</name>
+    <type>int unsigned</type>
+    <title>Sender Group</title>
+    <comment>The group of contacts allowed to send mailings using these MailSettings.</comment>
+    <add>1.1</add>
+    <pseudoconstant>
+      <table>civicrm_group</table>
+      <keyColumn>id</keyColumn>
+      <labelColumn>title</labelColumn>
+    </pseudoconstant>
+    <html>
+      <type>Select</type>
+    </html>
+  </field>
+  <foreignKey>
+    <name>sender_group_id</name>
+    <table>civicrm_group</table>
+    <key>id</key>
+    <add>1.1</add>
+    <onDelete>SET NULL</onDelete>
+  </foreignKey>
+
+  <field>
+    <name>recipient_group_id</name>
+    <title>Recipient Group</title>
+    <type>int unsigned</type>
+    <comment>The group of contacts to receive mailings using these MailSettings.</comment>
+    <add>3.1</add>
+    <pseudoconstant>
+      <table>civicrm_group</table>
+      <keyColumn>id</keyColumn>
+      <labelColumn>title</labelColumn>
+    </pseudoconstant>
+    <html>
+      <type>Select</type>
+    </html>
+  </field>
+  <foreignKey>
+    <name>recipient_group_id</name>
+    <table>civicrm_group</table>
+    <key>id</key>
+    <add>4.5</add>
+    <onDelete>SET NULL</onDelete>
+  </foreignKey>
+
+  <field>
+    <name>subject</name>
+    <title>Mailing Subject</title>
+    <type>varchar</type>
+    <length>255</length>
+    <comment>A pattern to use as the subject for the Mailing.</comment>
+    <add>2.2</add>
+  </field>
+
+  <field>
+    <name>notify_disallowed_sender</name>
+    <title>Notify disallowed sender</title>
+    <type>boolean</type>
+    <comment>Whether to notify disallowed sender.</comment>
+    <add>2.2</add>
+  </field>
+
+  <field>
+    <name>notify_sender_errors</name>
+    <title>Notify sender about errors</title>
+    <type>boolean</type>
+    <comment>Whether to notify senders about errors.</comment>
+    <add>2.2</add>
+  </field>
+
+  <field>
+    <name>notification_activity_type_id</name>
+    <title>Notification Activity Type</title>
+    <type>int unsigned</type>
+    <comment>The activity type to use for activities to notify senders about errors.</comment>
+    <add>1.1</add>
+    <pseudoconstant>
+      <optionGroupName>activity_type</optionGroupName>
+    </pseudoconstant>
+    <html>
+      <type>Select</type>
+    </html>
+  </field>
+  <index>
+    <name>UI_notification_activity_type_id</name>
+    <fieldName>notification_activity_type_id</fieldName>
+    <add>1.6</add>
+  </index>
+
+  <field>
+    <name>archive_mailing</name>
+    <title>Archive Mailing</title>
+    <type>boolean</type>
+    <comment>Whether to archive mailings after sending.</comment>
     <add>2.2</add>
   </field>
 

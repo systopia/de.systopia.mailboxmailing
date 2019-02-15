@@ -30,13 +30,17 @@ function _civicrm_api3_job_process_mailboxmailing_spec(&$spec) {
  * @throws API_Exception
  */
 function civicrm_api3_job_process_mailboxmailing($params) {
-  // TODO: Check what the locking is all about.
-//  $lock = Civi::lockManager()->acquire('worker.mailing.EmailProcessor');
-//  if (!$lock->isAcquired()) {
-//    return civicrm_api3_create_error('Could not acquire lock, another EmailProcessor process is running');
-//  }
-  CRM_Utils_Mailboxmailing_MailboxmailingMailSettingsProcessor::process($params);
-//  $lock->release();
-
-  return civicrm_api3_create_success(1, $params, 'Job', 'MailboxmailingProcess');
+  try {
+    // TODO: Check what the locking is all about.
+//    $lock = Civi::lockManager()->acquire('worker.mailing.EmailProcessor');
+//    if (!$lock->isAcquired()) {
+//      return civicrm_api3_create_error('Could not acquire lock, another EmailProcessor process is running');
+//    }
+    $result = CRM_Utils_Mailboxmailing_EmailProcessor::process($params);
+//    $lock->release();
+    return civicrm_api3_create_success($result, $params, 'Job', 'MailboxmailingProcess');
+  }
+  catch (Exception $exception) {
+    return civicrm_api3_create_error($exception->getMessage());
+  }
 }

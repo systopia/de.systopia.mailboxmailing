@@ -165,4 +165,70 @@ class CRM_Mailboxmailing_BAO_MailboxmailingMailSettings extends CRM_Mailboxmaili
     return $results;
   }
 
+  /**
+   * @return array
+   * @throws \Exception
+   */
+  public function getSenders() {
+    $senders = array();
+
+    if (!empty($this->sender_group_id)) {
+      $senders = civicrm_api3('Contact', 'get', array(
+        'group' => $this->sender_group_id,
+        'options' => array(
+          'limit' => 0,
+        ),
+        'return' => array(
+          'email',
+        ),
+      ));
+      if ($senders['is_error']) {
+        throw new Exception(
+          E::ts('Error retrieving recipients from group: %1', array(
+            1 => $senders['error_message'],
+          ))
+        );
+      }
+      $senders = array_map(function($contact) {
+        return $contact['email'];
+      }, $senders['values']);
+      $senders = array_filter($senders);
+    }
+
+    return $senders;
+  }
+
+  /**
+   * @return array
+   * @throws \Exception
+   */
+  public function getRecipients() {
+    $recipients = array();
+
+    if (!empty($this->sender_group_id)) {
+      $recipients = civicrm_api3('Contact', 'get', array(
+        'group' => $this->recipient_group_id,
+        'options' => array(
+          'limit' => 0,
+        ),
+        'return' => array(
+          'email',
+        ),
+      ));
+      if ($recipients['is_error']) {
+        throw new Exception(
+          E::ts('Error retrieving recipients from group: %1', array(
+            1 => $recipients['error_message'],
+          ))
+        );
+      }
+      $recipients = array_map(function($contact) {
+        return $contact['email'];
+      }, $recipients['values']);
+      $recipients = array_filter($recipients);
+    }
+
+    return $recipients;
+  }
+
 }

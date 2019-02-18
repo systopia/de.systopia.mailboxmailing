@@ -118,7 +118,7 @@
       </tr>
 
       <tr class="crm-mailboxmailing-mail-settings-form-block-subject">
-        <td class="label">{$form.subject.label}<!-- TODO: Add help icon. --></td>
+        <td class="label">{$form.subject.label}&nbsp;<a onclick='CRM.help("Foobar", {literal}{"id":"id-subject","file":"CRM\/Admin\/Form\/MailboxmailingMailSettings"}{/literal}); return false;' href="#" title="{ts domain="de.systopia.mailboxmailing"}Help{/ts}" class="helpicon">&nbsp;</a></td>
         <td>{$form.subject.html}</td>
       </tr>
       <tr>

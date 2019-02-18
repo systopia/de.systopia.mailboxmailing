@@ -1,0 +1,45 @@
+{htxt id='id-subject'}
+  <p>{ts domain="de.systopia.mailboxmailing"}This pattern is evaluated using Smarty.{/ts}</p>
+  <p>{ts domain="de.systopia.mailboxmailing"}The following template variables are available:{/ts}</p>
+  <ul>
+    <li>
+      <code>{literal}$mail{/literal} - Variables of the e-mail being processed.</code>
+      <ul>
+        <li><code>{literal}$mail.to{/literal}</code></li>
+        <li><code>{literal}$mail.cc{/literal}</code></li>
+        <li><code>{literal}$mail.bcc{/literal}</code></li>
+        <li><code>{literal}$mail.from{/literal}</code></li>
+        <li><code>{literal}$mail.subject{/literal}</code></li>
+        <li><code>{literal}$mail.subjectCharset{/literal}</code></li>
+        <li><code>{literal}$mail.body{/literal}</code></li>
+        <li><code>{literal}$mail.messageId{/literal}</code></li>
+        <li><code>{literal}$mail.returnPath{/literal}</code></li>
+        <li><code>{literal}$mail.timestamp{/literal}</code></li>
+      </ul>
+    </li>
+
+    <li>
+          <code>{literal}$mailSetting{/literal} - Variables of the mail settings used.</code>
+          <ul>
+            <li><code>{literal}$mailSetting.name{/literal}</code></li>
+            <li><code>{literal}$mailSetting.domain{/literal}</code></li>
+            <li><code>{literal}$mailSetting.localpart{/literal}</code></li>
+            <li><code>{literal}$mailSetting.server{/literal}</code></li>
+            <li><code>{literal}$mailSetting.return_path{/literal}</code></li>
+            <li><code>{literal}$mailSetting.protocol{/literal}</code></li>
+            <li><code>{literal}$mailSetting.port{/literal}</code></li>
+            <li><code>{literal}$mailSetting.username{/literal}</code></li>
+            <li><code>{literal}$mailSetting.password{/literal}</code></li>
+            <li><code>{literal}$mailSetting.source{/literal}</code></li>
+            <li><code>{literal}$mailSetting.is_ssl{/literal}</code></li>
+            <li><code>{literal}$mailSetting.sender_group_id{/literal}</code></li>
+            <li><code>{literal}$mailSetting.recipient_group_id{/literal}</code></li>
+            <li><code>{literal}$mailSetting.subject{/literal}</code></li>
+            <li><code>{literal}$mailSetting.notify_disallowed_sender{/literal}</code></li>
+            <li><code>{literal}$mailSetting.notify_sender_errors{/literal}</code></li>
+            <li><code>{literal}$mailSetting.notification_activity_type_id{/literal}</code></li>
+            <li><code>{literal}$mailSetting.archive_mailing{/literal}</code></li>
+          </ul>
+        </li>
+  </ul>
+{/htxt}

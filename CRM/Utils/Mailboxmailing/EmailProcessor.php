@@ -196,8 +196,13 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
       'created_date' => date('YmdHis', $mail->timestamp),
       'scheduled_date' => date('YmdHis'),
       'approval_date' => NULL,
-      'subject' => $mail->subject, // TODO: Apply pattern from mailSetting.
     );
+
+    // Evaluate subject pattern.
+    $smarty = CRM_Core_Smarty::singleton();
+    $variables = static::getSmartyVariables($mailSetting, $mail);
+    $subject = $smarty->fetchWith('string:' . $mailSetting->subject, $variables);
+    $mailingParams['subject'] = $subject;
 
     // Add body contents.
     /* @var \ezcMailPart[] $parts */
@@ -229,6 +234,37 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
     $mailing = CRM_Mailing_BAO_Mailing::create($mailingParams);
 
     return $mailing;
+  }
+
+  /**
+   * @param \CRM_Mailboxmailing_BAO_MailboxmailingMailSettings $mailSetting
+   * @param \ezcMail | NULL $mail
+   *
+   * @return array
+   */
+  public static function getSmartyVariables($mailSetting, $mail = NULL) {
+    $variables = array(
+      'mail' => array(),
+      'mailSetting' => $mailSetting->toArray(),
+    );
+    // All properties accessible through magic getter \ezcMail::__get().
+    $mail_properties = array(
+      'to',
+      'cc',
+      'bcc',
+      'from',
+      'subject',
+      'subjectCharset',
+      'body',
+      'messageId',
+      'returnPath',
+      'timestamp',
+    );
+    foreach ($mail_properties as $mail_property) {
+      $variables['mail'][$mail_property] = json_decode(json_encode(isset($mail) ? $mail->$mail_property : ''), TRUE);
+    }
+
+    return $variables;
   }
 
 }

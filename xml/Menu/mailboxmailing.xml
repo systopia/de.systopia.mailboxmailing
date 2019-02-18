@@ -7,6 +7,6 @@
     <access_arguments>access CiviCRM</access_arguments>
     <desc>Configure Mailboxmailing extension</desc>
     <adminGroup>CiviMail</adminGroup>
-    <icon>admin/duplicate_matching.png</icon>
+    <icon>admin/small/07.png</icon>
   </item>
 </menu>

@@ -204,31 +204,42 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
     $subject = $smarty->fetchWith('string:' . $mailSetting->subject, $variables);
     $mailingParams['subject'] = $subject;
 
-    // Add body contents.
     /* @var \ezcMailPart[] $parts */
     $parts = $mail->fetchParts();
-    $countParts = 0;
+    $hasBodyParts = FALSE;
     foreach ($parts as $part) {
-      switch ($part->subType) {
-        case 'plain':
-          $mailingParamName = 'body_text';
+      switch (get_class($part)) {
+        case 'ezcMailText':
+          /* @var \ezcMailText $part */
+          // Add body contents.
+          switch ($part->subType) {
+            case 'plain':
+              $mailingParamName = 'body_text';
+              break;
+            case 'html':
+              $mailingParamName = 'body_html';
+              break;
+          }
+          $parser = ezcMailPartParser::createPartParserForHeaders($part->headers);
+          if (isset($mailingParamName)) {
+            $parser->parseBody($part->generateBody());
+            $mailingParams[$mailingParamName] = $part->text;
+            $hasBodyParts = TRUE;
+          }
           break;
-        case 'html':
-          $mailingParamName = 'body_html';
+        case 'ezcMailFile':
+          /* @var \ezcMailFile $part */
+          // Add file attachments.
+          static $attachmentCount = 0;
+          $attachmentCount++;
+          $mailingParams["attachFile_$attachmentCount"]['location'] = $part->fileName;
+          $mailingParams["attachFile_$attachmentCount"]['type'] = implode('/', array($part->contentType, $part->mimeType));
           break;
-      }
-      $parser = ezcMailPartParser::createPartParserForHeaders($part->headers);
-      if (isset($mailingParamName)) {
-        $parser->parseBody($part->generateBody());
-        $mailingParams[$mailingParamName] = $part->text;
-        $countParts++;
       }
     }
-    if (!$countParts) {
+    if (!$hasBodyParts) {
       throw new Exception(E::ts('Could not create mailing: No plain text or html body parts could be extracted from the e-mail.'));
     }
-
-    // TODO: Add file attachments.
 
     /* @var \CRM_Mailing_BAO_Mailing $mailing */
     $mailing = CRM_Mailing_BAO_Mailing::create($mailingParams);

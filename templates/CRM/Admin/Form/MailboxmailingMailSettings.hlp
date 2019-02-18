@@ -3,7 +3,7 @@
   <p>{ts domain="de.systopia.mailboxmailing"}The following template variables are available:{/ts}</p>
   <ul>
     <li>
-      <code>{literal}$mail{/literal} - Variables of the e-mail being processed.</code>
+      <code>{literal}$mail{/literal}</code> - Variables of the e-mail being processed.
       <ul>
         <li><code>{literal}$mail.to{/literal}</code></li>
         <li><code>{literal}$mail.cc{/literal}</code></li>
@@ -19,7 +19,7 @@
     </li>
 
     <li>
-          <code>{literal}$mailSetting{/literal} - Variables of the mail settings used.</code>
+          <code>{literal}$mailSetting{/literal}</code> - Variables of the mail settings used.
           <ul>
             <li><code>{literal}$mailSetting.name{/literal}</code></li>
             <li><code>{literal}$mailSetting.domain{/literal}</code></li>

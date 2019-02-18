@@ -11,57 +11,6 @@ class CRM_Mailboxmailing_BAO_MailboxmailingMailSettings extends CRM_Mailboxmaili
   }
 
   /**
-   * Return the DAO object containing to the default row of
-   * civicrm_mailboxmailing_mail_settings and cache it for further calls
-   *
-   * @param bool $reset
-   *
-   * @return CRM_Mailboxmailing_BAO_MailboxmailingMailSettings
-   *   DAO with the default mail settings set
-   */
-  public static function defaultDAO($reset = FALSE) {
-    static $mailSettings = array();
-    $domainID = CRM_Core_Config::domainID();
-    if (empty($mailSettings[$domainID]) || $reset) {
-      $dao = new self();
-      $dao->domain_id = $domainID;
-      $dao->find(TRUE);
-      $mailSettings[$domainID] = $dao;
-    }
-    return $mailSettings[$domainID];
-  }
-
-  /**
-   * Return the domain from the default set of settings.
-   *
-   * @return string
-   *   default domain
-   */
-  public static function defaultDomain() {
-    return self::defaultDAO()->domain;
-  }
-
-  /**
-   * Return the localpart from the default set of settings.
-   *
-   * @return string
-   *   default localpart
-   */
-  public static function defaultLocalpart() {
-    return self::defaultDAO()->localpart;
-  }
-
-  /**
-   * Return the return path from the default set of settings.
-   *
-   * @return string
-   *   default return path
-   */
-  public static function defaultReturnPath() {
-    return self::defaultDAO()->return_path;
-  }
-
-  /**
    * Return the "include message ID" flag from the default set of settings.
    *
    * @return bool

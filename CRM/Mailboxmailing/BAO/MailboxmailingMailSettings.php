@@ -89,7 +89,6 @@ class CRM_Mailboxmailing_BAO_MailboxmailingMailSettings extends CRM_Mailboxmaili
     }
 
     $transaction->commit();
-    CRM_Mailboxmailing_BAO_MailboxmailingMailSettings::defaultDAO(TRUE);
     return $mailSettings;
   }
 

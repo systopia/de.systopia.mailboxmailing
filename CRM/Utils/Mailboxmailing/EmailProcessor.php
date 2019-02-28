@@ -84,6 +84,17 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
             // Create, schedule and archive CiviCRM Mailing.
             try {
               $mailing = static::createMailing($mail, $mailSetting, $sender_id);
+              // Store the MailSettings ID in a custom field for later
+              // traceability.
+              $field = civicrm_api3('CustomField', 'getsingle', array(
+                'custom_group_id' => "mailing_mailboxmailing",
+                'name' => "MailboxmailingMailSettingsId",
+              ));
+              civicrm_api3('Mailing', 'create', array(
+                'id' => $mailing->id,
+                'custom_' . $field['id'] => $mailSetting->id,
+              ));
+
               $mail_result['mailing_id'] = $mailing->id;
               $processed = TRUE;
             }
@@ -196,6 +207,11 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
       'created_date' => date('YmdHis', $mail->timestamp),
       'scheduled_date' => date('YmdHis'),
       'approval_date' => NULL,
+      'groups' => array(
+        'include' => array(
+          $mailSetting->recipient_group_id,
+        ),
+      ),
     );
 
     // Evaluate subject pattern.

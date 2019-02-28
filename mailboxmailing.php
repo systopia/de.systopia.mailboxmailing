@@ -40,6 +40,44 @@ function mailboxmailing_civicrm_xmlMenu(&$files) {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_install
  */
 function mailboxmailing_civicrm_install() {
+  // Make the Mailing entity fieldable (add to cg_extend_objects OptionGroup)
+  // and attach a custom field to it to reference a MailboxmailingMailSettings
+  // entity.
+  try {
+    civicrm_api3('OptionValue', 'getsingle', array(
+      'option_group_id' => 'cg_extend_objects',
+      'label' => 'Mailing',
+      'value' => 'Mailing',
+      'name' => 'civicrm_mailing',
+    ));
+  }
+  catch (CiviCRM_API3_Exception $exception) {
+    civicrm_api3('OptionValue', 'create', array(
+      'option_group_id' => 'cg_extend_objects',
+      'label' => 'Mailing',
+      'value' => 'Mailing',
+      'name' => 'civicrm_mailing',
+      'is_reserved' => 1,
+    ));
+  }
+  $custom_group = civicrm_api3('CustomGroup', 'create', array(
+    'title' => 'Mailboxmailing',
+    'extends' => 'Mailing',
+    'name' => 'mailing_mailboxmailing',
+    'table_name' => 'civicrm_value_mailing_mailboxmailing',
+    'is_reserved' => 1,
+  ));
+  civicrm_api3('CustomField', 'create', array(
+    'custom_group_id' => $custom_group['id'],
+    'label' => 'Mailboxmailing Mail Settings ID',
+    'name' => 'MailboxmailingMailSettingsId',
+    'data_type' => 'Int',
+    'is_searchable' => 0,
+    'is_view' => 1,
+    'in_selector' => 0,
+    'html_type' => 'Text',
+  ));
+
   _mailboxmailing_civix_civicrm_install();
 }
 
@@ -58,6 +96,33 @@ function mailboxmailing_civicrm_postInstall() {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_uninstall
  */
 function mailboxmailing_civicrm_uninstall() {
+  // Remove the custom field and the custom field group added during
+  // installation.
+  try {
+    $field = civicrm_api3('CustomField', 'getsingle', array(
+      'custom_group_id' => "mailing_mailboxmailing",
+      'name' => "MailboxmailingMailSettingsId",
+    ));
+    civicrm_api3('CustomField', 'delete', array(
+      'id' => $field['id'],
+    ));
+  }
+  catch (CiviCRM_API3_Exception $exception) {
+    // Nothing to do here.
+  }
+
+  try {
+    $group = civicrm_api3('CustomGroup', 'getsingle', array(
+      'name' => 'mailing_mailboxmailing',
+    ));
+    civicrm_api3('CustomGroup', 'delete', array(
+      'id' => $group['id'],
+    ));
+  }
+  catch (CiviCRM_API3_Exception $exception) {
+    // Nothing to do here.
+  }
+
   _mailboxmailing_civix_civicrm_uninstall();
 }
 

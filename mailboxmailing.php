@@ -147,6 +147,28 @@ function mailboxmailing_civicrm_entityTypes(&$entityTypes) {
   _mailboxmailing_civix_civicrm_entityTypes($entityTypes);
 }
 
+/**
+ * Implements hook_civicrm_permission().
+ *
+ * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_permission
+ */
+function mailboxmailing_civicrm_permission(&$permissions) {
+  $permissions['process mailboxmailing'] = 'Process Mailboxmailing';
+}
+
+/**
+ * Implements hook_civicrm_alterAPIPermissions().
+ *
+ * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_alterAPIPermissions
+ */
+function mailboxmailing_civicrm_alterAPIPermissions($entity, $action, &$params, &$permissions) {
+  // Restrict API calls to the permission.
+  $permissions['mailboxmailing_mail_settings']['create'] = array('administer CiviCRM');
+  $permissions['mailboxmailing_mail_settings']['delete']  = array('administer CiviCRM');
+  $permissions['mailboxmailing_mail_settings']['get']  = array('administer CiviCRM');
+  $permissions['job']['process_mailboxmailing']  = array('process mailboxmailing');
+}
+
 // --- Functions below this ship commented out. Uncomment as required. ---
 
 /**

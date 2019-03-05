@@ -206,6 +206,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
       'auto_responder' => 0,
       'created_date' => date('YmdHis', $mail->timestamp),
       'scheduled_date' => date('YmdHis'),
+      'scheduled_id' => $sender_id,
       'approval_date' => NULL,
       'groups' => array(
         'include' => array(

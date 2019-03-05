@@ -219,6 +219,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
     $variables = static::getSmartyVariables($mailSetting, $mail);
     $subject = $smarty->fetchWith('string:' . $mailSetting->subject, $variables);
     $mailingParams['subject'] = $subject;
+    $mailingParams['name'] = $subject;
 
     /* @var \ezcMailPart[] $parts */
     $parts = $mail->fetchParts();

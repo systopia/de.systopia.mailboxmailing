@@ -1,4 +1,4 @@
-{htxt id='id-subject'}
+{htxt id='id-smarty'}
   <p>{ts domain="de.systopia.mailboxmailing"}This pattern is evaluated using Smarty.{/ts}</p>
   <p>{ts domain="de.systopia.mailboxmailing"}The following template variables are available:{/ts}</p>
   <ul>
@@ -36,7 +36,9 @@
             <li><code>{literal}$mailSetting.recipient_group_id{/literal}</code></li>
             <li><code>{literal}$mailSetting.subject{/literal}</code></li>
             <li><code>{literal}$mailSetting.notify_disallowed_sender{/literal}</code></li>
+            <li><code>{literal}$mailSetting.notify_disallowed_sender_template{/literal}</code></li>
             <li><code>{literal}$mailSetting.notify_sender_errors{/literal}</code></li>
+            <li><code>{literal}$mailSetting.notify_sender_errors_template{/literal}</code></li>
             <li><code>{literal}$mailSetting.notification_activity_type_id{/literal}</code></li>
             <li><code>{literal}$mailSetting.archive_mailing{/literal}</code></li>
           </ul>

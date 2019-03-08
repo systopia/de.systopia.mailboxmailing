@@ -80,7 +80,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
           $mail_result['message_id'] = $mail->messageId;
 
           // Check if sender is allowed to initiate mailing creation.
-          if ($sender_id = array_search($mail->from->email, $allowed_senders)) {
+          if ($sender_id = array_search(strtolower($mail->from->email), $allowed_senders)) {
             // Create, schedule and archive CiviCRM Mailing.
             try {
               $mailing = static::createMailing($mail, $mailSetting, $sender_id);
@@ -94,7 +94,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
           }
 
           // Check if sender is in recipient group.
-          elseif ($sender_id = array_search($mail->from->email, $recipients)) {
+          elseif ($sender_id = array_search(strtolower($mail->from->email), $recipients)) {
             // Send notice to sender informing them about not being allowed to
             // send mailings as recipient.
             try {

@@ -135,9 +135,27 @@
         <td class="description">{ts domain="de.systopia.mailboxmailing"}Whether to notify disallowed sender.{/ts}</td>
       </tr>
 
+      <tr class="crm-mailboxmailing-mail-settings-form-block-notify_disallowed_sender_template">
+        <td class="label">{$form.notify_disallowed_sender_template.label}</td>
+        <td>{$form.notify_disallowed_sender_template.html}</td>
+      </tr>
+      <tr>
+        <td class="label">&nbsp;</td>
+        <td class="description">{ts domain="de.systopia.mailboxmailing"}Whether to notify disallowed sender.{/ts}</td>
+      </tr>
+
       <tr class="crm-mailboxmailing-mail-settings-form-block-notify_sender_errors">
         <td class="label">{$form.notify_sender_errors.label}</td>
         <td>{$form.notify_sender_errors.html}</td>
+      </tr>
+      <tr>
+        <td class="label">&nbsp;</td>
+        <td class="description">{ts domain="de.systopia.mailboxmailing"}Whether to notify senders about errors.{/ts}</td>
+      </tr>
+
+      <tr class="crm-mailboxmailing-mail-settings-form-block-notify_sender_errors_template">
+        <td class="label">{$form.notify_sender_errors_template.label}</td>
+        <td>{$form.notify_sender_errors_template.html}</td>
       </tr>
       <tr>
         <td class="label">&nbsp;</td>

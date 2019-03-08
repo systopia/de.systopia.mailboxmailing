@@ -207,11 +207,23 @@
   </field>
 
   <field>
+    <name>notify_disallowed_sender_template</name>
+    <type>longtext</type>
+    <comment>A Smarty template to use for notifications sent to disallowed senders.</comment>
+  </field>
+
+  <field>
     <name>notify_sender_errors</name>
     <title>Notify sender about errors</title>
     <type>boolean</type>
     <comment>Whether to notify senders about errors.</comment>
     <add>2.2</add>
+  </field>
+
+  <field>
+    <name>notify_sender_errors_template</name>
+    <type>longtext</type>
+    <comment>A Smarty template to use for notifications about errors sent to senders.</comment>
   </field>
 
   <field>

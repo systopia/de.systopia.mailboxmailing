@@ -98,7 +98,9 @@ CREATE TABLE `civicrm_mailboxmailing_mail_settings` (
      `recipient_group_id` int unsigned    COMMENT 'The group of contacts to receive mailings using these MailSettings.',
      `subject` varchar(255)    COMMENT 'A pattern to use as the subject for the Mailing.',
      `notify_disallowed_sender` tinyint    COMMENT 'Whether to notify disallowed sender.',
+     `notify_disallowed_sender_template` longtext    COMMENT 'A Smarty template to use for notifications sent to disallowed senders.',
      `notify_sender_errors` tinyint    COMMENT 'Whether to notify senders about errors.',
+     `notify_sender_errors_template` longtext    COMMENT 'A Smarty template to use for notifications about errors sent to senders.',
      `notification_activity_type_id` int unsigned    COMMENT 'The activity type to use for activities to notify senders about errors.',
      `archive_mailing` tinyint    COMMENT 'Whether to archive mailings after sending.' 
 ,

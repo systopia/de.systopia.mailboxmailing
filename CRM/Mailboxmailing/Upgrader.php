@@ -131,4 +131,17 @@ class CRM_Mailboxmailing_Upgrader extends CRM_Mailboxmailing_Upgrader_Base {
     return TRUE;
   } // */
 
+  /**
+   * Example: Run an external SQL script.
+   *
+   * @return TRUE on success
+   * @throws Exception
+   */
+  public function upgrade_4001() {
+    $this->ctx->log->info('Applying update 4001: Adding database table columns for notification templates.');
+    // this path is relative to the extension base dir
+    $this->executeSqlFile('sql/upgrade_4001.sql');
+    return TRUE;
+  }
+
 }

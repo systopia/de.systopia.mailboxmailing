@@ -105,9 +105,18 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
 
           // Check if sender is in recipient group.
           elseif ($sender_id = array_search($mail->from->email, $recipients)) {
-            // TODO: Send notice to sender informing them about not being
-            //       allowed to send mailings as recipient.
-            $mail_result['sender_notified'] = (int) TRUE;
+            // Send notice to sender informing them about not being allowed to
+            // send mailings as recipient.
+            try {
+              static::sendDisallowedSenderNotification($mail, $mailSetting, $sender_id);
+
+              $mail_result['sender_notified'] = (int) TRUE;
+            }
+            catch (\Exception $exception) {
+              $mail_result['sender_notified'] = (int) FALSE;
+              $mail_result['error_message'] = $exception->getMessage();
+            }
+
             $processed = TRUE;
           }
           else {
@@ -263,6 +272,47 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
     $mailing = CRM_Mailing_BAO_Mailing::create($mailingParams);
 
     return $mailing;
+  }
+
+  /**
+   * @param \ezcMail $mail
+   * @param \CRM_Mailboxmailing_BAO_MailboxmailingMailSettings $mailSetting
+   * @param int $sender_id
+   *
+   * @throws \Exception
+   */
+  public static function sendDisallowedSenderNotification($mail, $mailSetting, $sender_id) {
+    $sender_contact = civicrm_api3('Contact', 'getsingle', array(
+      'id' => $sender_id,
+    ));
+    if (isset($mailSetting->from_email_address_id)) {
+      $from_email_address = $mailSetting->from_email_address_id;
+    }
+    else {
+      $from_email_address = CRM_Core_BAO_Domain::getNameAndEmail(FALSE, TRUE);
+      $from_email_address = reset($from_email_address);
+    }
+    $mail_params = array(
+      'from' => $from_email_address,
+      'toName' => $sender_contact['display_name'],
+      'toEmail' => $sender_contact['email'],
+      'cc' => '',
+      'bc' => '',
+      'subject' => E::ts('You are not allowed to send mailings to this mailing list'),
+      'replyTo' => $from_email_address,
+    );
+
+    // Render Smarty template.
+    $text = CRM_Core_Smarty::singleton()->fetchWith(
+      'string:' . $mailSetting->notify_disallowed_sender_template,
+      static::getSmartyVariables($mailSetting, $mail)
+    );
+    $mail_params['text'] = $text;
+    $mail_params['html'] = str_replace("<br />\n<br />\n", "</p>\n<p>", '<p>'.nl2br($text).'</p>');
+
+    if (!CRM_Utils_Mail::send($mail_params)) {
+      throw new \Exception(E::ts('Sending notification to disallowed sender failed.'));
+    }
   }
 
   /**

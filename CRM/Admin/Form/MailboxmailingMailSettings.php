@@ -89,7 +89,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
       'select',
       'from_email_address_id',
       E::ts('From E-Mail Address'),
-      CRM_Core_BAO_Email::domainEmails()
+      array('' => E::ts('- Default -')) + CRM_Core_BAO_Email::domainEmails()
     );
 
     $this->add(

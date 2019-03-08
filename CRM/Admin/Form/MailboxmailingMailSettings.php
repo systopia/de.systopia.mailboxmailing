@@ -86,6 +86,13 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
     );
 
     $this->add(
+      'select',
+      'from_email_address_id',
+      E::ts('From E-Mail Address'),
+      CRM_Core_BAO_Email::domainEmails()
+    );
+
+    $this->add(
       'checkbox',
       'notify_disallowed_sender',
       E::ts('Notify disallowed sender')
@@ -191,6 +198,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
       'sender_group_id',
       'recipient_group_id',
       'subject',
+      'from_email_address_id',
       'notify_disallowed_sender',
       'notify_disallowed_sender_template',
       'notify_sender_errors',

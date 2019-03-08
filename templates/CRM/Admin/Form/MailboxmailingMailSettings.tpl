@@ -126,6 +126,15 @@
         <td class="description">{ts domain="de.systopia.mailboxmailing"}A pattern to use as the subject for the Mailing.{/ts}</td>
       </tr>
 
+      <tr class="crm-mailboxmailing-mail-settings-form-block-from_email_address_id">
+        <td class="label">{$form.from_email_address_id.label}</td>
+        <td>{$form.from_email_address_id.html}</td>
+      </tr>
+      <tr>
+        <td class="label">&nbsp;</td>
+        <td class="description">{ts domain="de.systopia.mailboxmailing"}The from email address to use when sending notifications.{/ts}</td>
+      </tr>
+
       <tr class="crm-mailboxmailing-mail-settings-form-block-notify_disallowed_sender">
         <td class="label">{$form.notify_disallowed_sender.label}</td>
         <td>{$form.notify_disallowed_sender.html}</td>
@@ -141,7 +150,7 @@
       </tr>
       <tr>
         <td class="label">&nbsp;</td>
-        <td class="description">{ts domain="de.systopia.mailboxmailing"}Whether to notify disallowed sender.{/ts}</td>
+        <td class="description">{ts domain="de.systopia.mailboxmailing"}A Smarty template to use for notifications sent to disallowed senders.{/ts}</td>
       </tr>
 
       <tr class="crm-mailboxmailing-mail-settings-form-block-notify_sender_errors">
@@ -159,7 +168,7 @@
       </tr>
       <tr>
         <td class="label">&nbsp;</td>
-        <td class="description">{ts domain="de.systopia.mailboxmailing"}Whether to notify senders about errors.{/ts}</td>
+        <td class="description">{ts domain="de.systopia.mailboxmailing"}A Smarty template to use for notifications about errors sent to senders.{/ts}</td>
       </tr>
 
       <tr class="crm-mailboxmailing-mail-settings-form-block-notification_activity_type_id">

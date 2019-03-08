@@ -199,6 +199,21 @@
   </field>
 
   <field>
+    <name>from_email_address_id</name>
+    <title>From e-mail address</title>
+    <type>varchar</type>
+    <length>512</length>
+    <comment>Implicit FK to civicrm_option_value.value for from email address to use when sending notifications.</comment>
+    <add>4.7</add>
+    <pseudoconstant>
+      <optionGroupName>from_email_addresses</optionGroupName>
+    </pseudoconstant>
+    <html>
+      <type>Select</type>
+    </html>
+  </field>
+
+  <field>
     <name>notify_disallowed_sender</name>
     <title>Notify disallowed sender</title>
     <type>boolean</type>

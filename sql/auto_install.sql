@@ -97,6 +97,7 @@ CREATE TABLE `civicrm_mailboxmailing_mail_settings` (
      `sender_group_id` int unsigned    COMMENT 'The group of contacts allowed to send mailings using these MailSettings.',
      `recipient_group_id` int unsigned    COMMENT 'The group of contacts to receive mailings using these MailSettings.',
      `subject` varchar(255)    COMMENT 'A pattern to use as the subject for the Mailing.',
+     `from_email_address_id` varchar(512)    COMMENT 'Implicit FK to civicrm_option_value.value for from email address to use when sending notifications.',
      `notify_disallowed_sender` tinyint    COMMENT 'Whether to notify disallowed sender.',
      `notify_disallowed_sender_template` longtext    COMMENT 'A Smarty template to use for notifications sent to disallowed senders.',
      `notify_sender_errors` tinyint    COMMENT 'Whether to notify senders about errors.',

@@ -84,21 +84,11 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
             // Create, schedule and archive CiviCRM Mailing.
             try {
               $mailing = static::createMailing($mail, $mailSetting, $sender_id);
-              // Store the MailSettings ID in a custom field for later
-              // traceability.
-              $field = civicrm_api3('CustomField', 'getsingle', array(
-                'custom_group_id' => "mailing_mailboxmailing",
-                'name' => "MailboxmailingMailSettingsId",
-              ));
-              civicrm_api3('Mailing', 'create', array(
-                'id' => $mailing->id,
-                'custom_' . $field['id'] => $mailSetting->id,
-              ));
 
               $mail_result['mailing_id'] = $mailing->id;
               $processed = TRUE;
             }
-            catch (Exception $exception) {
+            catch (\Exception $exception) {
               $mail_result['error_message'] = $exception->getMessage();
             }
           }
@@ -270,6 +260,17 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
 
     /* @var \CRM_Mailing_BAO_Mailing $mailing */
     $mailing = CRM_Mailing_BAO_Mailing::create($mailingParams);
+
+    // Store the MailSettings ID in a custom field for later
+    // traceability.
+    $field = civicrm_api3('CustomField', 'getsingle', array(
+      'custom_group_id' => "mailing_mailboxmailing",
+      'name' => "MailboxmailingMailSettingsId",
+    ));
+    civicrm_api3('Mailing', 'create', array(
+      'id' => $mailing->id,
+      'custom_' . $field['id'] => $mailSetting->id,
+    ));
 
     return $mailing;
   }

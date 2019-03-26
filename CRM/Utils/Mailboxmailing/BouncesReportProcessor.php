@@ -38,7 +38,7 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
     $mailings = civicrm_api3('Mailing', 'get', $mailing_parameters);
 
     foreach ($mailings['values'] as $mailing) {
-      // TODO: Check for bounces and generate report e-mail.
+      // TODO: Check for bounces and generate report e-mail - but only if the corresponding MailSettings is configured to do that.
     }
 
     return $result;

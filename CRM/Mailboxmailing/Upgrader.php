@@ -132,15 +132,40 @@ class CRM_Mailboxmailing_Upgrader extends CRM_Mailboxmailing_Upgrader_Base {
   } // */
 
   /**
-   * Example: Run an external SQL script.
-   *
-   * @return TRUE on success
+   * @return bool TRUE on success
    * @throws Exception
    */
   public function upgrade_4001() {
     $this->ctx->log->info('Applying update 4001: Adding database table columns for notification templates.');
     // this path is relative to the extension base dir
     $this->executeSqlFile('sql/upgrade_4001.sql');
+    return TRUE;
+  }
+
+  /**
+   * @return bool TRUE on success
+   * @throws \Exception
+   */
+  public function upgrade_4002() {
+    // Attach a custom field to the Mailing entity for tracking how often a
+    // bounce report has been sent to the mailing author.
+    $custom_group = civicrm_api3('CustomGroup', 'getsingle', array(
+      'name' => 'mailing_mailboxmailing',
+    ));
+    $custom_field = civicrm_api3('CustomField', 'create', array(
+      'custom_group_id' => $custom_group['id'],
+      'label' => 'Mailboxmailing Bounce Report Count',
+      'name' => 'MailboxmailingBouncesReportCount',
+      'data_type' => 'Int',
+      'is_searchable' => 0,
+      'is_view' => 1,
+      'in_selector' => 0,
+      'html_type' => 'Text',
+      'default_value' => 0,
+    ));
+    if ($custom_field['is_error']) {
+      throw new Exception(E::ts('Could not create custom field for Mailing entity.'));
+    }
     return TRUE;
   }
 

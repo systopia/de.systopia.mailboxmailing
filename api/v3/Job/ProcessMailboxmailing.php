@@ -38,7 +38,7 @@ function civicrm_api3_job_process_mailboxmailing($params) {
 //    }
     $result = CRM_Utils_Mailboxmailing_EmailProcessor::process($params);
 //    $lock->release();
-    return civicrm_api3_create_success($result, $params, 'Job', 'MailboxmailingProcess');
+    return civicrm_api3_create_success($result, $params, 'Job', 'process_mailboxmailing');
   }
   catch (Exception $exception) {
     return civicrm_api3_create_error($exception->getMessage());

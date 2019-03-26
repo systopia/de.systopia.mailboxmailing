@@ -40,9 +40,7 @@ function mailboxmailing_civicrm_xmlMenu(&$files) {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_install
  */
 function mailboxmailing_civicrm_install() {
-  // Make the Mailing entity fieldable (add to cg_extend_objects OptionGroup)
-  // and attach a custom field to it to reference a MailboxmailingMailSettings
-  // entity.
+  // Make the Mailing entity fieldable (add to cg_extend_objects OptionGroup).
   try {
     civicrm_api3('OptionValue', 'getsingle', array(
       'option_group_id' => 'cg_extend_objects',
@@ -60,6 +58,8 @@ function mailboxmailing_civicrm_install() {
       'is_reserved' => 1,
     ));
   }
+
+  // Add a CustomGroup for CustomFields for Mailing entities.
   $custom_group = civicrm_api3('CustomGroup', 'create', array(
     'title' => 'Mailboxmailing',
     'extends' => 'Mailing',
@@ -67,6 +67,9 @@ function mailboxmailing_civicrm_install() {
     'table_name' => 'civicrm_value_mailing_mailboxmailing',
     'is_reserved' => 1,
   ));
+
+  // Attach a custom field to the Mailing entity for referencing a
+  // MailboxmailingMailSettings entity.
   civicrm_api3('CustomField', 'create', array(
     'custom_group_id' => $custom_group['id'],
     'label' => 'Mailboxmailing Mail Settings ID',
@@ -76,6 +79,20 @@ function mailboxmailing_civicrm_install() {
     'is_view' => 1,
     'in_selector' => 0,
     'html_type' => 'Text',
+  ));
+
+  // Attach a custom field to the Mailing entity for tracking when a bounce
+  // report has been sent to the mailing author.
+  civicrm_api3('CustomField', 'create', array(
+    'custom_group_id' => $custom_group['id'],
+    'label' => 'Mailboxmailing Bounce Report Count',
+    'name' => 'MailboxmailingBouncesReportCount',
+    'data_type' => 'Int',
+    'is_searchable' => 0,
+    'is_view' => 1,
+    'in_selector' => 0,
+    'html_type' => 'Text',
+    'default_value' => 0,
   ));
 
   _mailboxmailing_civix_civicrm_install();

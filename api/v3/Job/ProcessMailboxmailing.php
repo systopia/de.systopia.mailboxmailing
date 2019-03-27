@@ -1,9 +1,22 @@
 <?php
+/*-------------------------------------------------------+
+| SYSTOPIA Mailbox Mailing Extension                     |
+| Copyright (C) 2019 SYSTOPIA                            |
+| Author: J. Schuppe (schuppe@systopia.de)               |
++--------------------------------------------------------+
+| This program is released as free software under the    |
+| Affero GPL license. You can redistribute it and/or     |
+| modify it under the terms of this license which you    |
+| can read by viewing the included agpl.txt or online    |
+| at www.gnu.org/licenses/agpl.html. Removal of this     |
+| copyright header is strictly prohibited without        |
+| written permission from the original author(s).        |
++--------------------------------------------------------*/
 
 use CRM_Mailboxmailing_ExtensionUtil as E;
 
 /**
- * Job.MailboxmailingProcess API specification (optional)
+ * Job.process_mailboxmailing API specification (optional)
  * This is used for documentation and validation.
  *
  * @param array $spec description of fields supported by this API call
@@ -21,7 +34,7 @@ function _civicrm_api3_job_process_mailboxmailing_spec(&$spec) {
 }
 
 /**
- * Job.MailboxmailingProcess API
+ * Job.process_mailboxmailing API
  *
  * @param array $params
  * @return array API result descriptor
@@ -31,13 +44,12 @@ function _civicrm_api3_job_process_mailboxmailing_spec(&$spec) {
  */
 function civicrm_api3_job_process_mailboxmailing($params) {
   try {
-    // TODO: Check what the locking is all about.
-//    $lock = Civi::lockManager()->acquire('worker.mailing.EmailProcessor');
-//    if (!$lock->isAcquired()) {
-//      return civicrm_api3_create_error('Could not acquire lock, another EmailProcessor process is running');
-//    }
+    $lock = Civi::lockManager()->acquire('worker.mailboxmailing.EmailProcessor');
+    if (!$lock->isAcquired()) {
+      return civicrm_api3_create_error('Could not acquire lock, another mailboxmailing.EmailProcessor process is running');
+    }
     $result = CRM_Utils_Mailboxmailing_EmailProcessor::process($params);
-//    $lock->release();
+    $lock->release();
     return civicrm_api3_create_success($result, $params, 'Job', 'process_mailboxmailing');
   }
   catch (Exception $exception) {

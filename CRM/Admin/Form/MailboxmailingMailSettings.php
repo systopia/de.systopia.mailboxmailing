@@ -1,4 +1,17 @@
 <?php
+/*-------------------------------------------------------+
+| SYSTOPIA Mailbox Mailing Extension                     |
+| Copyright (C) 2019 SYSTOPIA                            |
+| Author: J. Schuppe (schuppe@systopia.de)               |
++--------------------------------------------------------+
+| This program is released as free software under the    |
+| Affero GPL license. You can redistribute it and/or     |
+| modify it under the terms of this license which you    |
+| can read by viewing the included agpl.txt or online    |
+| at www.gnu.org/licenses/agpl.html. Removal of this     |
+| copyright header is strictly prohibited without        |
+| written permission from the original author(s).        |
++--------------------------------------------------------*/
 
 use CRM_Mailboxmailing_ExtensionUtil as E;
 
@@ -27,14 +40,6 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
 
     //build setting form
     $this->add('text', 'name', E::ts('Name'), $attributes['name'], TRUE);
-
-    $this->add('text', 'domain', E::ts('Email Domain'), $attributes['domain'], TRUE);
-    $this->addRule('domain', E::ts('Email domain must use a valid internet domain format (e.g. \'example.org\').'), 'domain');
-
-    $this->add('text', 'localpart', E::ts('Localpart'), $attributes['localpart']);
-
-    $this->add('text', 'return_path', E::ts('Return-Path'), $attributes['return_path']);
-    $this->addRule('return_path', E::ts('Return-Path must use a valid email address format.'), 'email');
 
     $this->add('select', 'protocol',
       E::ts('Protocol'),
@@ -185,10 +190,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
     //form fields.
     $fields = array(
       'name',
-      'domain',
-      'localpart',
       'server',
-      'return_path',
       'protocol',
       'port',
       'username',

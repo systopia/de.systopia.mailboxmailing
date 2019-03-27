@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
-
+<!--=====================================================+
+| SYSTOPIA Mailbox Mailing Extension                     |
+| Copyright (C) 2019 SYSTOPIA                            |
+| Author: J. Schuppe (schuppe@systopia.de)               |
++========================================================+
+| This program is released as free software under the    |
+| Affero GPL license. You can redistribute it and/or     |
+| modify it under the terms of this license which you    |
+| can read by viewing the included agpl.txt or online    |
+| at www.gnu.org/licenses/agpl.html. Removal of this     |
+| copyright header is strictly prohibited without        |
+| written permission from the original author(s).        |
++======================================================-->
 <table>
   <base>CRM/Mailboxmailing</base>
   <class>MailboxmailingMailSettings</class>
@@ -47,33 +59,6 @@
     <type>varchar</type>
     <length>255</length>
     <comment>name of this group of settings</comment>
-    <add>2.2</add>
-  </field>
-
-  <field>
-    <name>domain</name>
-    <title>email Domain</title>
-    <type>varchar</type>
-    <length>255</length>
-    <comment>email address domain (the part after @)</comment>
-    <add>2.2</add>
-  </field>
-
-  <field>
-    <name>localpart</name>
-    <title>email Local Part</title>
-    <type>varchar</type>
-    <length>255</length>
-    <comment>optional local part (like civimail+ for addresses like civimail+s.1.2@example.com)</comment>
-    <add>2.2</add>
-  </field>
-
-  <field>
-    <name>return_path</name>
-    <title>Return Path</title>
-    <type>varchar</type>
-    <length>255</length>
-    <comment>contents of the Return-Path header</comment>
     <add>2.2</add>
   </field>
 

@@ -1,3 +1,17 @@
+{*-------------------------------------------------------+
+| SYSTOPIA Mailbox Mailing Extension                     |
+| Copyright (C) 2019 SYSTOPIA                            |
+| Author: J. Schuppe (schuppe@systopia.de)               |
++--------------------------------------------------------+
+| This program is released as free software under the    |
+| Affero GPL license. You can redistribute it and/or     |
+| modify it under the terms of this license which you    |
+| can read by viewing the included agpl.txt or online    |
+| at www.gnu.org/licenses/agpl.html. Removal of this     |
+| copyright header is strictly prohibited without        |
+| written permission from the original author(s).        |
++--------------------------------------------------------*}
+
 <div class="crm-block crm-form-block crm-mailboxmailing-mail-settings-form-block">
   <div class="crm-submit-buttons">{include file="CRM/common/formButtons.tpl" location="top"}</div>
   {if $action eq 8}
@@ -43,33 +57,6 @@
       <tr>
         <td class="label">&nbsp;</td>
         <td class="description">{ts}Password to use when polling (for IMAP and POP3).{/ts}</td>
-      </tr>
-
-      <tr class="crm-mailboxmailing-mail-settings-form-block-localpart">
-        <td class="label">{$form.localpart.label}</td>
-        <td>{$form.localpart.html}</td>
-      </tr>
-      <tr>
-        <td class="label">&nbsp;</td>
-        <td class="description">{ts}Optional local part (e.g., 'civimail+' for addresses like civimail+s.1.2@example.com).{/ts}</td>
-      </tr>
-
-      <tr class="crm-mailboxmailing-mail-settings-form-block-domain">
-        <td class="label">{$form.domain.label}</td>
-        <td>{$form.domain.html}</td>
-      </tr>
-      <tr>
-        <td class="label">&nbsp;</td>
-        <td class="description">{ts}Email address domain (the part after @).{/ts}</td>
-      </tr>
-
-      <tr class="crm-mailboxmailing-mail-settings-form-block-return_path">
-        <td class="label">{$form.return_path.label}</td>
-        <td>{$form.return_path.html}</td>
-      <tr>
-      <tr>
-        <td class="label">&nbsp;</td>
-        <td class="description">{ts}Contents of the Return-Path header.{/ts}</td>
       </tr>
 
       <tr class="crm-mailboxmailing-mail-settings-form-block-protocol">

@@ -1,6 +1,6 @@
 <?php
 /*-------------------------------------------------------+
-| SYSTOPIA Malbox Mailing Extension                      |
+| SYSTOPIA Mailbox Mailing Extension                     |
 | Copyright (C) 2019 SYSTOPIA                            |
 | Author: J. Schuppe (schuppe@systopia.de)               |
 +--------------------------------------------------------+

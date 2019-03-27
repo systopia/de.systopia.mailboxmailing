@@ -1,3 +1,17 @@
+{*-------------------------------------------------------+
+| SYSTOPIA Mailbox Mailing Extension                     |
+| Copyright (C) 2019 SYSTOPIA                            |
+| Author: J. Schuppe (schuppe@systopia.de)               |
++--------------------------------------------------------+
+| This program is released as free software under the    |
+| Affero GPL license. You can redistribute it and/or     |
+| modify it under the terms of this license which you    |
+| can read by viewing the included agpl.txt or online    |
+| at www.gnu.org/licenses/agpl.html. Removal of this     |
+| copyright header is strictly prohibited without        |
+| written permission from the original author(s).        |
++--------------------------------------------------------*}
+
 {if $action eq 1 or $action eq 2 or $action eq 8}
 {include file="CRM/Admin/Form/MailboxmailingMailSettings.tpl"}
 {else}
@@ -12,9 +26,6 @@
             <th>{ts}Name{/ts}</th>
             <th>{ts}Server{/ts}</th>
             <th>{ts}Username{/ts}</th>
-            <th>{ts}Localpart{/ts}</th>
-            <th>{ts}Domain{/ts}</th>
-            <th>{ts}Return-Path{/ts}</th>
             <th>{ts}Protocol{/ts}</th>
             <th>{ts}Source{/ts}</th>
             <!--<th>{ts}Port{/ts}</th>-->
@@ -26,9 +37,6 @@
                 <td class="crm-mailboxmailingMailSettings-name">{$row.name}</td>
                 <td class="crm-mailboxmailingMailSettings-server">{$row.server}</td>
                 <td class="crm-mailboxmailingMailSettings-username">{$row.username}</td>
-                <td class="crm-mailboxmailingMailSettings-localpart">{$row.localpart}</td>
-                <td class="crm-mailboxmailingMailSettings-domain">{$row.domain}</td>
-                <td class="crm-mailboxmailingMailSettings-return_path">{$row.return_path}</td>
                 <td class="crm-mailboxmailingMailSettings-protocol">{$row.protocol}</td>
                 <td class="crm-mailboxmailingMailSettings-source">{$row.source}</td>
                 <!--<td>{$row.port}</td>-->

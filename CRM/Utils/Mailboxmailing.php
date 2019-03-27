@@ -1,4 +1,19 @@
 <?php
+/*-------------------------------------------------------+
+| SYSTOPIA Mailbox Mailing Extension                     |
+| Copyright (C) 2019 SYSTOPIA                            |
+| Author: J. Schuppe (schuppe@systopia.de)               |
++--------------------------------------------------------+
+| This program is released as free software under the    |
+| Affero GPL license. You can redistribute it and/or     |
+| modify it under the terms of this license which you    |
+| can read by viewing the included agpl.txt or online    |
+| at www.gnu.org/licenses/agpl.html. Removal of this     |
+| copyright header is strictly prohibited without        |
+| written permission from the original author(s).        |
++--------------------------------------------------------*/
+
+use CRM_Mailboxmailing_ExtensionUtil as E;
 
 class CRM_Utils_Mailboxmailing {
 
@@ -23,7 +38,14 @@ class CRM_Utils_Mailboxmailing {
   }
 
   /**
+   * Prepares several object types used by this extension for usage as Smarty
+   * variables, transforming them into arrays and filtering for relevant fields.
+   *
    * @param array $input_vars
+   *   An associative array of variables to make Smarty-compatible. The key of
+   *   each array element will be the name of the Smarty variable. Depending on
+   *   the class or type of the element, the returned value will be a - possibly
+   *   filtered - array representation of the original value.
    *
    * @return array
    */

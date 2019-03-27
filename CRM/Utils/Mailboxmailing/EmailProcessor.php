@@ -186,17 +186,15 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
    * @throws \Exception
    */
   public static function createMailing($mail, $mailSetting, $sender_id) {
-    // TODO: Remove defaults from the array, as they will be set within
-    //       CRM_Mailing_BAO_Mailing::create().
     $mailingParams = array(
       'override_verp' => TRUE,
       'forward_replies' => FALSE,
-      'open_tracking' => TRUE,
-      'url_tracking' => TRUE,
+      'open_tracking' => FALSE,
+      'url_tracking' => FALSE,
       'visibility' => 'User and User Admin Only',
       'replyto_email' => $mail->from->email,
-      'header_id' => CRM_Mailing_PseudoConstant::defaultComponent('header_id', ''),
-      'footer_id' => CRM_Mailing_PseudoConstant::defaultComponent('footer_id', ''),
+      'header_id' => NULL,
+      'footer_id' => NULL,
       'from_email' => $mail->from->email,
       'from_name' => $mail->from->name,
       'msg_template_id' => NULL,
@@ -216,7 +214,10 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
 
     // Evaluate subject pattern.
     $smarty = CRM_Core_Smarty::singleton();
-    $variables = static::getSmartyVariables($mailSetting, $mail);
+    $variables = CRM_Utils_Mailboxmailing::getSmartyVariables(array(
+      'mailSetting' => $mailSetting,
+      'mail' => $mail,
+    ));
     $subject = $smarty->fetchWith('string:' . $mailSetting->subject, $variables);
     $mailingParams['subject'] = $subject;
     $mailingParams['name'] = $subject;
@@ -306,7 +307,10 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
     // Render Smarty template.
     $text = CRM_Core_Smarty::singleton()->fetchWith(
       'string:' . $mailSetting->notify_disallowed_sender_template,
-      static::getSmartyVariables($mailSetting, $mail)
+      CRM_Utils_Mailboxmailing::getSmartyVariables(array(
+        'mailSetting' => $mailSetting,
+        'mail' => $mail,
+      ))
     );
     $mail_params['text'] = $text;
     $mail_params['html'] = str_replace("<br />\n<br />\n", "</p>\n<p>", '<p>'.nl2br($text).'</p>');
@@ -314,37 +318,6 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
     if (!CRM_Utils_Mail::send($mail_params)) {
       throw new \Exception(E::ts('Sending notification to disallowed sender failed.'));
     }
-  }
-
-  /**
-   * @param \CRM_Mailboxmailing_BAO_MailboxmailingMailSettings $mailSetting
-   * @param \ezcMail | NULL $mail
-   *
-   * @return array
-   */
-  public static function getSmartyVariables($mailSetting, $mail = NULL) {
-    $variables = array(
-      'mail' => array(),
-      'mailSetting' => $mailSetting->toArray(),
-    );
-    // All properties accessible through magic getter \ezcMail::__get().
-    $mail_properties = array(
-      'to',
-      'cc',
-      'bcc',
-      'from',
-      'subject',
-      'subjectCharset',
-      'body',
-      'messageId',
-      'returnPath',
-      'timestamp',
-    );
-    foreach ($mail_properties as $mail_property) {
-      $variables['mail'][$mail_property] = json_decode(json_encode(isset($mail) ? $mail->$mail_property : ''), TRUE);
-    }
-
-    return $variables;
   }
 
 }

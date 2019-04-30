@@ -23,13 +23,13 @@
         {strip}
           <table cellpadding="0" cellspacing="0" border="0" class="row-highlight">
             <thead class="sticky">
-            <th>{ts}Name{/ts}</th>
-            <th>{ts}Server{/ts}</th>
-            <th>{ts}Username{/ts}</th>
-            <th>{ts}Protocol{/ts}</th>
-            <th>{ts}Source{/ts}</th>
-            <!--<th>{ts}Port{/ts}</th>-->
-            <th>{ts}Use SSL?{/ts}</th>
+            <th>{ts domain="de.systopia.mailboxmailing"}Name{/ts}</th>
+            <th>{ts domain="de.systopia.mailboxmailing"}Server{/ts}</th>
+            <th>{ts domain="de.systopia.mailboxmailing"}Username{/ts}</th>
+            <th>{ts domain="de.systopia.mailboxmailing"}Protocol{/ts}</th>
+            <th>{ts domain="de.systopia.mailboxmailing"}Source{/ts}</th>
+            <!--<th>{ts domain="de.systopia.mailboxmailing"}Port{/ts}</th>-->
+            <th>{ts domain="de.systopia.mailboxmailing"}Use SSL?{/ts}</th>
             <th></th>
             </thead>
             {foreach from=$rows item=row}
@@ -40,7 +40,7 @@
                 <td class="crm-mailboxmailingMailSettings-protocol">{$row.protocol}</td>
                 <td class="crm-mailboxmailingMailSettings-source">{$row.source}</td>
                 <!--<td>{$row.port}</td>-->
-                <td class="crm-mailboxmailingMailSettings-is_ssl">{if $row.is_ssl eq 1} {ts}Yes{/ts} {else} {ts}No{/ts} {/if}</td>
+                <td class="crm-mailboxmailingMailSettings-is_ssl">{if $row.is_ssl eq 1} {ts domain="de.systopia.mailboxmailing"}Yes{/ts} {else} {ts domain="de.systopia.mailboxmailing"}No{/ts} {/if}</td>
                 <td>{$row.action|replace:'xx':$row.id}</td>
               </tr>
             {/foreach}
@@ -51,13 +51,13 @@
     </div>
   {else}
     <div class="messages status no-popup">
-      <img src="{$config->resourceBase}i/Inform.gif" alt="{ts}status{/ts}"/>
-      {ts}None found.{/ts}
+      <img src="{$config->resourceBase}i/Inform.gif" alt="{ts domain="de.systopia.mailboxmailing"}status{/ts}"/>
+      {ts domain="de.systopia.mailboxmailing"}None found.{/ts}
     </div>
   {/if}
   <div class="action-link">
-    {crmButton q="action=add&reset=1" id="newMailboxmailingMailSettings"  icon="plus-circle"}{ts}Add Mail Account{/ts}{/crmButton}
-    {crmButton p="civicrm/admin" q="reset=1" class="cancel" icon="times"}{ts}Done{/ts}{/crmButton}
+    {crmButton q="action=add&reset=1" id="newMailboxmailingMailSettings"  icon="plus-circle"}{ts domain="de.systopia.mailboxmailing"}Add Mailbox settings{/ts}{/crmButton}
+    {crmButton p="civicrm/admin" q="reset=1" class="cancel" icon="times"}{ts domain="de.systopia.mailboxmailing"}Done{/ts}{/crmButton}
   </div>
   {/if}
 </div>

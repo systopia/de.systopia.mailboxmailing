@@ -17,7 +17,7 @@
   {if $action eq 8}
     <div class="messages status no-popup">
       <div class="icon inform-icon"></div>
-      {ts}WARNING: Deleting this option will result in the loss of mail settings data.{/ts} {ts}Do you want to continue?{/ts}
+      {ts domain="de.systopia.mailboxmailing"}WARNING: Deleting this option will result in the loss of mail settings data.{/ts} {ts domain="de.systopia.mailboxmailing"}Do you want to continue?{/ts}
     </div>
     <div class="crm-submit-buttons">{include file="CRM/common/formButtons.tpl" location="top"}</div>
   {else}
@@ -29,7 +29,7 @@
       </tr>
       <tr>
         <td class="label">&nbsp;</td>
-        <td class="description">{ts}Name of this group of settings.{/ts}</td>
+        <td class="description">{ts domain="de.systopia.mailboxmailing"}Name of this group of settings.{/ts}</td>
       </tr>
 
       <tr class="crm-mailboxmailing-mail-settings-form-block-server">
@@ -38,7 +38,7 @@
       </tr>
       <tr>
         <td class="label">&nbsp;</td>
-        <td class="description">{ts}Name or IP address of mail server machine.{/ts}</td>
+        <td class="description">{ts domain="de.systopia.mailboxmailing"}Name or IP address of mail server machine.{/ts}</td>
       </tr>
 
       <tr class="crm-mailboxmailing-mail-settings-form-block-username">
@@ -47,7 +47,7 @@
       </tr>
       <tr>
         <td class="label">&nbsp;</td>
-        <td class="description">{ts}Username to use when polling (for IMAP and POP3).{/ts}</td>
+        <td class="description">{ts domain="de.systopia.mailboxmailing"}Username to use when polling (for IMAP and POP3).{/ts}</td>
       </tr>
 
       <tr class="crm-mailboxmailing-mail-settings-form-block-password">
@@ -56,7 +56,7 @@
       </tr>
       <tr>
         <td class="label">&nbsp;</td>
-        <td class="description">{ts}Password to use when polling (for IMAP and POP3).{/ts}</td>
+        <td class="description">{ts domain="de.systopia.mailboxmailing"}Password to use when polling (for IMAP and POP3).{/ts}</td>
       </tr>
 
       <tr class="crm-mailboxmailing-mail-settings-form-block-protocol">
@@ -65,7 +65,7 @@
       </tr>
       <tr>
         <td class="label">&nbsp;</td>
-        <td class="description">{ts}Name of the protocol to use for polling.{/ts}</td>
+        <td class="description">{ts domain="de.systopia.mailboxmailing"}Name of the protocol to use for polling.{/ts}</td>
       </tr>
 
       <tr class="crm-mailboxmailing-mail-settings-form-block-source">
@@ -74,7 +74,7 @@
       </tr>
       <tr>
         <td class="label">&nbsp;</td>
-        <td class="description">{ts}Folder to poll from when using IMAP (will default to INBOX when empty), path to poll from when using Maildir, etc..{/ts}</td>
+        <td class="description">{ts domain="de.systopia.mailboxmailing"}Folder to poll from when using IMAP (will default to INBOX when empty), path to poll from when using Maildir, etc..{/ts}</td>
       </tr>
 
       <tr class="crm-mailboxmailing-mail-settings-form-block-is_ssl">
@@ -83,7 +83,7 @@
       </tr>
       <tr>
         <td class="label">&nbsp;</td>
-        <td class="description">{ts}Whether to use SSL for IMAP and POP3 or not.{/ts}</td>
+        <td class="description">{ts domain="de.systopia.mailboxmailing"}Whether to use SSL for IMAP and POP3 or not.{/ts}</td>
       </tr>
 
       <tr class="crm-mailboxmailing-mail-settings-form-block-sender_group">

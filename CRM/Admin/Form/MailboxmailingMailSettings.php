@@ -27,7 +27,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
    */
   public function buildQuickForm() {
     parent::buildQuickForm();
-    $this->setPageTitle(E::ts('Mail Account'));
+    $this->setPageTitle(E::ts('Mailbox'));
 
     if ($this->_action & CRM_Core_Action::DELETE) {
       return;
@@ -166,10 +166,6 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
    */
   public static function formRule($fields) {
     $errors = array();
-    // Check for default from email address and organization (domain) name. Force them to change it.
-    if ($fields['domain'] == 'EXAMPLE.ORG') {
-      $errors['domain'] = E::ts('Please enter a valid domain for this mailbox account (the part after @).');
-    }
 
     return empty($errors) ? TRUE : $errors;
   }
@@ -224,10 +220,10 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
     $params['domain_id'] = CRM_Core_Config::domainID();
 
     // assign id only in update mode
-    $status = E::ts('Your New  Email Settings have been saved.');
+    $status = E::ts('Mailbox settings have been saved.');
     if ($this->_action & CRM_Core_Action::UPDATE) {
       $params['id'] = $this->_id;
-      $status = E::ts('Your Email Settings have been updated.');
+      $status = E::ts('Mailbox settings have been updated.');
     }
 
     $mailSettings = CRM_Mailboxmailing_BAO_MailboxmailingMailSettings::create($params);

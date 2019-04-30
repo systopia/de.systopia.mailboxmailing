@@ -47,16 +47,16 @@ class CRM_Admin_Page_MailboxmailingMailSettings extends CRM_Core_Page_Basic {
       // helper variable for nicer formatting
       self::$_links = array(
         CRM_Core_Action::UPDATE => array(
-          'name' => ts('Edit'),
+          'name' => E::ts('Edit'),
           'url' => 'civicrm/admin/mailboxmailing',
           'qs' => 'action=update&id=%%id%%&reset=1',
-          'title' => ts('Edit Mail Settings'),
+          'title' => E::ts('Edit Mail Settings'),
         ),
         CRM_Core_Action::DELETE => array(
-          'name' => ts('Delete'),
+          'name' => E::ts('Delete'),
           'url' => 'civicrm/admin/mailboxmailing',
           'qs' => 'action=delete&id=%%id%%',
-          'title' => ts('Delete Mail Settings'),
+          'title' => E::ts('Delete Mail Settings'),
         ),
       );
     }
@@ -90,7 +90,7 @@ class CRM_Admin_Page_MailboxmailingMailSettings extends CRM_Core_Page_Basic {
       //add action links.
       $allMailSettings[$mailSetting->id]['action'] = CRM_Core_Action::formLink(self::links(), $action,
         array('id' => $mailSetting->id),
-        ts('more'),
+        E::ts('more'),
         FALSE,
         'mailboxmailingMailSettings.manage.action',
         'MailboxmailingMailSettings',

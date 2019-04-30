@@ -1,0 +1,362 @@
+# Copyright CiviCRM LLC (c) 2004-2015
+# This file is distributed under the same license as the CiviCRM package.
+# If you contribute heavily to a translation and deem your work copyrightable,
+# make sure you license it to CiviCRM LLC under Academic Free License 3.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: mailboxmailing\n"
+"POT-Creation-Date: 2019-04-30 14:22+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: CiviCRM Translators <civicrm-translators@lists.civicrm.org>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Mailbox"
+msgstr "Postfach"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+msgid "Name"
+msgstr "Name"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+msgid "Protocol"
+msgstr "Protokoll"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "- select -"
+msgstr "- auswählen -"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+msgid "Server"
+msgstr "Server"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+msgid "Username"
+msgstr "Benutzername"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Password"
+msgstr "Kennwort"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+msgid "Source"
+msgstr "Bezugsquelle"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+msgid "Use SSL?"
+msgstr "SSL benutzen?"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Sender Group"
+msgstr "Absender-Gruppe"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "- select group -"
+msgstr "- Gruppe auswählen -"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Recipient Group"
+msgstr "Empfänger-Gruppe"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Subject"
+msgstr "Betreff"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "From E-Mail Address"
+msgstr "Absender-E-Mail-Adresse"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "- Default -"
+msgstr "- Standard -"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Notify disallowed sender"
+msgstr "Unberechtigte Absender benachrichtigen"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Template for notifications of disallowed sender"
+msgstr "Vorlage für Benachrichtigungen an unberechtigte Absender"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Notify sender about errors"
+msgstr "Absender über Fehler benachrichtigen"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Template for error notifications of sender"
+msgstr "Vorlage für Benachrichtigungen über Fehler an Absender"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Notification Activity Type"
+msgstr "Aktivitätstyp für Benachrichtigungen"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "- Do not create activities -"
+msgstr "- keine Aktivitäten erstellen -"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Archive Mailing"
+msgstr "Rundschreiben archivieren"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Mail Setting Deleted."
+msgstr "Postfach-Einstellungen gelöscht."
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Mailbox settings have been saved."
+msgstr "Postfach-Einstellungen wurden gespeichert."
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Mailbox settings have been updated."
+msgstr "Postfach-Einstellungen wurden aktualisiert."
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Saved"
+msgstr "Gespeichert"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Changes Not Saved."
+msgstr "Änderungen nicht gespeichert."
+
+#: CRM/Admin/Page/MailboxmailingMailSettings.php
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: CRM/Admin/Page/MailboxmailingMailSettings.php
+msgid "Edit Mail Settings"
+msgstr "Postfach-Einstellungen bearbeiten"
+
+#: CRM/Admin/Page/MailboxmailingMailSettings.php
+msgid "Delete"
+msgstr "Löschen"
+
+#: CRM/Admin/Page/MailboxmailingMailSettings.php
+msgid "Delete Mail Settings"
+msgstr "Postfach-Einstellungen löschen"
+
+#: CRM/Admin/Page/MailboxmailingMailSettings.php
+msgid "more"
+msgstr "mehr"
+
+#: CRM/Mailboxmailing/BAO/MailboxmailingMailSettings.php
+msgid "Error retrieving recipients from group: %1"
+msgstr "Fehler beim Abrufen von Empfängern aus Gruppe: %1"
+
+#: CRM/Mailboxmailing/Upgrader/Base.php
+msgid "Upgrade %1 to revision %2"
+msgstr "Aktualisieren von %1 auf Revision %2"
+
+#: CRM/Mailboxmailing/Upgrader.php
+msgid "Could not create custom field for Mailing entity."
+msgstr ""
+"Benutzerdefiniertes Feld für Mailing-Entität konnte nicht erstellt werden."
+
+#: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+msgid "There were errors sending your mailing to this mailing list"
+msgstr ""
+"Beim Senden Ihres Rundschreibens an diese Verteilerliste traten Fehler auf"
+
+#: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+msgid "Sending bounce report to mailing sender failed."
+msgstr ""
+"Senden des Bounce-Berichts an den Absender des Rundschreibens fehlgeschlagen."
+
+#: CRM/Utils/Mailboxmailing/EmailProcessor.php
+msgid "Could not connect to MailStore for %1"
+msgstr "Verbindung zu MailStore für %1 konnte nicht hergestellt werden"
+
+#: CRM/Utils/Mailboxmailing/EmailProcessor.php
+msgid "Error message: %1"
+msgstr "Fehlermeldung: %1"
+
+#: CRM/Utils/Mailboxmailing/EmailProcessor.php
+msgid ""
+"Could not create mailing: No plain text or html body parts could be "
+"extracted from the e-mail."
+msgstr ""
+"Rundschreiben konnte nicht erstellt werden: Es konnten weder Klartext- noch "
+"HTML-Textkörper aus der E-Mail extrahiert werden."
+
+#: CRM/Utils/Mailboxmailing/EmailProcessor.php
+msgid "You are not allowed to send mailings to this mailing list"
+msgstr ""
+"Sie sind nicht berechtigt, Rundschreiben an diese Verteilerliste zu senden"
+
+#: CRM/Utils/Mailboxmailing/EmailProcessor.php
+msgid "Sending notification to disallowed sender failed."
+msgstr "Senden der Benachrichtigung an unberechtigten Absender fehlgeschlagen."
+
+#: api/v3/Job/ProcessMailboxmailing.php
+#: api/v3/Job/SendMailboxmailingBouncesReport.php
+msgid "MailboxmailingMailSettings ID"
+msgstr "MailboxmailingMailSettings-ID"
+
+#: api/v3/Job/ProcessMailboxmailing.php
+msgid "The ID of the MailboxmailingMailSettings configuration to process."
+msgstr "Die ID der zu verarbeitenden MailboxmailingMailSettings-Konfiguration."
+
+#: api/v3/Job/SendMailboxmailingBouncesReport.php
+msgid ""
+"The ID of the MailboxmailingMailSettings configuration used by Mailings to "
+"create bounce reports for."
+msgstr ""
+"Die ID der von Rundschreiben verwendeten MailboxmailingMailSettings-"
+"Konfiguration, für die Bounce-Berichte erstellt werden sollen."
+
+#: api/v3/Job/SendMailboxmailingBouncesReport.php
+msgid "Mailing ID"
+msgstr "Rundschreiben-ID"
+
+#: api/v3/Job/SendMailboxmailingBouncesReport.php
+msgid "The ID of the Mailing to create a bounce report for."
+msgstr ""
+"Die ID des Rundschreibens, für das ein Bounce-Bericht erstellt werden soll."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.hlp
+msgid "This pattern is evaluated using Smarty."
+msgstr "Dieses Muster wird mit Smarty ausgewertet."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.hlp
+msgid "The following template variables are available:"
+msgstr "Die folgenden Vorlagen-Variablen sind verfügbar:"
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid ""
+"WARNING: Deleting this option will result in the loss of mail settings data."
+msgstr ""
+"WARNUNG: Das Löschen dieser Option bewirkt den Verlust von Daten der "
+"Postfach-Einstellungen."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "Do you want to continue?"
+msgstr "Möchten Sie fortfahren?"
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "Name of this group of settings."
+msgstr "Name dieser Gruppe von Einstellungen."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "Name or IP address of mail server machine."
+msgstr "Name oder IP-Adresse des Mailservers."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "Username to use when polling (for IMAP and POP3)."
+msgstr "Beim Abrufen zu verwendender Benutzername (für IMAP und POP3)."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "Password to use when polling (for IMAP and POP3)."
+msgstr "Beim Abrufen zu verwendendes Kennwort (für IMAP und POP3)."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "Name of the protocol to use for polling."
+msgstr "Beim Abrufen zu verwendendes Protokoll."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid ""
+"Folder to poll from when using IMAP (will default to INBOX when empty), path "
+"to poll from when using Maildir, etc.."
+msgstr ""
+"Verzeichnis, aus dem bei der Verwendung von IMAP abgerufen wird (Standard: "
+"INBOX/Posteingang, wenn leer gelassen)/Zum Abrufen zu verwendender Pfad bei "
+"der Benutzung von Maildir, etc."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "Whether to use SSL for IMAP and POP3 or not."
+msgstr "Ob SSL für IMAP und POP3 verwendet werden soll oder nicht."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid ""
+"The group of contacts allowed to send mailings using these MailSettings."
+msgstr ""
+"Gruppe sendeberechtigter Kontakte bei der Benutzung dieser Postfach-"
+"Einstellungen."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "The group of contacts to receive mailings using these MailSettings."
+msgstr ""
+"Gruppe von Empfänger-Kontakten bei der Benutzung dieser Postfach-"
+"Einstellungen."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "Help"
+msgstr "Hilfe"
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "A pattern to use as the subject for the Mailing."
+msgstr "Für den Betreff des Rundschreibens zu verwendendes Muster."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "The from email address to use when sending notifications."
+msgstr ""
+"Für das Senden von Benachrichtigungen zu verwendende Absender-E-Mail-Adresse."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "Whether to notify disallowed sender."
+msgstr "Ob unberechtigte Absender benachrichtigt werden sollen."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "A Smarty template to use for notifications sent to disallowed senders."
+msgstr ""
+"Für an unberechtigte Absender gesendete Benachrichtigung zu verwendende "
+"Smarty-Vorlage."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "Whether to notify senders about errors."
+msgstr "Ob Absender über Fehler benachrichtigt werden sollen."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid ""
+"A Smarty template to use for notifications about errors sent to senders."
+msgstr ""
+"Für an Absender gesendete Benachrichtigung über Fehler zu verwendende Smarty-"
+"Vorlage."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "The activity type to use for activities to notify senders about errors."
+msgstr ""
+"Für Aktivitäten zur Benachrichtigung von Absendern über Fehler  zu "
+"verwendender Aktivitätstyp."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "Whether to archive mailings after sending."
+msgstr "Ob Rundschreiben nach dem Senden archiviert werden sollen."
+
+#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+msgid "Port"
+msgstr "Port"
+
+#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+msgid "Yes"
+msgstr "Ja"
+
+#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+msgid "No"
+msgstr "Nein"
+
+#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+msgid "status"
+msgstr "Status"
+
+#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+msgid "None found."
+msgstr "Keine gefunden."
+
+#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+msgid "Add Mailbox settings"
+msgstr "Postfach-Einstellungen hinzufügen"
+
+#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+msgid "Done"
+msgstr "fertig"

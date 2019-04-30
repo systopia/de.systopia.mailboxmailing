@@ -69,7 +69,7 @@ class CRM_Utils_Mailboxmailing {
           'timestamp',
         );
         foreach ($mail_properties as $mail_property) {
-          $variables[$input_var_name][$mail_property] = json_decode(json_encode(isset($mail) ? $mail->$mail_property : ''), TRUE);
+          $variables[$input_var_name][$mail_property] = json_decode(json_encode($input_var->$mail_property), TRUE);
         }
       }
       elseif (is_a($input_var, '\CRM_Mailboxmailing_BAO_MailboxmailingMailSettings')) {

@@ -307,13 +307,22 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
       $from_email_address = CRM_Core_BAO_Domain::getNameAndEmail(FALSE, TRUE);
       $from_email_address = reset($from_email_address);
     }
+
+    // Evaluate subject pattern.
+    $smarty = CRM_Core_Smarty::singleton();
+    $variables = CRM_Utils_Mailboxmailing::getSmartyVariables(array(
+      'mailSetting' => $mailSetting,
+      'mail' => $mail,
+    ));
+    $subject = $smarty->fetchWith('string:' . $mailSetting->notify_disallowed_sender_subject, $variables);
+
     $mail_params = array(
       'from' => $from_email_address,
       'toName' => $sender_contact['display_name'],
       'toEmail' => $sender_contact['email'],
       'cc' => '',
       'bc' => '',
-      'subject' => E::ts('You are not allowed to send mailings to this mailing list'),
+      'subject' => $subject,
       'replyTo' => $from_email_address,
     );
 

@@ -149,13 +149,22 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
       $from_email_address = CRM_Core_BAO_Domain::getNameAndEmail(FALSE, TRUE);
       $from_email_address = reset($from_email_address);
     }
+
+    // Evaluate subject pattern.
+    $smarty = CRM_Core_Smarty::singleton();
+    $variables = CRM_Utils_Mailboxmailing::getSmartyVariables(array(
+      'mailSetting' => $mailSetting,
+      'bounces' => $bounces,
+    ));
+    $subject = $smarty->fetchWith('string:' . $mailSetting->notify_sender_errors_subject, $variables);
+
     $mail_params = array(
       'from' => $from_email_address,
       'toName' => $sender_contact['display_name'],
       'toEmail' => $sender_contact['email'],
       'cc' => '',
       'bc' => '',
-      'subject' => E::ts('There were errors sending your mailing to this mailing list'),
+      'subject' => $subject,
       'replyTo' => $from_email_address,
     );
 

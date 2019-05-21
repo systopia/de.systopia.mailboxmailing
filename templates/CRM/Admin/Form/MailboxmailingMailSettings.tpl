@@ -131,6 +131,15 @@
         <td class="description">{ts domain="de.systopia.mailboxmailing"}Whether to notify disallowed sender.{/ts}</td>
       </tr>
 
+      <tr class="crm-mailboxmailing-mail-settings-form-block-notify_disallowed_sender_subject">
+        <td class="label">{$form.notify_disallowed_sender_subject.label}&nbsp;<a onclick='CRM.help("Smarty", {literal}{"id":"id-notify_disallowed_sender_subject","file":"CRM\/Admin\/Form\/MailboxmailingMailSettings"}{/literal}); return false;' href="#" title="{ts domain="de.systopia.mailboxmailing"}Help{/ts}" class="helpicon">&nbsp;</a></td>
+        <td>{$form.notify_disallowed_sender_subject.html}</td>
+      </tr>
+      <tr>
+        <td class="label">&nbsp;</td>
+        <td class="description">{ts domain="de.systopia.mailboxmailing"}The subject to use for notifications sent to disallowed senders.{/ts}</td>
+      </tr>
+
       <tr class="crm-mailboxmailing-mail-settings-form-block-notify_disallowed_sender_template">
         <td class="label">{$form.notify_disallowed_sender_template.label}&nbsp;<a onclick='CRM.help("Smarty", {literal}{"id":"id-notify_disallowed_sender_template","file":"CRM\/Admin\/Form\/MailboxmailingMailSettings"}{/literal}); return false;' href="#" title="{ts domain="de.systopia.mailboxmailing"}Help{/ts}" class="helpicon">&nbsp;</a></td>
         <td>{$form.notify_disallowed_sender_template.html}</td>
@@ -147,6 +156,15 @@
       <tr>
         <td class="label">&nbsp;</td>
         <td class="description">{ts domain="de.systopia.mailboxmailing"}Whether to notify senders about errors.{/ts}</td>
+      </tr>
+
+      <tr class="crm-mailboxmailing-mail-settings-form-block-notify_sender_errors_subject">
+        <td class="label">{$form.notify_sender_errors_subject.label}&nbsp;<a onclick='CRM.help("Smarty", {literal}{"id":"id-notify_sender_errors_subject","file":"CRM\/Admin\/Form\/MailboxmailingMailSettings"}{/literal}); return false;' href="#" title="{ts domain="de.systopia.mailboxmailing"}Help{/ts}" class="helpicon">&nbsp;</a></td>
+        <td>{$form.notify_sender_errors_subject.html}</td>
+      </tr>
+      <tr>
+        <td class="label">&nbsp;</td>
+        <td class="description">{ts domain="de.systopia.mailboxmailing"}The subject to use for notifications about errors sent to senders.{/ts}</td>
       </tr>
 
       <tr class="crm-mailboxmailing-mail-settings-form-block-notify_sender_errors_template">

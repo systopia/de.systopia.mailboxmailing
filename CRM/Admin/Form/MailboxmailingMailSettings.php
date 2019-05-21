@@ -86,7 +86,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
     $this->add(
       'text',
       'subject',
-      ts('Subject'),
+      E::ts('Subject'),
       $attributes['subject']
     );
 
@@ -104,6 +104,13 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
     );
 
     $this->add(
+      'text',
+      'notify_disallowed_sender_subject',
+      E::ts('Disallowed sender notification subject'),
+      $attributes['notify_disallowed_sender_subject']
+    );
+
+    $this->add(
       'textarea',
       'notify_disallowed_sender_template',
       E::ts('Template for notifications of disallowed sender')
@@ -113,6 +120,13 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
       'checkbox',
       'notify_sender_errors',
       E::ts('Notify sender about errors')
+    );
+
+    $this->add(
+      'text',
+      'notify_sender_errors_subject',
+      E::ts('Error notification subject'),
+      $attributes['notify_sender_errors_subject']
     );
 
     $this->add(
@@ -198,8 +212,10 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
       'subject',
       'from_email_address_id',
       'notify_disallowed_sender',
+      'notify_disallowed_sender_subject',
       'notify_disallowed_sender_template',
       'notify_sender_errors',
+      'notify_sender_errors_subject',
       'notify_sender_errors_template',
       'notification_activity_type_id',
       'archive_mailing',

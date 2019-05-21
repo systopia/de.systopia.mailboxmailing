@@ -207,6 +207,15 @@
   </field>
 
   <field>
+    <name>notify_disallowed_sender_subject</name>
+    <title>Disallowed sender notification subject</title>
+    <type>varchar</type>
+    <length>255</length>
+    <comment>The subject to use for notifications sent to disallowed senders.</comment>
+    <add>2.2</add>
+  </field>
+
+  <field>
     <name>notify_disallowed_sender_template</name>
     <type>longtext</type>
     <comment>A Smarty template to use for notifications sent to disallowed senders.</comment>
@@ -217,6 +226,15 @@
     <title>Notify sender about errors</title>
     <type>boolean</type>
     <comment>Whether to notify senders about errors.</comment>
+    <add>2.2</add>
+  </field>
+
+  <field>
+    <name>notify_sender_errors_subject</name>
+    <title>Error notification subject</title>
+    <type>varchar</type>
+    <length>255</length>
+    <comment>The subject to use for notifications about errors sent to senders.</comment>
     <add>2.2</add>
   </field>
 

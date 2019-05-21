@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: mailboxmailing\n"
-"POT-Creation-Date: 2019-04-30 14:22+0200\n"
+"POT-Creation-Date: 2019-05-21 13:11+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: CiviCRM Translators <civicrm-translators@lists.civicrm.org>\n"
@@ -87,12 +87,20 @@ msgid "Notify disallowed sender"
 msgstr "Unberechtigte Absender benachrichtigen"
 
 #: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Disallowed sender notification subject"
+msgstr "Betreff für Benachrichtigungen an unberechtigte Absender"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
 msgid "Template for notifications of disallowed sender"
 msgstr "Vorlage für Benachrichtigungen an unberechtigte Absender"
 
 #: CRM/Admin/Form/MailboxmailingMailSettings.php
 msgid "Notify sender about errors"
 msgstr "Absender über Fehler benachrichtigen"
+
+#: CRM/Admin/Form/MailboxmailingMailSettings.php
+msgid "Error notification subject"
+msgstr "Betreff für Benachrichtigungen über Fehler an Absender"
 
 #: CRM/Admin/Form/MailboxmailingMailSettings.php
 msgid "Template for error notifications of sender"
@@ -307,6 +315,12 @@ msgid "Whether to notify disallowed sender."
 msgstr "Ob unberechtigte Absender benachrichtigt werden sollen."
 
 #: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "The subject to use for notifications sent to disallowed senders."
+msgstr ""
+"Für an unberechtigte Absender gesendete Benachrichtigung zu verwendender "
+"Betreff."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
 msgid "A Smarty template to use for notifications sent to disallowed senders."
 msgstr ""
 "Für an unberechtigte Absender gesendete Benachrichtigung zu verwendende "
@@ -315,6 +329,12 @@ msgstr ""
 #: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
 msgid "Whether to notify senders about errors."
 msgstr "Ob Absender über Fehler benachrichtigt werden sollen."
+
+#: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
+msgid "The subject to use for notifications about errors sent to senders."
+msgstr ""
+"Für an Absender gesendete Benachrichtigung über Fehler zu verwendender "
+"Betreff."
 
 #: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
 msgid ""

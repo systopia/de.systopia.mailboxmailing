@@ -68,4 +68,14 @@ class CRM_Mailboxmailing_Upgrader extends CRM_Mailboxmailing_Upgrader_Base {
     return TRUE;
   }
 
+  /**
+   * @return bool TRUE on success
+   */
+  public function upgrade_4004() {
+    $this->ctx->log->info('Applying update 4004: Adding database table columns for notification subjects.');
+    // this path is relative to the extension base dir
+    $this->executeSqlFile('sql/upgrade_4004.sql');
+    return TRUE;
+  }
+
 }

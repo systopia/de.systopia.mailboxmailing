@@ -263,7 +263,18 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
           // Add file attachments.
           static $attachmentCount = 0;
           $attachmentCount++;
-          $mailingParams["attachFile_$attachmentCount"]['location'] = $part->fileName;
+
+          // Copy the attachment file using its display name, since its raw file
+          // name in $part->fileName might not be readable when containing
+          // special characters.
+          // @link http://zetacomponents.org/documentation/trunk/Mail/tutorial.html#parsing-attachment-file-names
+          $path = explode('/', $part->fileName);
+          array_pop($path);
+          array_push($path, $part->contentDisposition->displayFileName);
+          $displayFileName = implode('/', $path);
+          copy($part->fileName, $displayFileName);
+
+          $mailingParams["attachFile_$attachmentCount"]['location'] = $displayFileName;
           $mailingParams["attachFile_$attachmentCount"]['type'] = implode('/', array($part->contentType, $part->mimeType));
           break;
       }

@@ -259,7 +259,11 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
             // wrap the whole body inside {literal} tags to preserve CSS;
             // actually, we don't want Smarty to fiddle with the e-mail at all.
             if (defined('CIVICRM_MAIL_SMARTY') && CIVICRM_MAIL_SMARTY ? TRUE : FALSE) {
-              $mailingParams[$mailingParamName] = '{literal}' . $part->text . '{/literal}';
+              $body_text = $part->text;
+              // Remove any closing {/literal} Smarty tag to prevent executing
+              // Smarty logic.
+              $body_text = str_replace('{/literal}', '', $body_text);
+              $mailingParams[$mailingParamName] = '{literal}' . $body_text . '{/literal}';
             }
             else {
               $mailingParams[$mailingParamName] = $part->text;

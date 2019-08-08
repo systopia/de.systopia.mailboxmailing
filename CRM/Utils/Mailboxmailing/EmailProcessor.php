@@ -254,7 +254,16 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
           $parser = ezcMailPartParser::createPartParserForHeaders($part->headers);
           if (isset($mailingParamName)) {
             $parser->parseBody($part->generateBody());
-            $mailingParams[$mailingParamName] = $part->text;
+
+            // If CiviCRM e-mail contents is passed through the Smarty parser,
+            // wrap the whole body inside {literal} tags to preserve CSS;
+            // actually, we don't want Smarty to fiddle with the e-mail at all.
+            if (defined('CIVICRM_MAIL_SMARTY') && CIVICRM_MAIL_SMARTY ? TRUE : FALSE) {
+              $mailingParams[$mailingParamName] = '{literal}' . $part->text . '{/literal}';
+            }
+            else {
+              $mailingParams[$mailingParamName] = $part->text;
+            }
             $hasBodyParts = TRUE;
           }
           break;

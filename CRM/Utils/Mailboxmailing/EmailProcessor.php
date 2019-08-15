@@ -199,6 +199,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
    * @throws \Exception
    */
   public static function createMailing($mail, $mailSetting, $sender_id) {
+    $attachmentCount = 0;
     $mailingParams = array(
       'override_verp' => TRUE,
       'forward_replies' => FALSE,
@@ -274,7 +275,6 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
         case 'ezcMailFile':
           /* @var \ezcMailFile $part */
           // Add file attachments.
-          static $attachmentCount = 0;
           $attachmentCount++;
 
           // Copy the attachment file using its display name, since its raw file

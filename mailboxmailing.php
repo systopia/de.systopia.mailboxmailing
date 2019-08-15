@@ -277,6 +277,69 @@ function mailboxmailing_civicrm_postMailing($mailingId) {
   }
 }
 
+/**
+ * Implementation of hook_civicrm_alterMailingParams()
+ */
+function mailboxmailing_civicrm_alterMailParams(&$params, $context) {
+  try {
+    if (!empty($params['attachments'])) {
+      if (!empty($params['job_id'])) {
+        $job = civicrm_api3('MailingJob', 'getsingle', array('id' => $params['job_id']));
+        if (!empty($job['mailing_id'])) {
+          $field = civicrm_api3('CustomField', 'getsingle', array(
+            'custom_group_id' => 'mailing_mailboxmailing',
+            'name' => 'MailboxmailingMailSettingsId',
+          ));
+          $mailing = civicrm_api3('Mailing', 'getsingle', array(
+            'id' => $job['mailing_id'],
+            'return' => array(
+              'custom_' . $field['id'],
+            ),
+          ));
+          $mailSettings = CRM_Mailboxmailing_BAO_MailboxmailingMailSettings::findById($mailing['custom_' . $field['id']]);
+          // Since we've identified the MailboxmailingMailSettings for this
+          // mail, we can assume it's a mailing created by the MailboxMailing
+          // extension.
+
+          // We need to create attachments with UTF-8 filenames separately as an
+          // instance of Mail_mimePart, since this allows encoding and charset
+          // attributes be provided for the mail part.
+          // Otherwise, those would be set to CiviCRM's default "ISO 8859-1" and
+          // UTF-8 filenames would not be encoded correctly, causing broken
+          // filenames in e-mail clients.
+          foreach ($params['attachments'] as $file_id => $attachment) {
+            $mime_part = new Mail_mimePart('', array(
+              'content_type' => $attachment['mime_type'],
+              'encoding' => 'quoted-printable',
+              'charset' => 'UTF-8',
+              'cid' => $attachment['fileID'],
+              'disposition' => 'attachment',
+              'filename' => $attachment['cleanName'],
+              'description' => $attachment['description'],
+              'name_encoding' => 'quoted_printable',
+              'filename_encoding' => 'quoted-printable',
+              'headers_charset' => 'UTF-8',
+              'eol' => "\n",
+              'headers' => array(),
+              'body_file' => $attachment['fullPath'],
+              'preamble',
+            ));
+
+            // Set $attachment['fullPath'] to be a Mail_mimePart object, since
+            // CRM_Mailing_BAO_Mailing::compose() passes that as the first
+            // parameter to Mail_mime::addAttachment(), which in turn checks
+            // that with instanceof Mail_mimePart.
+            $params['attachments'][$file_id]['fullPath'] = $mime_part;
+          }
+        }
+      }
+    }
+  }
+   catch (Exception $exception) {
+    // The processed mail is not relevant to the mailboxmailing extension.
+   }
+}
+
 // --- Functions below this ship commented out. Uncomment as required. ---
 
 /**

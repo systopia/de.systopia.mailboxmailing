@@ -311,18 +311,17 @@ function mailboxmailing_civicrm_alterMailParams(&$params, $context) {
             $mime_part = new Mail_mimePart('', array(
               'content_type' => $attachment['mime_type'],
               'encoding' => 'quoted-printable',
-              'charset' => 'UTF-8',
-              'cid' => $attachment['fileID'],
+//              'charset' => 'UTF-8',
               'disposition' => 'attachment',
               'filename' => $attachment['cleanName'],
               'description' => $attachment['description'],
-              'name_encoding' => 'quoted_printable',
-              'filename_encoding' => 'quoted-printable',
-              'headers_charset' => 'UTF-8',
-              'eol' => "\n",
-              'headers' => array(),
+//              'name_encoding' => 'quoted_printable',
+//              'filename_encoding' => 'quoted-printable',
+              'headers_charset' => 'UTF-8', // Needed for UTF-8 filenames.
+//              'eol' => "\n",
+//              'headers' => array(),
               'body_file' => $attachment['fullPath'],
-              'preamble',
+//              'preamble' => NULL,
             ));
 
             // Set $attachment['fullPath'] to be a Mail_mimePart object, since

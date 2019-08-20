@@ -82,6 +82,8 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
       }
 
       // Process e-mails.
+      // TODO: Fetching mails may create corrupt files for attachment parts.
+      //   Find out under which circumstances and how to fix this.
       while($mails = $store->fetchNext()) {
         foreach ($mails as $nr => $mail) {
           /* @var \ezcMail $mail */

@@ -310,8 +310,8 @@ function mailboxmailing_civicrm_alterMailParams(&$params, $context) {
           foreach ($params['attachments'] as $file_id => $attachment) {
             $mime_part = new Mail_mimePart('', array(
               'content_type' => $attachment['mime_type'],
-              'encoding' => 'quoted-printable',
-//              'charset' => 'UTF-8',
+              'encoding' => 'base64',
+              'charset' => 'UTF-8',
               'disposition' => 'attachment',
               'filename' => $attachment['cleanName'],
               'description' => $attachment['description'],

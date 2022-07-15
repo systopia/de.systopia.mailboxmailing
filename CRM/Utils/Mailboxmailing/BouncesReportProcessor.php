@@ -86,7 +86,7 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
 
         if (
           // Not marked for skipping.
-          $bounce_report_count != static::BOUNCE_REPORT_SKIPPED
+          $bounce_report_count !== static::BOUNCE_REPORT_SKIPPED
           // Not yet completed
           && $bounce_report_count != static::BOUNCE_REPORT_COMPLETED
           // Not yet reached the current limit.

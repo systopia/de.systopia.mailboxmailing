@@ -13,6 +13,7 @@
 | written permission from the original author(s).        |
 +--------------------------------------------------------*/
 
+use Civi\Api4\Mailing;
 use CRM_Mailboxmailing_ExtensionUtil as E;
 
 class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
@@ -20,6 +21,8 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
   const BOUNCE_REPORT_COMPLETED = -1;
 
   const BOUNCE_REPORT_SKIPPED = NULL;
+
+  const BOUNCE_REPORT_LIMIT = 3;
 
   /**
    * @param $parameters
@@ -32,66 +35,59 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
   public static function process($parameters) {
     $result = array();
 
-    $custom_field_mail_settings_id = CRM_Utils_Mailboxmailing::resolveCustomField('MailboxmailingMailSettingsId');
-    $custom_field_bounces_report_count = CRM_Utils_Mailboxmailing::resolveCustomField('MailboxmailingBouncesReportCount');
-
-    $mailing_parameters = array(
-      // Override default API limit.
-      'limit' => 0,
-      // Only mailings not marked to be skipped.
-      $custom_field_bounces_report_count => array(
-        'IS NOT NULL' => 1,
-      ),
+    $query = Mailing::get()
+      ->addSelect(
+        'id',
+        'created_id',
+        'mailing_mailboxmailing.MailboxmailingMailSettingsId',
+        'mailing_mailboxmailing.MailboxmailingBouncesReportCount'
+      )
       // Only mailings created by the Mailboxmailing extension.
-      $custom_field_mail_settings_id => array(
-        'IS NOT NULL' => 1,
-      ),
+      ->addWhere('mailing_mailboxmailing.MailboxmailingMailSettingsId', 'IS NOT NULL')
       // Only completed mailings.
-      'is_completed' => 1,
-    );
+      ->addWhere('is_completed', '=', TRUE)
+      // Only mailings not marked to be skipped.
+      ->addWhere('mailing_mailboxmailing.MailboxmailingBouncesReportCount', 'IS NOT NULL')
+      // Ignore mailings marked completely checked for bounces.
+      ->addWhere('mailing_mailboxmailing.MailboxmailingBouncesReportCount', '>=', 0);
+
     // If given a Mailing ID, restrict to that single mailing.
     if (!empty($parameters['mid'])) {
-      $mailing_parameters['id'] = $parameters['mid'];
+      $query->addWhere('id', '=', $parameters['mid']);
     }
     // If given a MailSettings ID, restrict to mailings using these settings.
     elseif(!empty($parameters['id'])) {
-      $mailing_parameters[$custom_field_mail_settings_id] = $parameters['id'];
+      $query->addWhere('mailing_mailboxmailing.MailboxmailingMailSettingsId', '=', $parameters['id']);
     }
 
-    $mailings = civicrm_api3('Mailing', 'get', $mailing_parameters);
+    $mailings = $query->execute();
 
-    foreach ($mailings['values'] as $mailing) {
-      // Ignore mailings marked completely checked for bounces.
-      if ($mailing[$custom_field_bounces_report_count] == static::BOUNCE_REPORT_COMPLETED) {
-        continue;
+    foreach ($mailings as $mailing) {
+      static $mailSettingsCache = [];
+      if (!isset($mailSettingsCache[$mailing['mailing_mailboxmailing.MailboxmailingMailSettingsId']])) {
+        $mailSettings = new CRM_Mailboxmailing_BAO_MailboxmailingMailSettings();
+
+        //multi-domain support for mail settings. CRM-5244
+        $mailSettings->domain_id = CRM_Core_Config::domainID();
+
+        $mailSettings->id = (int) $mailing['mailing_mailboxmailing.MailboxmailingMailSettingsId'];
+
+        //find and fetch mail settings.
+        $mailSettings->find();
+        $mailSettings->fetch();
+        $mailSettingsCache[$mailing['mailing_mailboxmailing.MailboxmailingMailSettingsId']] = $mailSettings;
       }
+      $mailSettings = $mailSettingsCache[$mailing['mailing_mailboxmailing.MailboxmailingMailSettingsId']];
 
-      $mailSettings = new CRM_Mailboxmailing_BAO_MailboxmailingMailSettings();
-
-      //multi-domain support for mail settings. CRM-5244
-      $mailSettings->domain_id = CRM_Core_Config::domainID();
-
-      $mailSettings->id = (int) $mailing[$custom_field_mail_settings_id];
-
-      //find and fetch mail settings.
-      $mailSettings->find();
-      $mailSettings->fetch();
 
       // TODO: Make the limit configurable.
       // $bounce_report_limit = $mailSettings->bounce_report_limit;
-      $bounce_report_limit = 3;
+      $bounce_report_limit = static::BOUNCE_REPORT_LIMIT;
 
       if ($mailSettings->notify_sender_errors) {
-        $bounce_report_count = $mailing[$custom_field_bounces_report_count];
+        $bounce_report_count = $mailing['mailing_mailboxmailing.MailboxmailingBouncesReportCount'];
 
-        if (
-          // Not marked for skipping.
-          $bounce_report_count !== static::BOUNCE_REPORT_SKIPPED
-          // Not yet completed
-          && $bounce_report_count != static::BOUNCE_REPORT_COMPLETED
-          // Not yet reached the current limit.
-          && $bounce_report_count < $bounce_report_limit
-        ) {
+        if ($bounce_report_count < $bounce_report_limit) {
           $bounces = CRM_Mailing_Event_BAO_Bounce::getRows($mailing['id']);
           if (!empty($bounces)) {
             static::sendBouncesReportNotification($mailing, $mailSettings, $bounces);
@@ -109,14 +105,14 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
       }
 
       // Set the bounce report count on the mailing.
-      civicrm_api3('Mailing', 'create', array(
-        'id' => $mailing['id'],
-        $custom_field_bounces_report_count => $bounce_report_count,
-      ));
+      Mailing::update(FALSE)
+        ->addWhere('id', '=', $mailing['id'])
+        ->addValue('mailing_mailboxmailing.MailboxmailingBouncesReportCount', $bounce_report_count)
+        ->execute();
 
       $mailing_result = array(
         'mailing_id' => $mailing['id'],
-        'mail_settings_id' => $mailing[$custom_field_mail_settings_id],
+        'mail_settings_id' => $mailing['mailing_mailboxmailing.MailboxmailingMailSettingsId'],
         'bounce_report_limit' => $bounce_report_limit,
         'bounce_report_count' => (isset($bounce_report_count) ? ($bounce_report_count == static::BOUNCE_REPORT_COMPLETED ? 'completed' : $bounce_report_count) : 'skipped'),
       );

@@ -108,30 +108,35 @@
     </li>
 
     <li>
-          <code>{literal}$mailSetting{/literal}</code> - Variables of the mail settings used.
-          <ul>
-            <li><code>{literal}$mailSetting.name{/literal}</code></li>
-            <li><code>{literal}$mailSetting.domain{/literal}</code></li>
-            <li><code>{literal}$mailSetting.localpart{/literal}</code></li>
-            <li><code>{literal}$mailSetting.server{/literal}</code></li>
-            <li><code>{literal}$mailSetting.return_path{/literal}</code></li>
-            <li><code>{literal}$mailSetting.protocol{/literal}</code></li>
-            <li><code>{literal}$mailSetting.port{/literal}</code></li>
-            <li><code>{literal}$mailSetting.username{/literal}</code></li>
-            <li><code>{literal}$mailSetting.password{/literal}</code></li>
-            <li><code>{literal}$mailSetting.source{/literal}</code></li>
-            <li><code>{literal}$mailSetting.is_ssl{/literal}</code></li>
-            <li><code>{literal}$mailSetting.sender_group_id{/literal}</code></li>
-            <li><code>{literal}$mailSetting.recipient_group_id{/literal}</code></li>
-            <li><code>{literal}$mailSetting.subject{/literal}</code></li>
-            <li><code>{literal}$mailSetting.notify_disallowed_sender{/literal}</code></li>
-            <li><code>{literal}$mailSetting.notify_disallowed_sender_template{/literal}</code></li>
-            <li><code>{literal}$mailSetting.notify_sender_errors{/literal}</code></li>
-            <li><code>{literal}$mailSetting.notify_sender_errors_template{/literal}</code></li>
-            <li><code>{literal}$mailSetting.notification_activity_type_id{/literal}</code></li>
-            <li><code>{literal}$mailSetting.archive_mailing{/literal}</code></li>
-          </ul>
-        </li>
+      <code>{literal}$mailSetting{/literal}</code> - Variables of the mail settings used.
+      <ul>
+        <li><code>{literal}$mailSetting.name{/literal}</code></li>
+        <li><code>{literal}$mailSetting.domain{/literal}</code></li>
+        <li><code>{literal}$mailSetting.localpart{/literal}</code></li>
+        <li><code>{literal}$mailSetting.server{/literal}</code></li>
+        <li><code>{literal}$mailSetting.return_path{/literal}</code></li>
+        <li><code>{literal}$mailSetting.protocol{/literal}</code></li>
+        <li><code>{literal}$mailSetting.port{/literal}</code></li>
+        <li><code>{literal}$mailSetting.username{/literal}</code></li>
+        <li><code>{literal}$mailSetting.password{/literal}</code></li>
+        <li><code>{literal}$mailSetting.source{/literal}</code></li>
+        <li><code>{literal}$mailSetting.is_ssl{/literal}</code></li>
+        <li><code>{literal}$mailSetting.sender_group_id{/literal}</code></li>
+        <li><code>{literal}$mailSetting.recipient_group_id{/literal}</code></li>
+        <li><code>{literal}$mailSetting.subject{/literal}</code></li>
+        <li><code>{literal}$mailSetting.notify_disallowed_sender{/literal}</code></li>
+        <li><code>{literal}$mailSetting.notify_disallowed_sender_template{/literal}</code></li>
+        <li><code>{literal}$mailSetting.notify_sender_errors{/literal}</code></li>
+        <li><code>{literal}$mailSetting.notify_sender_errors_template{/literal}</code></li>
+        <li><code>{literal}$mailSetting.notification_activity_type_id{/literal}</code></li>
+        <li><code>{literal}$mailSetting.archive_mailing{/literal}</code></li>
+      </ul>
+    </li>
+
+    <li>
+      <code>{literal}$mailing{/literal}</code> - Variables of the mailing bounces are being processed for.
+    </li>
+
   </ul>
 {/htxt}
 {htxt id='id-notify_sender_errors_subject'}
@@ -150,29 +155,34 @@
     </li>
 
     <li>
-          <code>{literal}$mailSetting{/literal}</code> - Variables of the mail settings used.
-          <ul>
-            <li><code>{literal}$mailSetting.name{/literal}</code></li>
-            <li><code>{literal}$mailSetting.domain{/literal}</code></li>
-            <li><code>{literal}$mailSetting.localpart{/literal}</code></li>
-            <li><code>{literal}$mailSetting.server{/literal}</code></li>
-            <li><code>{literal}$mailSetting.return_path{/literal}</code></li>
-            <li><code>{literal}$mailSetting.protocol{/literal}</code></li>
-            <li><code>{literal}$mailSetting.port{/literal}</code></li>
-            <li><code>{literal}$mailSetting.username{/literal}</code></li>
-            <li><code>{literal}$mailSetting.password{/literal}</code></li>
-            <li><code>{literal}$mailSetting.source{/literal}</code></li>
-            <li><code>{literal}$mailSetting.is_ssl{/literal}</code></li>
-            <li><code>{literal}$mailSetting.sender_group_id{/literal}</code></li>
-            <li><code>{literal}$mailSetting.recipient_group_id{/literal}</code></li>
-            <li><code>{literal}$mailSetting.subject{/literal}</code></li>
-            <li><code>{literal}$mailSetting.notify_disallowed_sender{/literal}</code></li>
-            <li><code>{literal}$mailSetting.notify_disallowed_sender_template{/literal}</code></li>
-            <li><code>{literal}$mailSetting.notify_sender_errors{/literal}</code></li>
-            <li><code>{literal}$mailSetting.notify_sender_errors_template{/literal}</code></li>
-            <li><code>{literal}$mailSetting.notification_activity_type_id{/literal}</code></li>
-            <li><code>{literal}$mailSetting.archive_mailing{/literal}</code></li>
-          </ul>
-        </li>
+      <code>{literal}$mailSetting{/literal}</code> - Variables of the mail settings used.
+      <ul>
+        <li><code>{literal}$mailSetting.name{/literal}</code></li>
+        <li><code>{literal}$mailSetting.domain{/literal}</code></li>
+        <li><code>{literal}$mailSetting.localpart{/literal}</code></li>
+        <li><code>{literal}$mailSetting.server{/literal}</code></li>
+        <li><code>{literal}$mailSetting.return_path{/literal}</code></li>
+        <li><code>{literal}$mailSetting.protocol{/literal}</code></li>
+        <li><code>{literal}$mailSetting.port{/literal}</code></li>
+        <li><code>{literal}$mailSetting.username{/literal}</code></li>
+        <li><code>{literal}$mailSetting.password{/literal}</code></li>
+        <li><code>{literal}$mailSetting.source{/literal}</code></li>
+        <li><code>{literal}$mailSetting.is_ssl{/literal}</code></li>
+        <li><code>{literal}$mailSetting.sender_group_id{/literal}</code></li>
+        <li><code>{literal}$mailSetting.recipient_group_id{/literal}</code></li>
+        <li><code>{literal}$mailSetting.subject{/literal}</code></li>
+        <li><code>{literal}$mailSetting.notify_disallowed_sender{/literal}</code></li>
+        <li><code>{literal}$mailSetting.notify_disallowed_sender_template{/literal}</code></li>
+        <li><code>{literal}$mailSetting.notify_sender_errors{/literal}</code></li>
+        <li><code>{literal}$mailSetting.notify_sender_errors_template{/literal}</code></li>
+        <li><code>{literal}$mailSetting.notification_activity_type_id{/literal}</code></li>
+        <li><code>{literal}$mailSetting.archive_mailing{/literal}</code></li>
+      </ul>
+    </li>
+
+    <li>
+      <code>{literal}$mailing{/literal}</code> - Variables of the mailing bounces are being processed for.
+    </li>
+
   </ul>
 {/htxt}

@@ -157,6 +157,7 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
     $variables = CRM_Utils_Mailboxmailing::getSmartyVariables(array(
       'mailSetting' => $mailSetting,
       'bounces' => $bounces,
+      'mailing' => $mailing,
     ));
     $subject = $smarty->fetchWith('string:' . $mailSetting->notify_sender_errors_subject, $variables);
 
@@ -176,6 +177,7 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
       CRM_Utils_Mailboxmailing::getSmartyVariables(array(
         'mailSetting' => $mailSetting,
         'bounces' => $bounces,
+        'mailing' => $mailing,
       ))
     );
     $mail_params['text'] = $text;

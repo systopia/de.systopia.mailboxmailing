@@ -105,10 +105,16 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
       }
 
       // Set the bounce report count on the mailing.
-      Mailing::update(FALSE)
-        ->addWhere('id', '=', $mailing['id'])
-        ->addValue('mailing_mailboxmailing.MailboxmailingBouncesReportCount', $bounce_report_count)
-        ->execute();
+      // TODO: APIv4 does not set custom field values on Mailing entities, thus using APIv3.
+//      Mailing::update(FALSE)
+//        ->addWhere('id', '=', $mailing['id'])
+//        ->addValue('mailing_mailboxmailing.MailboxmailingBouncesReportCount', $bounce_report_count)
+//        ->execute();
+      $custom_field_bounces_report_count = CRM_Utils_Mailboxmailing::resolveCustomField('MailboxmailingBouncesReportCount');
+      civicrm_api3('Mailing', 'create', array(
+        'id' => $mailing['id'],
+        $custom_field_bounces_report_count => $bounce_report_count,
+      ));
 
       $mailing_result = array(
         'mailing_id' => $mailing['id'],

@@ -134,7 +134,11 @@
     </li>
 
     <li>
-      <code>{literal}$mailing{/literal}</code> - Variables of the mailing bounces are being processed for.
+      <code>{literal}$mailing{/literal}</code> - Variables of the mailing bounces are being processed for:
+      <ul>
+        <li><code>{literal}subject{/literal}</code></li>
+        <li><code>{literal}scheduled_date{/literal}</code></li>
+      </ul>
     </li>
 
   </ul>
@@ -181,7 +185,11 @@
     </li>
 
     <li>
-      <code>{literal}$mailing{/literal}</code> - Variables of the mailing bounces are being processed for.
+      <code>{literal}$mailing{/literal}</code> - Variables of the mailing bounces are being processed for:
+      <ul>
+        <li><code>{literal}subject{/literal}</code></li>
+        <li><code>{literal}scheduled_date{/literal}</code></li>
+      </ul>
     </li>
 
   </ul>

@@ -40,7 +40,9 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
         'id',
         'created_id',
         'mailing_mailboxmailing.MailboxmailingMailSettingsId',
-        'mailing_mailboxmailing.MailboxmailingBouncesReportCount'
+        'mailing_mailboxmailing.MailboxmailingBouncesReportCount',
+        'subject',
+        'scheduled_date'
       )
       // Only mailings created by the Mailboxmailing extension.
       ->addWhere('mailing_mailboxmailing.MailboxmailingMailSettingsId', 'IS NOT NULL')
@@ -106,6 +108,8 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
 
       // Set the bounce report count on the mailing.
       // TODO: APIv4 does not set custom field values on Mailing entities, thus using APIv3.
+      //       See https://lab.civicrm.org/dev/core/-/issues/3747.
+      //       See https://github.com/civicrm/civicrm-core/pull/24036 for a fix.
 //      Mailing::update(FALSE)
 //        ->addWhere('id', '=', $mailing['id'])
 //        ->addValue('mailing_mailboxmailing.MailboxmailingBouncesReportCount', $bounce_report_count)
@@ -157,6 +161,7 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
     $variables = CRM_Utils_Mailboxmailing::getSmartyVariables(array(
       'mailSetting' => $mailSetting,
       'bounces' => $bounces,
+      'mailing' => $mailing,
     ));
     $subject = $smarty->fetchWith('string:' . $mailSetting->notify_sender_errors_subject, $variables);
 
@@ -176,6 +181,7 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
       CRM_Utils_Mailboxmailing::getSmartyVariables(array(
         'mailSetting' => $mailSetting,
         'bounces' => $bounces,
+        'mailing' => $mailing,
       ))
     );
     $mail_params['text'] = $text;

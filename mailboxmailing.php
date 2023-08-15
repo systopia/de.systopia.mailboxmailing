@@ -198,25 +198,30 @@ function mailboxmailing_civicrm_alterAPIPermissions($entity, $action, &$params, 
  * Implementation of hook_civicrm_postMailing()
  */
 function mailboxmailing_civicrm_postMailing($mailingId) {
-  // Archive sent mailings if configured.
-  $field = civicrm_api3('CustomField', 'getsingle', array(
-    'custom_group_id' => 'mailing_mailboxmailing',
-    'name' => 'MailboxmailingMailSettingsId',
-  ));
-  $mailing_result = civicrm_api3('Mailing', 'getsingle', array(
-    'id' => $mailingId,
-    'return' => array(
-      'custom_' . $field['id'],
-    ),
-  ));
-
-  $mailSettings = CRM_Mailboxmailing_BAO_MailboxmailingMailSettings::findById($mailing_result['custom_' . $field['id']]);
-
-  if ($mailSettings->archive_mailing) {
-    civicrm_api3('Mailing', 'create', array(
-      'id' => $mailingId,
-      'is_archived' => 1,
+  try {
+    // Archive sent mailings if configured.
+    $field = civicrm_api3('CustomField', 'getsingle', array(
+      'custom_group_id' => 'mailing_mailboxmailing',
+      'name' => 'MailboxmailingMailSettingsId',
     ));
+    $mailing_result = civicrm_api3('Mailing', 'getsingle', array(
+      'id' => $mailingId,
+      'return' => array(
+        'custom_' . $field['id'],
+      ),
+    ));
+
+    $mailSettings = CRM_Mailboxmailing_BAO_MailboxmailingMailSettings::findById($mailing_result['custom_' . $field['id']]);
+
+    if ($mailSettings->archive_mailing) {
+      civicrm_api3('Mailing', 'create', array(
+        'id' => $mailingId,
+        'is_archived' => 1,
+      ));
+    }
+  }
+  catch (Exception $exception) {
+    // The processed mail is not relevant to the mailboxmailing extension.
   }
 }
 

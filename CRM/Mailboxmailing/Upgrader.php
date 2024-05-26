@@ -18,7 +18,7 @@ use CRM_Mailboxmailing_ExtensionUtil as E;
 /**
  * Collection of upgrade steps.
  */
-class CRM_Mailboxmailing_Upgrader extends CRM_Mailboxmailing_Upgrader_Base {
+class CRM_Mailboxmailing_Upgrader extends CRM_Extension_Upgrader_Base {
 
   /**
    * @return bool TRUE on success

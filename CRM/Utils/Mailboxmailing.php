@@ -27,7 +27,7 @@ class CRM_Utils_Mailboxmailing {
    * @return string
    *   The CiviCRM API parameter name representation of the custom field
    *   ("custom_<id>").
-   * @throws \CiviCRM_API3_Exception
+   * @throws \CRM_Core_Exception
    */
   public static function resolveCustomField($field_name) {
     $custom_field = civicrm_api3('CustomField', 'getsingle', array(

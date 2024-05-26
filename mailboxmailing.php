@@ -40,7 +40,7 @@ function mailboxmailing_civicrm_install() {
       'name' => 'civicrm_mailing',
     ));
   }
-  catch (CiviCRM_API3_Exception $exception) {
+  catch (CRM_Core_Exception $exception) {
     civicrm_api3('OptionValue', 'create', array(
       'option_group_id' => 'cg_extend_objects',
       'label' => 'Mailing',
@@ -115,7 +115,7 @@ function mailboxmailing_civicrm_uninstall() {
       'id' => $field['id'],
     ));
   }
-  catch (CiviCRM_API3_Exception $exception) {
+  catch (CRM_Core_Exception $exception) {
     // Nothing to do here.
   }
 
@@ -127,7 +127,7 @@ function mailboxmailing_civicrm_uninstall() {
       'id' => $group['id'],
     ));
   }
-  catch (CiviCRM_API3_Exception $exception) {
+  catch (CRM_Core_Exception $exception) {
     // Nothing to do here.
   }
 

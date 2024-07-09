@@ -139,7 +139,9 @@ function mailboxmailing_civicrm_enable() {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_permission
  */
 function mailboxmailing_civicrm_permission(&$permissions) {
-  $permissions['process mailboxmailing'] = 'Process Mailboxmailing';
+  $permissions['process mailboxmailing'] = [
+    'label' => 'Process Mailboxmailing',
+  ];
 }
 
 /**

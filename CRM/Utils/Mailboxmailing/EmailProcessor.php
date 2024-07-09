@@ -58,8 +58,8 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
       catch (Exception $exception) {
         // Add the error message to the results array and go on to the next mail
         // settings set.
-        $result['mail_settings_id'] = $mailSetting->id;
-        $result['error_message'] = $exception->getMessage();
+        $mail_setting_result['mail_settings_id'] = $mailSetting->id;
+        $mail_setting_result['error_message'] = $exception->getMessage();
         continue;
       }
 
@@ -70,8 +70,8 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
       catch (Exception $e) {
         // Add the error message to the results array and go on to the next mail
         // settings set.
-        $result['mail_settings_id'] = $mailSetting->id;
-        $result['error_message']
+        $mail_setting_result['mail_settings_id'] = $mailSetting->id;
+        $mail_setting_result['error_message']
           = E::ts('Could not connect to MailStore for %1', array(
             1 => $mailSetting->username . '@' . $mailSetting->server,
           ))
@@ -143,9 +143,10 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
             $mail_result['folder'] = 'CiviMail.ignored';
           }
 
-          $result[] = $mail_result;
+          $mail_setting_result[] = $mail_result;
         }
       }
+      $result[] = $mail_setting_result;
     }
 
     return $result;

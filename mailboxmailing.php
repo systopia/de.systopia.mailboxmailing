@@ -174,13 +174,14 @@ function mailboxmailing_civicrm_postMailing($mailingId) {
       ),
     ));
 
-    $mailSettings = CRM_Mailboxmailing_BAO_MailboxmailingMailSettings::findById($mailing_result['custom_' . $field['id']]);
-
-    if ($mailSettings->archive_mailing) {
-      civicrm_api3('Mailing', 'create', array(
-        'id' => $mailingId,
-        'is_archived' => 1,
-      ));
+    if (isset($mailing_result['custom_' . $field['id']])) {
+      $mailSettings = CRM_Mailboxmailing_BAO_MailboxmailingMailSettings::findById($mailing_result['custom_' . $field['id']]);
+      if ($mailSettings->archive_mailing) {
+        civicrm_api3('Mailing', 'create', array(
+          'id' => $mailingId,
+          'is_archived' => 1,
+        ));
+      }
     }
   }
   catch (Exception $exception) {

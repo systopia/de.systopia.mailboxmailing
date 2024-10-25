@@ -2,9 +2,12 @@ site_name: Mailbox Mailing
 repo_url: https://github.com/systopia/de.systopia.mailboxmailing
 theme: material
 
-pages:
+nav:
 - Home: index.md
-
+- Introduction: Introduction.md
+- Configuration: Configuration.md
+- Use: Use.md
+- Example and Hints: Example and Hints.md
 markdown_extensions:
 - attr_list
 - admonition

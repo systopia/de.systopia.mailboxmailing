@@ -7,9 +7,9 @@ theme:
 
 nav:
 - Introduction: index.md
-- Configuration: Configuration.md
-- Use: Use.md
-- Example and Hints: Example and Hints.md
+- Configuration: configuration.md
+- Use: use.md
+- Example and Hints: example-hints.md
 
 markdown_extensions:
 - attr_list

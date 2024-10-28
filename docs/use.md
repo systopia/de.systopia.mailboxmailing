@@ -1,6 +1,6 @@
-## Use
+# Use
 
-Once the **MailboxMailing** extension and the scheduled job are configured, the system will automatically retrieve and process emails according to your specified settings. Here are the main functionalities available to users:
+Once the **Mailbox Mailing** extension and the scheduled job are configured, the system will automatically retrieve and process emails according to your specified settings. Here are the main functionalities available to users:
 
 1.  **Email Processing**:
     

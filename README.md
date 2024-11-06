@@ -16,3 +16,7 @@ to a configurable group of recipients without using the CiviCRM user interface.
 -   Notification of recipients about disallowed answers to a mailing e-mail
 -   Archiving sent mailings
 -   Token replacement in mailing subject
+
+## Installation
+
+Install as any other CiviCRM extension.

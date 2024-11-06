@@ -1,19 +1,29 @@
 site_name: Mailbox Mailing
 repo_url: https://github.com/systopia/de.systopia.mailboxmailing
-theme: material
+site_description: 'A guide for the MailboxMailing Extension.'
+site_author: 'systopia'
+theme:
+  name: material
 
-pages:
-- Home: index.md
+nav:
+  - 'Introduction': index.md
+  - 'Configuration': configuration.md
+  - 'Use': use.md
+  - 'Example and Hints': example-hints.md
 
 markdown_extensions:
-- attr_list
-- admonition
-- def_list
-- codehilite
-- toc:
-    permalink: true
-- pymdownx.superfences
-- pymdownx.inlinehilite
-- pymdownx.tilde
-- pymdownx.betterem
-- pymdownx.mark
+  - attr_list
+  - admonition
+  - def_list
+  - codehilite
+  - toc:
+      permalink: True
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.tilde
+  - pymdownx.betterem
+  - pymdownx.mark
+
+plugins:
+  - search:
+      lang: en

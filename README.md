@@ -20,3 +20,7 @@ to a configurable group of recipients without using the CiviCRM user interface.
 ## Installation
 
 Install as any other CiviCRM extension.
+
+## Documentation
+
+Read the docs [here]([url](https://docs.civicrm.org/mailboxmailing/en/latest/)).

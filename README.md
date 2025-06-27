@@ -23,4 +23,4 @@ Install as any other CiviCRM extension.
 
 ## Documentation
 
-Read the docs [here]([url](https://docs.civicrm.org/mailboxmailing/en/latest/)).
+Read the docs [here](https://docs.civicrm.org/mailboxmailing/en/latest/).

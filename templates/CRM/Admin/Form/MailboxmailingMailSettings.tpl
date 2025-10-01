@@ -105,7 +105,7 @@
       </tr>
 
       <tr class="crm-mailboxmailing-mail-settings-form-block-subject">
-        <td class="label">{$form.subject.label}&nbsp;<a onclick='CRM.help("Smarty", {literal}{"id":"id-smarty","file":"CRM\/Admin\/Form\/MailboxmailingMailSettings"}{/literal}); return false;' href="#" title="{ts domain="de.systopia.mailboxmailing"}Help{/ts}" class="helpicon">&nbsp;</a></td>
+        <td class="label">{$form.subject.label}&nbsp;<a onclick='CRM.help("Smarty", {literal}{"id":"id-smarty","file":"CRM\/Admin\/Form\/MailboxmailingMailSettings"}{/literal}); return false;' href="#" title="{ts escape='htmlattribute' domain="de.systopia.mailboxmailing"}Help{/ts}" class="helpicon">&nbsp;</a></td>
         <td>{$form.subject.html}</td>
       </tr>
       <tr>
@@ -132,7 +132,7 @@
       </tr>
 
       <tr class="crm-mailboxmailing-mail-settings-form-block-notify_disallowed_sender_subject">
-        <td class="label">{$form.notify_disallowed_sender_subject.label}&nbsp;<a onclick='CRM.help("Smarty", {literal}{"id":"id-notify_disallowed_sender_subject","file":"CRM\/Admin\/Form\/MailboxmailingMailSettings"}{/literal}); return false;' href="#" title="{ts domain="de.systopia.mailboxmailing"}Help{/ts}" class="helpicon">&nbsp;</a></td>
+        <td class="label">{$form.notify_disallowed_sender_subject.label}&nbsp;<a onclick='CRM.help("Smarty", {literal}{"id":"id-notify_disallowed_sender_subject","file":"CRM\/Admin\/Form\/MailboxmailingMailSettings"}{/literal}); return false;' href="#" title="{ts escape='htmlattribute' domain="de.systopia.mailboxmailing"}Help{/ts}" class="helpicon">&nbsp;</a></td>
         <td>{$form.notify_disallowed_sender_subject.html}</td>
       </tr>
       <tr>
@@ -141,7 +141,7 @@
       </tr>
 
       <tr class="crm-mailboxmailing-mail-settings-form-block-notify_disallowed_sender_template">
-        <td class="label">{$form.notify_disallowed_sender_template.label}&nbsp;<a onclick='CRM.help("Smarty", {literal}{"id":"id-notify_disallowed_sender_template","file":"CRM\/Admin\/Form\/MailboxmailingMailSettings"}{/literal}); return false;' href="#" title="{ts domain="de.systopia.mailboxmailing"}Help{/ts}" class="helpicon">&nbsp;</a></td>
+        <td class="label">{$form.notify_disallowed_sender_template.label}&nbsp;<a onclick='CRM.help("Smarty", {literal}{"id":"id-notify_disallowed_sender_template","file":"CRM\/Admin\/Form\/MailboxmailingMailSettings"}{/literal}); return false;' href="#" title="{ts escape='htmlattribute' domain="de.systopia.mailboxmailing"}Help{/ts}" class="helpicon">&nbsp;</a></td>
         <td>{$form.notify_disallowed_sender_template.html}</td>
       </tr>
       <tr>
@@ -159,7 +159,7 @@
       </tr>
 
       <tr class="crm-mailboxmailing-mail-settings-form-block-notify_sender_errors_subject">
-        <td class="label">{$form.notify_sender_errors_subject.label}&nbsp;<a onclick='CRM.help("Smarty", {literal}{"id":"id-notify_sender_errors_subject","file":"CRM\/Admin\/Form\/MailboxmailingMailSettings"}{/literal}); return false;' href="#" title="{ts domain="de.systopia.mailboxmailing"}Help{/ts}" class="helpicon">&nbsp;</a></td>
+        <td class="label">{$form.notify_sender_errors_subject.label}&nbsp;<a onclick='CRM.help("Smarty", {literal}{"id":"id-notify_sender_errors_subject","file":"CRM\/Admin\/Form\/MailboxmailingMailSettings"}{/literal}); return false;' href="#" title="{ts escape='htmlattribute' domain="de.systopia.mailboxmailing"}Help{/ts}" class="helpicon">&nbsp;</a></td>
         <td>{$form.notify_sender_errors_subject.html}</td>
       </tr>
       <tr>
@@ -168,7 +168,7 @@
       </tr>
 
       <tr class="crm-mailboxmailing-mail-settings-form-block-notify_sender_errors_template">
-        <td class="label">{$form.notify_sender_errors_template.label}&nbsp;<a onclick='CRM.help("Smarty", {literal}{"id":"id-notify_sender_errors_template","file":"CRM\/Admin\/Form\/MailboxmailingMailSettings"}{/literal}); return false;' href="#" title="{ts domain="de.systopia.mailboxmailing"}Help{/ts}" class="helpicon">&nbsp;</a></td>
+        <td class="label">{$form.notify_sender_errors_template.label}&nbsp;<a onclick='CRM.help("Smarty", {literal}{"id":"id-notify_sender_errors_template","file":"CRM\/Admin\/Form\/MailboxmailingMailSettings"}{/literal}); return false;' href="#" title="{ts escape='htmlattribute' domain="de.systopia.mailboxmailing"}Help{/ts}" class="helpicon">&nbsp;</a></td>
         <td>{$form.notify_sender_errors_template.html}</td>
       </tr>
       <tr>

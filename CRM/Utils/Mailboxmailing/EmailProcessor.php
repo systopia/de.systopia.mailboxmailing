@@ -301,6 +301,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
 
     /* @var \CRM_Mailing_BAO_Mailing $mailing */
     $mailing = CRM_Mailing_BAO_Mailing::create($mailingParams);
+    CRM_Core_BAO_File::processAttachment($mailingParams, 'civicrm_mailing', $mailing->id);
 
     // Store the MailSettings ID in a custom field for later
     // traceability.

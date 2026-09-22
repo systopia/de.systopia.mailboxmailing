@@ -37,7 +37,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
    * @throws \Exception
    */
   public static function process($parameters) {
-    $result = array();
+    $result = [];
 
     $mailSetting = new CRM_Mailboxmailing_BAO_MailboxmailingMailSettings();
 
@@ -72,12 +72,12 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
         // settings set.
         $mail_setting_result['mail_settings_id'] = $mailSetting->id;
         $mail_setting_result['error_message']
-          = E::ts('Could not connect to MailStore for %1', array(
+          = E::ts('Could not connect to MailStore for %1', [
             1 => $mailSetting->username . '@' . $mailSetting->server,
-          ))
-          . E::ts('Error message: %1', array(
+          ])
+          . E::ts('Error message: %1', [
             1 => $e->getMessage(),
-          ));
+          ]);
         continue;
       }
 
@@ -90,7 +90,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
 
           $processed = FALSE;
           $mailing = NULL;
-          $mail_result = array();
+          $mail_result = [];
           $mail_result['mail_settings_id'] = $mailSetting->id;
           $mail_result['message_id'] = $mail->messageId;
 
@@ -203,7 +203,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
    */
   public static function createMailing($mail, $mailSetting, $sender_id) {
     $attachmentCount = 0;
-    $mailingParams = array(
+    $mailingParams = [
       'override_verp' => TRUE,
       'forward_replies' => FALSE,
       'open_tracking' => FALSE,
@@ -222,19 +222,19 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
       'scheduled_date' => date('YmdHis'),
       'scheduled_id' => $sender_id,
       'approval_date' => NULL,
-      'groups' => array(
-        'include' => array(
+      'groups' => [
+        'include' => [
           $mailSetting->recipient_group_id,
-        ),
-      ),
-    );
+        ],
+      ],
+    ];
 
     // Evaluate subject pattern.
     $smarty = CRM_Core_Smarty::singleton();
-    $variables = CRM_Utils_Mailboxmailing::getSmartyVariables(array(
+    $variables = CRM_Utils_Mailboxmailing::getSmartyVariables([
       'mailSetting' => $mailSetting,
       'mail' => $mail,
-    ));
+    ]);
     $subject = $smarty->fetchWith('string:' . $mailSetting->subject, $variables);
     $mailingParams['subject'] = $subject;
     $mailingParams['name'] = $subject;
@@ -291,7 +291,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
           copy($part->fileName, $displayFileName);
 
           $mailingParams["attachFile_$attachmentCount"]['location'] = $displayFileName;
-          $mailingParams["attachFile_$attachmentCount"]['type'] = implode('/', array($part->contentType, $part->mimeType));
+          $mailingParams["attachFile_$attachmentCount"]['type'] = implode('/', [$part->contentType, $part->mimeType]);
           break;
       }
     }
@@ -305,14 +305,14 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
 
     // Store the MailSettings ID in a custom field for later
     // traceability.
-    $field = civicrm_api3('CustomField', 'getsingle', array(
+    $field = civicrm_api3('CustomField', 'getsingle', [
       'custom_group_id' => "mailing_mailboxmailing",
       'name' => "MailboxmailingMailSettingsId",
-    ));
-    civicrm_api3('Mailing', 'create', array(
+    ]);
+    civicrm_api3('Mailing', 'create', [
       'id' => $mailing->id,
       'custom_' . $field['id'] => $mailSetting->id,
-    ));
+    ]);
 
     return $mailing;
   }
@@ -325,9 +325,9 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
    * @throws \Exception
    */
   public static function sendDisallowedSenderNotification($mail, $mailSetting, $sender_id) {
-    $sender_contact = civicrm_api3('Contact', 'getsingle', array(
+    $sender_contact = civicrm_api3('Contact', 'getsingle', [
       'id' => $sender_id,
-    ));
+    ]);
     if (isset($mailSetting->from_email_address_id)) {
       $from_email_address = $mailSetting->from_email_address_id;
     }
@@ -338,13 +338,13 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
 
     // Evaluate subject pattern.
     $smarty = CRM_Core_Smarty::singleton();
-    $variables = CRM_Utils_Mailboxmailing::getSmartyVariables(array(
+    $variables = CRM_Utils_Mailboxmailing::getSmartyVariables([
       'mailSetting' => $mailSetting,
       'mail' => $mail,
-    ));
+    ]);
     $subject = $smarty->fetchWith('string:' . $mailSetting->notify_disallowed_sender_subject, $variables);
 
-    $mail_params = array(
+    $mail_params = [
       'from' => $from_email_address,
       'toName' => $sender_contact['display_name'],
       'toEmail' => $sender_contact['email'],
@@ -352,15 +352,15 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
       'bc' => '',
       'subject' => $subject,
       'replyTo' => $from_email_address,
-    );
+    ];
 
     // Render Smarty template.
     $text = CRM_Core_Smarty::singleton()->fetchWith(
       'string:' . $mailSetting->notify_disallowed_sender_template,
-      CRM_Utils_Mailboxmailing::getSmartyVariables(array(
+      CRM_Utils_Mailboxmailing::getSmartyVariables([
         'mailSetting' => $mailSetting,
         'mail' => $mail,
-      ))
+      ])
     );
     $mail_params['text'] = $text;
     $mail_params['html'] = str_replace("<br />\n<br />\n", "</p>\n<p>", '<p>'.nl2br($text).'</p>');

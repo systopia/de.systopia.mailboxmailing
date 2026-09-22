@@ -33,35 +33,35 @@ function mailboxmailing_civicrm_config(&$config) {
 function mailboxmailing_civicrm_install() {
   // Make the Mailing entity fieldable (add to cg_extend_objects OptionGroup).
   try {
-    civicrm_api3('OptionValue', 'getsingle', array(
+    civicrm_api3('OptionValue', 'getsingle', [
       'option_group_id' => 'cg_extend_objects',
       'label' => 'Mailing',
       'value' => 'Mailing',
       'name' => 'civicrm_mailing',
-    ));
+    ]);
   }
   catch (CRM_Core_Exception $exception) {
-    civicrm_api3('OptionValue', 'create', array(
+    civicrm_api3('OptionValue', 'create', [
       'option_group_id' => 'cg_extend_objects',
       'label' => 'Mailing',
       'value' => 'Mailing',
       'name' => 'civicrm_mailing',
       'is_reserved' => 1,
-    ));
+    ]);
   }
 
   // Add a CustomGroup for CustomFields for Mailing entities.
-  $custom_group = civicrm_api3('CustomGroup', 'create', array(
+  $custom_group = civicrm_api3('CustomGroup', 'create', [
     'title' => 'Mailboxmailing',
     'extends' => 'Mailing',
     'name' => 'mailing_mailboxmailing',
     'table_name' => 'civicrm_value_mailing_mailboxmailing',
     'is_reserved' => 1,
-  ));
+  ]);
 
   // Attach a custom field to the Mailing entity for referencing a
   // MailboxmailingMailSettings entity.
-  civicrm_api3('CustomField', 'create', array(
+  civicrm_api3('CustomField', 'create', [
     'custom_group_id' => $custom_group['id'],
     'label' => 'Mailboxmailing Mail Settings ID',
     'name' => 'MailboxmailingMailSettingsId',
@@ -70,11 +70,11 @@ function mailboxmailing_civicrm_install() {
     'is_view' => 1,
     'in_selector' => 0,
     'html_type' => 'Text',
-  ));
+  ]);
 
   // Attach a custom field to the Mailing entity for tracking when a bounce
   // report has been sent to the mailing author.
-  civicrm_api3('CustomField', 'create', array(
+  civicrm_api3('CustomField', 'create', [
     'custom_group_id' => $custom_group['id'],
     'label' => 'Mailboxmailing Bounce Report Count',
     'name' => 'MailboxmailingBouncesReportCount',
@@ -84,7 +84,7 @@ function mailboxmailing_civicrm_install() {
     'in_selector' => 0,
     'html_type' => 'Text',
     'default_value' => 0,
-  ));
+  ]);
 
   _mailboxmailing_civix_civicrm_install();
 }
@@ -98,25 +98,25 @@ function mailboxmailing_civicrm_uninstall() {
   // Remove the custom field and the custom field group added during
   // installation.
   try {
-    $field = civicrm_api3('CustomField', 'getsingle', array(
+    $field = civicrm_api3('CustomField', 'getsingle', [
       'custom_group_id' => "mailing_mailboxmailing",
       'name' => "MailboxmailingMailSettingsId",
-    ));
-    civicrm_api3('CustomField', 'delete', array(
+    ]);
+    civicrm_api3('CustomField', 'delete', [
       'id' => $field['id'],
-    ));
+    ]);
   }
   catch (CRM_Core_Exception $exception) {
     // Nothing to do here.
   }
 
   try {
-    $group = civicrm_api3('CustomGroup', 'getsingle', array(
+    $group = civicrm_api3('CustomGroup', 'getsingle', [
       'name' => 'mailing_mailboxmailing',
-    ));
-    civicrm_api3('CustomGroup', 'delete', array(
+    ]);
+    civicrm_api3('CustomGroup', 'delete', [
       'id' => $group['id'],
-    ));
+    ]);
   }
   catch (CRM_Core_Exception $exception) {
     // Nothing to do here.
@@ -151,10 +151,10 @@ function mailboxmailing_civicrm_permission(&$permissions) {
  */
 function mailboxmailing_civicrm_alterAPIPermissions($entity, $action, &$params, &$permissions) {
   // Restrict API calls to the permission.
-  $permissions['mailboxmailing_mail_settings']['create'] = array('administer CiviCRM');
-  $permissions['mailboxmailing_mail_settings']['delete']  = array('administer CiviCRM');
-  $permissions['mailboxmailing_mail_settings']['get']  = array('administer CiviCRM');
-  $permissions['job']['process_mailboxmailing']  = array('process mailboxmailing');
+  $permissions['mailboxmailing_mail_settings']['create'] = ['administer CiviCRM'];
+  $permissions['mailboxmailing_mail_settings']['delete']  = ['administer CiviCRM'];
+  $permissions['mailboxmailing_mail_settings']['get']  = ['administer CiviCRM'];
+  $permissions['job']['process_mailboxmailing']  = ['process mailboxmailing'];
 }
 
 /**
@@ -163,24 +163,24 @@ function mailboxmailing_civicrm_alterAPIPermissions($entity, $action, &$params, 
 function mailboxmailing_civicrm_postMailing($mailingId) {
   try {
     // Archive sent mailings if configured.
-    $field = civicrm_api3('CustomField', 'getsingle', array(
+    $field = civicrm_api3('CustomField', 'getsingle', [
       'custom_group_id' => 'mailing_mailboxmailing',
       'name' => 'MailboxmailingMailSettingsId',
-    ));
-    $mailing_result = civicrm_api3('Mailing', 'getsingle', array(
+    ]);
+    $mailing_result = civicrm_api3('Mailing', 'getsingle', [
       'id' => $mailingId,
-      'return' => array(
+      'return' => [
         'custom_' . $field['id'],
-      ),
-    ));
+      ],
+    ]);
 
     if (isset($mailing_result['custom_' . $field['id']])) {
       $mailSettings = CRM_Mailboxmailing_BAO_MailboxmailingMailSettings::findById($mailing_result['custom_' . $field['id']]);
       if ($mailSettings->archive_mailing) {
-        civicrm_api3('Mailing', 'create', array(
+        civicrm_api3('Mailing', 'create', [
           'id' => $mailingId,
           'is_archived' => 1,
-        ));
+        ]);
       }
     }
   }
@@ -196,18 +196,18 @@ function mailboxmailing_civicrm_alterMailParams(&$params, $context) {
   try {
     if (!empty($params['attachments'])) {
       if (!empty($params['job_id'])) {
-        $job = civicrm_api3('MailingJob', 'getsingle', array('id' => $params['job_id']));
+        $job = civicrm_api3('MailingJob', 'getsingle', ['id' => $params['job_id']]);
         if (!empty($job['mailing_id'])) {
-          $field = civicrm_api3('CustomField', 'getsingle', array(
+          $field = civicrm_api3('CustomField', 'getsingle', [
             'custom_group_id' => 'mailing_mailboxmailing',
             'name' => 'MailboxmailingMailSettingsId',
-          ));
-          $mailing = civicrm_api3('Mailing', 'getsingle', array(
+          ]);
+          $mailing = civicrm_api3('Mailing', 'getsingle', [
             'id' => $job['mailing_id'],
-            'return' => array(
+            'return' => [
               'custom_' . $field['id'],
-            ),
-          ));
+            ],
+          ]);
           $mailSettings = CRM_Mailboxmailing_BAO_MailboxmailingMailSettings::findById($mailing['custom_' . $field['id']]);
           // Since we've identified the MailboxmailingMailSettings for this
           // mail, we can assume it's a mailing created by the MailboxMailing
@@ -220,7 +220,7 @@ function mailboxmailing_civicrm_alterMailParams(&$params, $context) {
           // UTF-8 filenames would not be encoded correctly, causing broken
           // filenames in e-mail clients.
           foreach ($params['attachments'] as $file_id => $attachment) {
-            $mime_part = new Mail_mimePart('', array(
+            $mime_part = new Mail_mimePart('', [
               'content_type' => $attachment['mime_type'],
               'encoding' => 'base64',
               'charset' => 'UTF-8',
@@ -234,7 +234,7 @@ function mailboxmailing_civicrm_alterMailParams(&$params, $context) {
 //              'headers' => array(),
               'body_file' => $attachment['fullPath'],
 //              'preamble' => NULL,
-            ));
+            ]);
 
             // Set $attachment['fullPath'] to be a Mail_mimePart object, since
             // CRM_Mailing_BAO_Mailing::compose() passes that as the first

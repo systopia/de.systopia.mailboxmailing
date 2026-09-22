@@ -38,10 +38,10 @@ class CRM_Mailboxmailing_Upgrader extends CRM_Extension_Upgrader_Base {
   public function upgrade_4002() {
     // Attach a custom field to the Mailing entity for tracking how often a
     // bounce report has been sent to the mailing author.
-    $custom_group = civicrm_api3('CustomGroup', 'getsingle', array(
+    $custom_group = civicrm_api3('CustomGroup', 'getsingle', [
       'name' => 'mailing_mailboxmailing',
-    ));
-    $custom_field = civicrm_api3('CustomField', 'create', array(
+    ]);
+    $custom_field = civicrm_api3('CustomField', 'create', [
       'custom_group_id' => $custom_group['id'],
       'label' => 'Mailboxmailing Bounce Report Count',
       'name' => 'MailboxmailingBouncesReportCount',
@@ -51,7 +51,7 @@ class CRM_Mailboxmailing_Upgrader extends CRM_Extension_Upgrader_Base {
       'in_selector' => 0,
       'html_type' => 'Text',
       'default_value' => 0,
-    ));
+    ]);
     if ($custom_field['is_error']) {
       throw new Exception(E::ts('Could not create custom field for Mailing entity.'));
     }

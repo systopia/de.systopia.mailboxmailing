@@ -132,23 +132,23 @@ class CRM_Mailboxmailing_BAO_MailboxmailingMailSettings extends CRM_Mailboxmaili
    * @throws \Exception
    */
   public function getSenders() {
-    $senders = array();
+    $senders = [];
 
     if (!empty($this->sender_group_id)) {
-      $senders = civicrm_api3('Contact', 'get', array(
+      $senders = civicrm_api3('Contact', 'get', [
         'group' => $this->sender_group_id,
-        'options' => array(
+        'options' => [
           'limit' => 0,
-        ),
-        'return' => array(
+        ],
+        'return' => [
           'email',
-        ),
-      ));
+        ],
+      ]);
       if ($senders['is_error']) {
         throw new Exception(
-          E::ts('Error retrieving recipients from group: %1', array(
+          E::ts('Error retrieving recipients from group: %1', [
             1 => $senders['error_message'],
-          ))
+          ])
         );
       }
       $senders = array_map(function($contact) {
@@ -165,23 +165,23 @@ class CRM_Mailboxmailing_BAO_MailboxmailingMailSettings extends CRM_Mailboxmaili
    * @throws \Exception
    */
   public function getRecipients() {
-    $recipients = array();
+    $recipients = [];
 
     if (!empty($this->sender_group_id)) {
-      $recipients = civicrm_api3('Contact', 'get', array(
+      $recipients = civicrm_api3('Contact', 'get', [
         'group' => $this->recipient_group_id,
-        'options' => array(
+        'options' => [
           'limit' => 0,
-        ),
-        'return' => array(
+        ],
+        'return' => [
           'email',
-        ),
-      ));
+        ],
+      ]);
       if ($recipients['is_error']) {
         throw new Exception(
-          E::ts('Error retrieving recipients from group: %1', array(
+          E::ts('Error retrieving recipients from group: %1', [
             1 => $recipients['error_message'],
-          ))
+          ])
         );
       }
       $recipients = array_map(function($contact) {

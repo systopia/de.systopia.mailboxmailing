@@ -30,10 +30,10 @@ class CRM_Utils_Mailboxmailing {
    * @throws \CRM_Core_Exception
    */
   public static function resolveCustomField($field_name) {
-    $custom_field = civicrm_api3('CustomField', 'getsingle', array(
+    $custom_field = civicrm_api3('CustomField', 'getsingle', [
       'custom_group_id' => 'mailing_mailboxmailing',
       'name' => $field_name,
-    ));
+    ]);
     return 'custom_' . $custom_field['id'];
   }
 
@@ -50,13 +50,13 @@ class CRM_Utils_Mailboxmailing {
    * @return array
    */
   public static function getSmartyVariables($input_vars) {
-    $variables = array();
+    $variables = [];
 
     foreach ($input_vars as $input_var_name => $input_var) {
       if (is_a($input_var, '\ezcMail')) {
         /* @var \ezcMail $input_var */
         // All properties accessible through magic getter \ezcMail::__get().
-        $mail_properties = array(
+        $mail_properties = [
           'to',
           'cc',
           'bcc',
@@ -67,7 +67,7 @@ class CRM_Utils_Mailboxmailing {
           'messageId',
           'returnPath',
           'timestamp',
-        );
+        ];
         foreach ($mail_properties as $mail_property) {
           $variables[$input_var_name][$mail_property] = json_decode(json_encode($input_var->$mail_property), TRUE);
         }

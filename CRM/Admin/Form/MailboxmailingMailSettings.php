@@ -43,15 +43,15 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
 
     $this->add('select', 'protocol',
       E::ts('Protocol'),
-      array('' => E::ts('- select -')) + CRM_Core_PseudoConstant::get('CRM_Mailboxmailing_DAO_MailboxmailingMailSettings', 'protocol'),
+      ['' => E::ts('- select -')] + CRM_Core_PseudoConstant::get('CRM_Mailboxmailing_DAO_MailboxmailingMailSettings', 'protocol'),
       TRUE
     );
 
     $this->add('text', 'server', E::ts('Server'), $attributes['server']);
 
-    $this->add('text', 'username', E::ts('Username'), array('autocomplete' => 'off'));
+    $this->add('text', 'username', E::ts('Username'), ['autocomplete' => 'off']);
 
-    $this->add('password', 'password', E::ts('Password'), array('autocomplete' => 'off'));
+    $this->add('password', 'password', E::ts('Password'), ['autocomplete' => 'off']);
 
     $this->add('text', 'source', E::ts('Source'), $attributes['source']);
 
@@ -61,7 +61,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
       'select',
       'sender_group_id',
       E::ts('Sender Group'),
-      array('' => E::ts('- select group -'))
+      ['' => E::ts('- select group -')]
       + CRM_Contact_BAO_Group::getGroupsHierarchy(
         CRM_Core_PseudoConstant::group(),
         NULL,
@@ -74,7 +74,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
       'select',
       'recipient_group_id',
       E::ts('Recipient Group'),
-      array('' => E::ts('- select group -'))
+      ['' => E::ts('- select group -')]
       + CRM_Contact_BAO_Group::getGroupsHierarchy(
         CRM_Core_PseudoConstant::group(),
         NULL,
@@ -94,7 +94,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
       'select',
       'from_email_address_id',
       E::ts('From E-Mail Address'),
-      array('' => E::ts('- Default -')) + CRM_Core_BAO_Email::domainEmails()
+      ['' => E::ts('- Default -')] + CRM_Core_BAO_Email::domainEmails()
     );
 
     $this->add(
@@ -139,7 +139,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
       'select',
       'notification_activity_type_id',
       E::ts('Notification Activity Type'),
-      array('' => E::ts('- Do not create activities -')) + CRM_Activity_BAO_Activity::buildOptions('activity_type_id')
+      ['' => E::ts('- Do not create activities -')] + CRM_Activity_BAO_Activity::buildOptions('activity_type_id')
     );
 
     $this->add(
@@ -153,7 +153,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
    * Add local and global form rules.
    */
   public function addRules() {
-    $this->addFormRule(array('CRM_Admin_Form_MailboxmailingMailSettings', 'formRule'));
+    $this->addFormRule(['CRM_Admin_Form_MailboxmailingMailSettings', 'formRule']);
   }
 
   public function getDefaultEntity() {
@@ -179,7 +179,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
    *   list of errors to be posted back to the form
    */
   public static function formRule($fields) {
-    $errors = array();
+    $errors = [];
 
     return empty($errors) ? TRUE : $errors;
   }
@@ -198,7 +198,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
     $formValues = $this->controller->exportValues($this->_name);
 
     //form fields.
-    $fields = array(
+    $fields = [
       'name',
       'server',
       'protocol',
@@ -219,13 +219,13 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
       'notify_sender_errors_template',
       'notification_activity_type_id',
       'archive_mailing',
-    );
+    ];
 
-    $params = array();
+    $params = [];
     foreach ($fields as $f) {
-      if (in_array($f, array(
+      if (in_array($f, [
         'is_ssl',
-      ))) {
+      ])) {
         $params[$f] = CRM_Utils_Array::value($f, $formValues, FALSE);
       }
       else {

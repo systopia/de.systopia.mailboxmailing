@@ -1,3 +1,6 @@
+includes:
+	- phpstan-baseline.neon
+
 parameters:
 	civicrm:
 		# The class \CRM_Core_Smarty provides various methods. Methods that are

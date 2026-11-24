@@ -129,7 +129,7 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
         'mail_settings_id' => $mailing['mailing_mailboxmailing.MailboxmailingMailSettingsId'],
         'bounce_report_limit' => $bounce_report_limit,
         'bounce_report_count' => (isset($bounce_report_count)
-          ? ($bounce_report_count == static::BOUNCE_REPORT_COMPLETED ? 'completed' : $bounce_report_count)
+          ? ($bounce_report_count === static::BOUNCE_REPORT_COMPLETED ? 'completed' : $bounce_report_count)
           : 'skipped'),
       ];
       if (isset($bounces)) {
@@ -194,7 +194,7 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
     $mail_params['html'] = str_replace("<br />\n<br />\n", "</p>\n<p>", '<p>' . nl2br($text) . '</p>');
 
     if (!CRM_Utils_Mail::send($mail_params)) {
-      throw new \Exception(E::ts('Sending bounce report to mailing sender failed.'));
+      throw new \RuntimeException(E::ts('Sending bounce report to mailing sender failed.'));
     }
   }
 

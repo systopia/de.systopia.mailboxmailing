@@ -45,9 +45,10 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
 
     $this->add('select', 'protocol',
       E::ts('Protocol'),
-      ['' => E::ts('- select -')] + CRM_Core_PseudoConstant::get(
-        'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings',
-        'protocol'
+      ['' => E::ts('- select -')] + array_column(
+        Civi::entity('MailboxmailingMailSettings')->getOptions('protocol'),
+        'label',
+        'id'
       ),
       TRUE
     );
@@ -144,7 +145,11 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
       'select',
       'notification_activity_type_id',
       E::ts('Notification Activity Type'),
-      ['' => E::ts('- Do not create activities -')] + CRM_Activity_BAO_Activity::buildOptions('activity_type_id')
+      ['' => E::ts('- Do not create activities -')] + array_column(
+        Civi::entity('Activity')->getOptions('activity_type_id'),
+        'label',
+        'id'
+      )
     );
 
     $this->add(
@@ -230,8 +235,8 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
     foreach ($fields as $f) {
       if (in_array($f, [
         'is_ssl',
-      ])) {
-        $params[$f] = CRM_Utils_Array::value($f, $formValues, FALSE);
+      ], TRUE)) {
+        $params[$f] = $formValues[$f] ?? FALSE;
       }
       else {
         $params[$f] = $formValues[$f] ?? NULL;

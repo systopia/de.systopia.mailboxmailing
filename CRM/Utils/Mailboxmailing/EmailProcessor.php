@@ -52,6 +52,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
     //find all mail settings.
     $mailSetting->find();
     while ($mailSetting->fetch()) {
+      $mail_setting_result = [];
 
       // Get contacts in sender and recipient groups.
       try {
@@ -63,6 +64,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
         // settings set.
         $mail_setting_result['mail_settings_id'] = $mailSetting->id;
         $mail_setting_result['error_message'] = $exception->getMessage();
+        $result[] = $mail_setting_result;
         continue;
       }
 
@@ -81,6 +83,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
           . E::ts('Error message: %1', [
             1 => $e->getMessage(),
           ]);
+        $result[] = $mail_setting_result;
         continue;
       }
 
@@ -98,7 +101,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
           $mail_result['message_id'] = $mail->messageId;
 
           // Check if sender is allowed to initiate mailing creation.
-          if ($sender_id = array_search(strtolower($mail->from->email), $allowed_senders)) {
+          if ($sender_id = array_search(strtolower($mail->from->email), $allowed_senders, TRUE)) {
             // Create, schedule and archive CiviCRM Mailing.
             try {
               $mailing = static::createMailing($mail, $mailSetting, $sender_id);
@@ -112,7 +115,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
           }
 
           // Check if sender is in recipient group.
-          elseif ($sender_id = array_search(strtolower($mail->from->email), $recipients)) {
+          elseif ($sender_id = array_search(strtolower($mail->from->email), $recipients, TRUE)) {
             // Send notice to sender informing them about not being allowed to
             // send mailings as recipient.
             try {
@@ -167,9 +170,13 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
    *   The mail store implementation for processing e-mails.
    */
   public static function getMailStore($mailSetting) {
-    $protocols = CRM_Core_PseudoConstant::get('CRM_Mailboxmailing_DAO_MailboxmailingMailSettings', 'protocol');
+    $protocols = array_column(
+      Civi::entity('MailboxmailingMailSettings')->getOptions('protocol'),
+      'name',
+      'id'
+    );
     if (empty($protocols[$mailSetting->protocol])) {
-      throw new Exception('Empty mail protocol');
+      throw new RuntimeException('Empty mail protocol');
     }
 
     switch ($protocols[$mailSetting->protocol]) {
@@ -203,7 +210,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
         return new CRM_Mailing_MailStore_Mbox($mailSetting->source);
 
       default:
-        throw new Exception("Unknown protocol {$mailSetting->protocol}");
+        throw new RuntimeException("Unknown protocol {$mailSetting->protocol}");
     }
   }
 
@@ -315,7 +322,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
       }
     }
     if (!$hasBodyParts) {
-      throw new Exception(
+      throw new RuntimeException(
         E::ts('Could not create mailing: No plain text or html body parts could be extracted from the e-mail.')
       );
     }
@@ -387,7 +394,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
     $mail_params['html'] = str_replace("<br />\n<br />\n", "</p>\n<p>", '<p>' . nl2br($text) . '</p>');
 
     if (!CRM_Utils_Mail::send($mail_params)) {
-      throw new \Exception(E::ts('Sending notification to disallowed sender failed.'));
+      throw new \RuntimeException(E::ts('Sending notification to disallowed sender failed.'));
     }
   }
 

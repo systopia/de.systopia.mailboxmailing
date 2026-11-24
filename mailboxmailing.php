@@ -262,30 +262,3 @@ function mailboxmailing_civicrm_alterMailParams(&$params, $context) {
     // The processed mail is not relevant to the mailboxmailing extension.
   }
 }
-
-// --- Functions below this ship commented out. Uncomment as required. ---
-
-/**
- * Implements hook_civicrm_preProcess().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_preProcess
- *
- *
- * // */
-
-/**
- * Implements hook_civicrm_navigationMenu().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_navigationMenu
- *
- * function mailboxmailing_civicrm_navigationMenu(&$menu) {
- * _mailboxmailing_civix_insert_navigation_menu($menu, NULL, array(
- * 'label' => E::ts('The Page'),
- * 'name' => 'the_page',
- * 'url' => 'civicrm/the-page',
- * 'permission' => 'access CiviReport,access CiviContribute',
- * 'operator' => 'OR',
- * 'separator' => 0,
- * ));
- * _mailboxmailing_civix_navigationMenu($menu);
-} // */

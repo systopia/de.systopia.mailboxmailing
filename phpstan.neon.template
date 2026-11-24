@@ -6,5 +6,7 @@ includes:
 	- phpstan.neon.dist
 
 parameters:
+	scanDirectories:
+		- {VENDOR_DIR}/civicrm/civicrm-core/ext/civi_mail/Civi/Api4
 	bootstrapFiles:
 		- {VENDOR_DIR}/autoload.php

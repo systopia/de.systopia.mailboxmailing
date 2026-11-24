@@ -2,6 +2,8 @@ includes:
 	- phpstan.neon.dist
 
 parameters:
+	scanDirectories:
+		- vendor/civicrm/civicrm-core/ext/civi_mail/Civi/Api4
 	bootstrapFiles:
 		- vendor/autoload.php
 	# Because we test with different versions in CI we may have unmatched errors.

@@ -13,6 +13,8 @@
 | written permission from the original author(s).        |
 +--------------------------------------------------------*/
 
+declare(strict_types = 1);
+
 use CRM_Mailboxmailing_ExtensionUtil as E;
 
 class CRM_Admin_Page_MailboxmailingMailSettings extends CRM_Core_Page_Basic {
@@ -24,7 +26,7 @@ class CRM_Admin_Page_MailboxmailingMailSettings extends CRM_Core_Page_Basic {
    *
    * @var array
    */
-  static $_links = NULL;
+  private static $_links = NULL;
 
   /**
    * Get BAO Name.

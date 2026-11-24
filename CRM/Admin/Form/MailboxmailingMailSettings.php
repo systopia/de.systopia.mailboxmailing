@@ -13,6 +13,8 @@
 | written permission from the original author(s).        |
 +--------------------------------------------------------*/
 
+declare(strict_types = 1);
+
 use CRM_Mailboxmailing_ExtensionUtil as E;
 
 /**
@@ -43,7 +45,10 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
 
     $this->add('select', 'protocol',
       E::ts('Protocol'),
-      ['' => E::ts('- select -')] + CRM_Core_PseudoConstant::get('CRM_Mailboxmailing_DAO_MailboxmailingMailSettings', 'protocol'),
+      ['' => E::ts('- select -')] + CRM_Core_PseudoConstant::get(
+        'CRM_Mailboxmailing_DAO_MailboxmailingMailSettings',
+        'protocol'
+      ),
       TRUE
     );
 
@@ -190,7 +195,7 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
   public function postProcess() {
     if ($this->_action & CRM_Core_Action::DELETE) {
       CRM_Mailboxmailing_BAO_MailboxmailingMailSettings::deleteMailSettings($this->_id);
-      CRM_Core_Session::setStatus("", E::ts('Mail Setting Deleted.'), "success");
+      CRM_Core_Session::setStatus('', E::ts('Mail Setting Deleted.'), 'success');
       return;
     }
 
@@ -245,10 +250,10 @@ class CRM_Admin_Form_MailboxmailingMailSettings extends CRM_Admin_Form {
     $mailSettings = CRM_Mailboxmailing_BAO_MailboxmailingMailSettings::create($params);
 
     if ($mailSettings->id) {
-      CRM_Core_Session::setStatus($status, E::ts("Saved"), "success");
+      CRM_Core_Session::setStatus($status, E::ts('Saved'), 'success');
     }
     else {
-      CRM_Core_Session::setStatus("", E::ts('Changes Not Saved.'), "info");
+      CRM_Core_Session::setStatus('', E::ts('Changes Not Saved.'), 'info');
     }
   }
 

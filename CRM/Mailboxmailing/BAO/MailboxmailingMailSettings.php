@@ -13,6 +13,8 @@
 | written permission from the original author(s).        |
 +--------------------------------------------------------*/
 
+declare(strict_types = 1);
+
 use CRM_Mailboxmailing_ExtensionUtil as E;
 
 class CRM_Mailboxmailing_BAO_MailboxmailingMailSettings extends CRM_Mailboxmailing_DAO_MailboxmailingMailSettings {

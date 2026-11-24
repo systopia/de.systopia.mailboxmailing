@@ -13,6 +13,8 @@
 | written permission from the original author(s).        |
 +--------------------------------------------------------*/
 
+declare(strict_types = 1);
+
 use CRM_Mailboxmailing_ExtensionUtil as E;
 
 /**
@@ -46,7 +48,9 @@ function civicrm_api3_job_process_mailboxmailing($params) {
   try {
     $lock = Civi::lockManager()->acquire('worker.mailboxmailing.EmailProcessor');
     if (!$lock->isAcquired()) {
-      return civicrm_api3_create_error('Could not acquire lock, another mailboxmailing.EmailProcessor process is running');
+      return civicrm_api3_create_error(
+        'Could not acquire lock, another mailboxmailing.EmailProcessor process is running'
+      );
     }
     $result = CRM_Utils_Mailboxmailing_EmailProcessor::process($params);
     $lock->release();

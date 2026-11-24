@@ -13,7 +13,12 @@
 | written permission from the original author(s).        |
 +--------------------------------------------------------*/
 
+declare(strict_types = 1);
+
+// phpcs:disable PSR1.Files.SideEffects.FoundWithSymbols
 require_once 'mailboxmailing.civix.php';
+// phpcs:enable
+
 use CRM_Mailboxmailing_ExtensionUtil as E;
 
 /**
@@ -99,8 +104,8 @@ function mailboxmailing_civicrm_uninstall() {
   // installation.
   try {
     $field = civicrm_api3('CustomField', 'getsingle', [
-      'custom_group_id' => "mailing_mailboxmailing",
-      'name' => "MailboxmailingMailSettingsId",
+      'custom_group_id' => 'mailing_mailboxmailing',
+      'name' => 'MailboxmailingMailSettingsId',
     ]);
     civicrm_api3('CustomField', 'delete', [
       'id' => $field['id'],
@@ -158,7 +163,7 @@ function mailboxmailing_civicrm_alterAPIPermissions($entity, $action, &$params, 
 }
 
 /**
- * Implementation of hook_civicrm_postMailing()
+ * Implements hook_civicrm_postMailing().
  */
 function mailboxmailing_civicrm_postMailing($mailingId) {
   try {
@@ -175,7 +180,9 @@ function mailboxmailing_civicrm_postMailing($mailingId) {
     ]);
 
     if (isset($mailing_result['custom_' . $field['id']])) {
-      $mailSettings = CRM_Mailboxmailing_BAO_MailboxmailingMailSettings::findById($mailing_result['custom_' . $field['id']]);
+      $mailSettings = CRM_Mailboxmailing_BAO_MailboxmailingMailSettings::findById(
+        $mailing_result['custom_' . $field['id']]
+      );
       if ($mailSettings->archive_mailing) {
         civicrm_api3('Mailing', 'create', [
           'id' => $mailingId,
@@ -190,7 +197,7 @@ function mailboxmailing_civicrm_postMailing($mailingId) {
 }
 
 /**
- * Implementation of hook_civicrm_alterMailingParams()
+ * Implements hook_civicrm_alterMailingParams().
  */
 function mailboxmailing_civicrm_alterMailParams(&$params, $context) {
   try {
@@ -208,7 +215,9 @@ function mailboxmailing_civicrm_alterMailParams(&$params, $context) {
               'custom_' . $field['id'],
             ],
           ]);
-          $mailSettings = CRM_Mailboxmailing_BAO_MailboxmailingMailSettings::findById($mailing['custom_' . $field['id']]);
+          $mailSettings = CRM_Mailboxmailing_BAO_MailboxmailingMailSettings::findById(
+            $mailing['custom_' . $field['id']]
+          );
           // Since we've identified the MailboxmailingMailSettings for this
           // mail, we can assume it's a mailing created by the MailboxMailing
           // extension.
@@ -220,6 +229,7 @@ function mailboxmailing_civicrm_alterMailParams(&$params, $context) {
           // UTF-8 filenames would not be encoded correctly, causing broken
           // filenames in e-mail clients.
           foreach ($params['attachments'] as $file_id => $attachment) {
+            // phpcs:disable Squiz.PHP.CommentedOutCode.Found
             $mime_part = new Mail_mimePart('', [
               'content_type' => $attachment['mime_type'],
               'encoding' => 'base64',
@@ -227,14 +237,16 @@ function mailboxmailing_civicrm_alterMailParams(&$params, $context) {
               'disposition' => 'attachment',
               'filename' => $attachment['cleanName'],
               'description' => $attachment['description'],
-//              'name_encoding' => 'quoted_printable',
-//              'filename_encoding' => 'quoted-printable',
-              'headers_charset' => 'UTF-8', // Needed for UTF-8 filenames.
-//              'eol' => "\n",
-//              'headers' => array(),
+              // 'name_encoding' => 'quoted_printable',
+              // 'filename_encoding' => 'quoted-printable',
+              // Needed for UTF-8 filenames.
+              'headers_charset' => 'UTF-8',
+              // 'eol' => "\n",
+              // 'headers' => array(),
               'body_file' => $attachment['fullPath'],
-//              'preamble' => NULL,
+              // 'preamble' => NULL,
             ]);
+            // phpcs:enable
 
             // Set $attachment['fullPath'] to be a Mail_mimePart object, since
             // CRM_Mailing_BAO_Mailing::compose() passes that as the first
@@ -246,9 +258,9 @@ function mailboxmailing_civicrm_alterMailParams(&$params, $context) {
       }
     }
   }
-   catch (Exception $exception) {
+  catch (Exception $exception) {
     // The processed mail is not relevant to the mailboxmailing extension.
-   }
+  }
 }
 
 // --- Functions below this ship commented out. Uncomment as required. ---
@@ -258,22 +270,22 @@ function mailboxmailing_civicrm_alterMailParams(&$params, $context) {
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_preProcess
  *
-
- // */
+ *
+ * // */
 
 /**
  * Implements hook_civicrm_navigationMenu().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_navigationMenu
  *
-function mailboxmailing_civicrm_navigationMenu(&$menu) {
-  _mailboxmailing_civix_insert_navigation_menu($menu, NULL, array(
-    'label' => E::ts('The Page'),
-    'name' => 'the_page',
-    'url' => 'civicrm/the-page',
-    'permission' => 'access CiviReport,access CiviContribute',
-    'operator' => 'OR',
-    'separator' => 0,
-  ));
-  _mailboxmailing_civix_navigationMenu($menu);
+ * function mailboxmailing_civicrm_navigationMenu(&$menu) {
+ * _mailboxmailing_civix_insert_navigation_menu($menu, NULL, array(
+ * 'label' => E::ts('The Page'),
+ * 'name' => 'the_page',
+ * 'url' => 'civicrm/the-page',
+ * 'permission' => 'access CiviReport,access CiviContribute',
+ * 'operator' => 'OR',
+ * 'separator' => 0,
+ * ));
+ * _mailboxmailing_civix_navigationMenu($menu);
 } // */

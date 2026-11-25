@@ -13,6 +13,8 @@
 | written permission from the original author(s).        |
 +--------------------------------------------------------*/
 
+declare(strict_types = 1);
+
 use CRM_Mailboxmailing_ExtensionUtil as E;
 
 /**
@@ -29,7 +31,9 @@ function _civicrm_api3_job_send_mailboxmailing_bounces_report_spec(&$spec) {
     'title' => E::ts('MailboxmailingMailSettings ID'),
     'type' => CRM_Utils_Type::T_INT,
     'api.required' => 0,
-    'description' => E::ts('The ID of the MailboxmailingMailSettings configuration used by Mailings to create bounce reports for.'),
+    'description' => E::ts(
+      'The ID of the MailboxmailingMailSettings configuration used by Mailings to create bounce reports for.'
+    ),
   ];
   $spec['mid'] = [
     'name' => 'mid',
@@ -53,7 +57,9 @@ function civicrm_api3_job_send_mailboxmailing_bounces_report($params) {
   try {
     $lock = Civi::lockManager()->acquire('worker.mailboxmailing.BouncesReportProcessor');
     if (!$lock->isAcquired()) {
-      return civicrm_api3_create_error('Could not acquire lock, another mailboxmailing.BouncesReportProcessor process is running');
+      return civicrm_api3_create_error(
+        'Could not acquire lock, another mailboxmailing.BouncesReportProcessor process is running'
+      );
     }
     $result = CRM_Utils_Mailboxmailing_BouncesReportProcessor::process($params);
     $lock->release();

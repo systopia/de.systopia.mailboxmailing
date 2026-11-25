@@ -13,6 +13,8 @@
 | written permission from the original author(s).        |
 +--------------------------------------------------------*/
 
+declare(strict_types = 1);
+
 use CRM_Mailboxmailing_ExtensionUtil as E;
 
 class CRM_Utils_Mailboxmailing {
@@ -54,7 +56,7 @@ class CRM_Utils_Mailboxmailing {
 
     foreach ($input_vars as $input_var_name => $input_var) {
       if (is_a($input_var, '\ezcMail')) {
-        /* @var \ezcMail $input_var */
+        /** @var \ezcMail $input_var */
         // All properties accessible through magic getter \ezcMail::__get().
         $mail_properties = [
           'to',
@@ -73,11 +75,11 @@ class CRM_Utils_Mailboxmailing {
         }
       }
       elseif (is_a($input_var, '\CRM_Mailboxmailing_BAO_MailboxmailingMailSettings')) {
-        /* @var \CRM_Mailboxmailing_BAO_MailboxmailingMailSettings $input_var */
+        /** @var \CRM_Mailboxmailing_BAO_MailboxmailingMailSettings $input_var */
         $variables[$input_var_name] = $input_var->toArray();
       }
       elseif (is_object($input_var)) {
-        /* @var object $input_var */
+        /** @var object $input_var */
         $variables[$input_var_name] = (array) $input_var;
       }
       else {

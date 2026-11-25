@@ -1,0 +1,12 @@
+# Copy this file to phpstan.neon and replace {VENDOR_DIR} with the appropriate
+# path. In installations without composer (e.g. as WordPress plugin) the vendor
+# directoy is inside the CiviCRM folder.
+
+includes:
+	- phpstan.neon.dist
+
+parameters:
+	scanDirectories:
+		- {VENDOR_DIR}/civicrm/civicrm-core/ext/civi_mail/Civi/Api4
+	bootstrapFiles:
+		- {VENDOR_DIR}/autoload.php

@@ -13,6 +13,8 @@
 | written permission from the original author(s).        |
 +--------------------------------------------------------*/
 
+declare(strict_types = 1);
+
 use CRM_Mailboxmailing_ExtensionUtil as E;
 
 class CRM_Mailboxmailing_BAO_MailboxmailingMailSettings extends CRM_Mailboxmailing_DAO_MailboxmailingMailSettings {
@@ -51,7 +53,7 @@ class CRM_Mailboxmailing_BAO_MailboxmailingMailSettings extends CRM_Mailboxmaili
     $mailSettings->copyValues($params);
 
     $result = NULL;
-    if ($mailSettings->find(TRUE)) {
+    if ($mailSettings->find(TRUE) !== FALSE) {
       CRM_Core_DAO::storeValues($mailSettings, $defaults);
       $result = $mailSettings;
     }
@@ -75,7 +77,7 @@ class CRM_Mailboxmailing_BAO_MailboxmailingMailSettings extends CRM_Mailboxmaili
     }
 
     if (empty($params['id'])) {
-      $params['is_ssl'] = CRM_Utils_Array::value('is_ssl', $params, FALSE);
+      $params['is_ssl'] = $params['is_ssl'] ?? FALSE;
     }
 
     $mailSettings = new CRM_Mailboxmailing_DAO_MailboxmailingMailSettings();
@@ -145,7 +147,7 @@ class CRM_Mailboxmailing_BAO_MailboxmailingMailSettings extends CRM_Mailboxmaili
         ],
       ]);
       if ($senders['is_error']) {
-        throw new Exception(
+        throw new RuntimeException(
           E::ts('Error retrieving recipients from group: %1', [
             1 => $senders['error_message'],
           ])
@@ -178,7 +180,7 @@ class CRM_Mailboxmailing_BAO_MailboxmailingMailSettings extends CRM_Mailboxmaili
         ],
       ]);
       if ($recipients['is_error']) {
-        throw new Exception(
+        throw new RuntimeException(
           E::ts('Error retrieving recipients from group: %1', [
             1 => $recipients['error_message'],
           ])

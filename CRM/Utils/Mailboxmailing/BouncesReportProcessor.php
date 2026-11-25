@@ -13,16 +13,18 @@
 | written permission from the original author(s).        |
 +--------------------------------------------------------*/
 
+declare(strict_types = 1);
+
 use Civi\Api4\Mailing;
 use CRM_Mailboxmailing_ExtensionUtil as E;
 
 class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
 
-  const BOUNCE_REPORT_COMPLETED = -1;
+  protected const BOUNCE_REPORT_COMPLETED = -1;
 
-  const BOUNCE_REPORT_SKIPPED = NULL;
+  protected const BOUNCE_REPORT_SKIPPED = NULL;
 
-  const BOUNCE_REPORT_LIMIT = 3;
+  protected const BOUNCE_REPORT_LIMIT = 3;
 
   /**
    * @param $parameters
@@ -32,6 +34,7 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
    *
    * @throws \Exception
    */
+  // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
   public static function process($parameters) {
     $result = [];
 
@@ -58,7 +61,7 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
       $query->addWhere('id', '=', $parameters['mid']);
     }
     // If given a MailSettings ID, restrict to mailings using these settings.
-    elseif(!empty($parameters['id'])) {
+    elseif (!empty($parameters['id'])) {
       $query->addWhere('mailing_mailboxmailing.MailboxmailingMailSettingsId', '=', $parameters['id']);
     }
 
@@ -80,7 +83,6 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
         $mailSettingsCache[$mailing['mailing_mailboxmailing.MailboxmailingMailSettingsId']] = $mailSettings;
       }
       $mailSettings = $mailSettingsCache[$mailing['mailing_mailboxmailing.MailboxmailingMailSettingsId']];
-
 
       // TODO: Make the limit configurable.
       // $bounce_report_limit = $mailSettings->bounce_report_limit;
@@ -110,11 +112,13 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
       // TODO: APIv4 does not set custom field values on Mailing entities, thus using APIv3.
       //       See https://lab.civicrm.org/dev/core/-/issues/3747.
       //       See https://github.com/civicrm/civicrm-core/pull/24036 for a fix.
-//      Mailing::update(FALSE)
-//        ->addWhere('id', '=', $mailing['id'])
-//        ->addValue('mailing_mailboxmailing.MailboxmailingBouncesReportCount', $bounce_report_count)
-//        ->execute();
-      $custom_field_bounces_report_count = CRM_Utils_Mailboxmailing::resolveCustomField('MailboxmailingBouncesReportCount');
+      //      Mailing::update(FALSE)
+      //        ->addWhere('id', '=', $mailing['id'])
+      //        ->addValue('mailing_mailboxmailing.MailboxmailingBouncesReportCount', $bounce_report_count)
+      //        ->execute();
+      $custom_field_bounces_report_count = CRM_Utils_Mailboxmailing::resolveCustomField(
+        'MailboxmailingBouncesReportCount'
+      );
       civicrm_api3('Mailing', 'create', [
         'id' => $mailing['id'],
         $custom_field_bounces_report_count => $bounce_report_count,
@@ -124,7 +128,9 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
         'mailing_id' => $mailing['id'],
         'mail_settings_id' => $mailing['mailing_mailboxmailing.MailboxmailingMailSettingsId'],
         'bounce_report_limit' => $bounce_report_limit,
-        'bounce_report_count' => (isset($bounce_report_count) ? ($bounce_report_count == static::BOUNCE_REPORT_COMPLETED ? 'completed' : $bounce_report_count) : 'skipped'),
+        'bounce_report_count' => (isset($bounce_report_count)
+          ? ($bounce_report_count === static::BOUNCE_REPORT_COMPLETED ? 'completed' : $bounce_report_count)
+          : 'skipped'),
       ];
       if (isset($bounces)) {
         $mailing_result['bounces'] = count($bounces);
@@ -185,10 +191,10 @@ class CRM_Utils_Mailboxmailing_BouncesReportProcessor {
       ])
     );
     $mail_params['text'] = $text;
-    $mail_params['html'] = str_replace("<br />\n<br />\n", "</p>\n<p>", '<p>'.nl2br($text).'</p>');
+    $mail_params['html'] = str_replace("<br />\n<br />\n", "</p>\n<p>", '<p>' . nl2br($text) . '</p>');
 
     if (!CRM_Utils_Mail::send($mail_params)) {
-      throw new \Exception(E::ts('Sending bounce report to mailing sender failed.'));
+      throw new \RuntimeException(E::ts('Sending bounce report to mailing sender failed.'));
     }
   }
 

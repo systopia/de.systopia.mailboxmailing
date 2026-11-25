@@ -13,6 +13,8 @@
 | written permission from the original author(s).        |
 +--------------------------------------------------------*/
 
+declare(strict_types = 1);
+
 use CRM_Mailboxmailing_ExtensionUtil as E;
 
 /**
@@ -53,7 +55,7 @@ class CRM_Mailboxmailing_Upgrader extends CRM_Extension_Upgrader_Base {
       'default_value' => 0,
     ]);
     if ($custom_field['is_error']) {
-      throw new Exception(E::ts('Could not create custom field for Mailing entity.'));
+      throw new RuntimeException(E::ts('Could not create custom field for Mailing entity.'));
     }
     return TRUE;
   }

@@ -1,0 +1,775 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
+			identifier: empty.notAllowed
+			count: 1
+			path: CRM/Admin/Form/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Admin_Form_MailboxmailingMailSettings\:\:addRules\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: CRM/Admin/Form/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Admin_Form_MailboxmailingMailSettings\:\:buildQuickForm\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: CRM/Admin/Form/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Admin_Form_MailboxmailingMailSettings\:\:formRule\(\) has parameter \$fields with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: CRM/Admin/Form/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Admin_Form_MailboxmailingMailSettings\:\:formRule\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: CRM/Admin/Form/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Admin_Form_MailboxmailingMailSettings\:\:formRule\(\) should return array but returns true\.$#'
+			identifier: return.type
+			count: 1
+			path: CRM/Admin/Form/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Admin_Form_MailboxmailingMailSettings\:\:getDefaultEntity\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: CRM/Admin/Form/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Admin_Form_MailboxmailingMailSettings\:\:postProcess\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: CRM/Admin/Form/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Admin_Form_MailboxmailingMailSettings\:\:setDefaultValues\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: CRM/Admin/Form/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, int given\.$#'
+			identifier: if.condNotBoolean
+			count: 1
+			path: CRM/Admin/Form/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, int\<0, 2\> given\.$#'
+			identifier: if.condNotBoolean
+			count: 1
+			path: CRM/Admin/Form/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, int\<0, 8\> given\.$#'
+			identifier: if.condNotBoolean
+			count: 2
+			path: CRM/Admin/Form/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_column expects array, array\|null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: CRM/Admin/Form/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Variable \$errors in empty\(\) always exists and is always falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: CRM/Admin/Form/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Access to an undefined property object\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 4
+			path: CRM/Admin/Page/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Access to an undefined property object\:\:\$protocol\.$#'
+			identifier: property.notFound
+			count: 2
+			path: CRM/Admin/Page/MailboxmailingMailSettings.php
+
+		-
+			message: '#^BooleanNot\: Use a function e\.g\. `count\(\$foo\) \=\=\= 0` instead of `\!\$foo`\.$#'
+			identifier: voku.BooleanNot
+			count: 1
+			path: CRM/Admin/Page/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Call to an undefined method object\:\:fetch\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: CRM/Admin/Page/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Admin_Page_MailboxmailingMailSettings\:\:browse\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: CRM/Admin/Page/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Admin_Page_MailboxmailingMailSettings\:\:links\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: CRM/Admin/Page/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Only booleans are allowed in a negated boolean, array given\.$#'
+			identifier: booleanNot.exprNotBoolean
+			count: 1
+			path: CRM/Admin/Page/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_column expects array, array\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: CRM/Admin/Page/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Parameter \#1 \$mode \(null\) of method CRM_Admin_Page_MailboxmailingMailSettings\:\:userContext\(\) should be compatible with parameter \$mode \(int\) of method CRM_Core_Page_Basic\:\:userContext\(\)$#'
+			identifier: method.childParameterType
+			count: 1
+			path: CRM/Admin/Page/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Parameter \#6 \$op of static method CRM_Core_Action\:\:formLink\(\) expects null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: CRM/Admin/Page/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Parameter \#7 \$objectName of static method CRM_Core_Action\:\:formLink\(\) expects null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: CRM/Admin/Page/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Property CRM_Admin_Page_MailboxmailingMailSettings\:\:\$_links type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: CRM/Admin/Page/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Return type \(array\) of method CRM_Admin_Page_MailboxmailingMailSettings\:\:links\(\) should be covariant with return type \(array\<array\>\) of method CRM_Core_Page_Basic\:\:links\(\)$#'
+			identifier: method.childReturnType
+			count: 1
+			path: CRM/Admin/Page/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Call to an undefined method CRM_Core_Error\:\:rollback\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: CRM/Mailboxmailing/BAO/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Call to function array_filter\(\) requires parameter \#2 to be passed to avoid loose comparison semantics\.$#'
+			identifier: arrayFilter.strict
+			count: 2
+			path: CRM/Mailboxmailing/BAO/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Cannot access offset ''is_error'' on array\|int\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: CRM/Mailboxmailing/BAO/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
+			identifier: empty.notAllowed
+			count: 4
+			path: CRM/Mailboxmailing/BAO/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Mailboxmailing_BAO_MailboxmailingMailSettings\:\:add\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: CRM/Mailboxmailing/BAO/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Mailboxmailing_BAO_MailboxmailingMailSettings\:\:add\(\) should return object but returns null\.$#'
+			identifier: return.type
+			count: 1
+			path: CRM/Mailboxmailing/BAO/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Mailboxmailing_BAO_MailboxmailingMailSettings\:\:create\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: CRM/Mailboxmailing/BAO/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Mailboxmailing_BAO_MailboxmailingMailSettings\:\:create\(\) should return CRM_Mailboxmailing_BAO_MailboxmailingMailSettings but returns CRM_Core_Error\.$#'
+			identifier: return.type
+			count: 1
+			path: CRM/Mailboxmailing/BAO/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Mailboxmailing_BAO_MailboxmailingMailSettings\:\:create\(\) should return CRM_Mailboxmailing_BAO_MailboxmailingMailSettings but returns object\.$#'
+			identifier: return.type
+			count: 1
+			path: CRM/Mailboxmailing/BAO/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Mailboxmailing_BAO_MailboxmailingMailSettings\:\:getRecipients\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: CRM/Mailboxmailing/BAO/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Mailboxmailing_BAO_MailboxmailingMailSettings\:\:getSenders\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: CRM/Mailboxmailing/BAO/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Mailboxmailing_BAO_MailboxmailingMailSettings\:\:includeMessageId\(\) should return bool but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: CRM/Mailboxmailing/BAO/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Mailboxmailing_BAO_MailboxmailingMailSettings\:\:retrieve\(\) has parameter \$defaults with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: CRM/Mailboxmailing/BAO/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Mailboxmailing_BAO_MailboxmailingMailSettings\:\:retrieve\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: CRM/Mailboxmailing/BAO/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Method CRM_Mailboxmailing_BAO_MailboxmailingMailSettings\:\:retrieve\(\) should return CRM_Mailboxmailing_BAO_MailboxmailingMailSettings but returns object\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: CRM/Mailboxmailing/BAO/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Cannot access offset ''id'' on array\|int\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: CRM/Mailboxmailing/Upgrader.php
+
+		-
+			message: '#^Cannot access offset ''is_error'' on array\|int\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: CRM/Mailboxmailing/Upgrader.php
+
+		-
+			message: '#^Access to an undefined property ezcMail\:\:\$bcc\.$#'
+			identifier: property.notFound
+			count: 1
+			path: CRM/Utils/Mailboxmailing.php
+
+		-
+			message: '#^Access to an undefined property ezcMail\:\:\$cc\.$#'
+			identifier: property.notFound
+			count: 1
+			path: CRM/Utils/Mailboxmailing.php
+
+		-
+			message: '#^Access to an undefined property ezcMail\:\:\$to\.$#'
+			identifier: property.notFound
+			count: 1
+			path: CRM/Utils/Mailboxmailing.php
+
+		-
+			message: '#^Cannot access offset ''id'' on array\|int\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: CRM/Utils/Mailboxmailing.php
+
+		-
+			message: '#^Method CRM_Utils_Mailboxmailing\:\:getSmartyVariables\(\) has parameter \$input_vars with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: CRM/Utils/Mailboxmailing.php
+
+		-
+			message: '#^Method CRM_Utils_Mailboxmailing\:\:getSmartyVariables\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: CRM/Utils/Mailboxmailing.php
+
+		-
+			message: '#^Method CRM_Utils_Mailboxmailing\:\:resolveCustomField\(\) has parameter \$field_name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: CRM/Utils/Mailboxmailing.php
+
+		-
+			message: '#^Parameter \#1 \$json of function json_decode expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: CRM/Utils/Mailboxmailing.php
+
+		-
+			message: '#^Cannot access offset ''created_id'' on CRM_Mailing_BAO_Mailing\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+
+		-
+			message: '#^Cannot access offset ''display_name'' on array\|int\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+
+		-
+			message: '#^Cannot access offset ''email'' on array\|int\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+
+		-
+			message: '#^Cannot access offset ''id'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+
+		-
+			message: '#^Cannot access offset ''mailing_mailboxmailing\.MailboxmailingBouncesReportCount'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+
+		-
+			message: '#^Cannot access offset ''mailing_mailboxmailing\.MailboxmailingMailSettingsId'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 5
+			path: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+
+		-
+			message: '#^Cannot use \+\+ on mixed\.$#'
+			identifier: preInc.type
+			count: 1
+			path: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+
+		-
+			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
+			identifier: empty.notAllowed
+			count: 3
+			path: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+
+		-
+			message: '#^Method CRM_Utils_Mailboxmailing_BouncesReportProcessor\:\:process\(\) has parameter \$parameters with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+
+		-
+			message: '#^Method CRM_Utils_Mailboxmailing_BouncesReportProcessor\:\:process\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+
+		-
+			message: '#^Method CRM_Utils_Mailboxmailing_BouncesReportProcessor\:\:sendBouncesReportNotification\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+
+		-
+			message: '#^Method CRM_Utils_Mailboxmailing_BouncesReportProcessor\:\:sendBouncesReportNotification\(\) has parameter \$bounces with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+
+		-
+			message: '#^Parameter \#1 \$mailing of static method CRM_Utils_Mailboxmailing_BouncesReportProcessor\:\:sendBouncesReportNotification\(\) expects CRM_Mailing_BAO_Mailing, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+
+		-
+			message: '#^Parameter \#1 \$mailing_id of static method CRM_Mailing_Event_BAO_MailingEventBounce\:\:getRows\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+
+		-
+			message: '#^Parameter \#1 \$string of function nl2br expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+
+		-
+			message: '#^Property CRM_Mailboxmailing_DAO_MailboxmailingMailSettings\:\:\$from_email_address_id \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
+
+		-
+			message: '#^Cannot access offset ''display_name'' on array\|int\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^Cannot access offset ''email'' on array\|int\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^Cannot access offset ''id'' on array\|int\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^Cannot access offset ''location'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^Cannot access offset ''type'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
+			identifier: empty.notAllowed
+			count: 4
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^In method "CRM_Utils_Mailboxmailing_EmailProcessor\:\:process", caught "Exception" must be rethrown\. Either catch a more specific exception, add a "throw" clause in the "catch" block to propagate the exception or add a "// @ignoreException" comment\.$#'
+			count: 4
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^Method CRM_Utils_Mailboxmailing_EmailProcessor\:\:process\(\) has parameter \$parameters with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^Method CRM_Utils_Mailboxmailing_EmailProcessor\:\:process\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^Method CRM_Utils_Mailboxmailing_EmailProcessor\:\:sendDisallowedSenderNotification\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^Only booleans are allowed in an elseif condition, int\|string\|false given\.$#'
+			identifier: elseif.condNotBoolean
+			count: 1
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, int\|string\|false given\.$#'
+			identifier: if.condNotBoolean
+			count: 1
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_column expects array, array\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^Parameter \#1 \$string of function nl2br expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^Parameter \#3 \$entityID of static method CRM_Core_BAO_File\:\:processAttachment\(\) expects int, int\|string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^Parameter \#3 \$sender_id of static method CRM_Utils_Mailboxmailing_EmailProcessor\:\:createMailing\(\) expects int, int\<min, \-1\>\|int\<1, max\>\|string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^Parameter \#3 \$sender_id of static method CRM_Utils_Mailboxmailing_EmailProcessor\:\:sendDisallowedSenderNotification\(\) expects int, int\<min, \-1\>\|int\<1, max\>\|string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^Property CRM_Mailboxmailing_DAO_MailboxmailingMailSettings\:\:\$from_email_address_id \(string\) in isset\(\) is not nullable\.$#'
+			identifier: isset.property
+			count: 1
+			path: CRM/Utils/Mailboxmailing/EmailProcessor.php
+
+		-
+			message: '#^Function _civicrm_api3_job_process_mailboxmailing_spec\(\) has parameter \$spec with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: api/v3/Job/ProcessMailboxmailing.php
+
+		-
+			message: '#^Function civicrm_api3_job_process_mailboxmailing\(\) has CRM_Core_Exception in PHPDoc @throws tag but it''s not thrown\.$#'
+			identifier: throws.unusedType
+			count: 1
+			path: api/v3/Job/ProcessMailboxmailing.php
+
+		-
+			message: '#^Function civicrm_api3_job_process_mailboxmailing\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: api/v3/Job/ProcessMailboxmailing.php
+
+		-
+			message: '#^Function civicrm_api3_job_process_mailboxmailing\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: api/v3/Job/ProcessMailboxmailing.php
+
+		-
+			message: '#^In function "civicrm_api3_job_process_mailboxmailing", caught "Exception" must be rethrown\. Either catch a more specific exception, add a "throw" clause in the "catch" block to propagate the exception or add a "// @ignoreException" comment\.$#'
+			count: 1
+			path: api/v3/Job/ProcessMailboxmailing.php
+
+		-
+			message: '#^Function _civicrm_api3_job_send_mailboxmailing_bounces_report_spec\(\) has parameter \$spec with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: api/v3/Job/SendMailboxmailingBouncesReport.php
+
+		-
+			message: '#^Function civicrm_api3_job_send_mailboxmailing_bounces_report\(\) has CRM_Core_Exception in PHPDoc @throws tag but it''s not thrown\.$#'
+			identifier: throws.unusedType
+			count: 1
+			path: api/v3/Job/SendMailboxmailingBouncesReport.php
+
+		-
+			message: '#^Function civicrm_api3_job_send_mailboxmailing_bounces_report\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: api/v3/Job/SendMailboxmailingBouncesReport.php
+
+		-
+			message: '#^Function civicrm_api3_job_send_mailboxmailing_bounces_report\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: api/v3/Job/SendMailboxmailingBouncesReport.php
+
+		-
+			message: '#^In function "civicrm_api3_job_send_mailboxmailing_bounces_report", caught "Exception" must be rethrown\. Either catch a more specific exception, add a "throw" clause in the "catch" block to propagate the exception or add a "// @ignoreException" comment\.$#'
+			count: 1
+			path: api/v3/Job/SendMailboxmailingBouncesReport.php
+
+		-
+			message: '#^Function civicrm_api3_mailboxmailing_mail_settings_create\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: api/v3/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Function civicrm_api3_mailboxmailing_mail_settings_create\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: api/v3/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Function civicrm_api3_mailboxmailing_mail_settings_delete\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: api/v3/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Function civicrm_api3_mailboxmailing_mail_settings_delete\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: api/v3/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Function civicrm_api3_mailboxmailing_mail_settings_get\(\) has CRM_Core_Exception in PHPDoc @throws tag but it''s not thrown\.$#'
+			identifier: throws.unusedType
+			count: 1
+			path: api/v3/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Function civicrm_api3_mailboxmailing_mail_settings_get\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: api/v3/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Function civicrm_api3_mailboxmailing_mail_settings_get\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: api/v3/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Parameter \#1 \$bao_name of function _civicrm_api3_basic_create expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: api/v3/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Parameter \#1 \$bao_name of function _civicrm_api3_basic_delete expects CRM_Core_DAO\|string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: api/v3/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Parameter \#1 \$bao_name of function _civicrm_api3_basic_get expects CRM_Core_DAO\|string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: api/v3/MailboxmailingMailSettings.php
+
+		-
+			message: '#^Cannot access offset ''id'' on array\|int\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 9
+			path: mailboxmailing.php
+
+		-
+			message: '#^Cannot access offset non\-falsy\-string on array\|int\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
+			identifier: empty.notAllowed
+			count: 3
+			path: mailboxmailing.php
+
+		-
+			message: '#^Empty catch block\.$#'
+			count: 4
+			path: mailboxmailing.php
+
+		-
+			message: '#^Function mailboxmailing_civicrm_alterAPIPermissions\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^Function mailboxmailing_civicrm_alterAPIPermissions\(\) has parameter \$action with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^Function mailboxmailing_civicrm_alterAPIPermissions\(\) has parameter \$entity with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^Function mailboxmailing_civicrm_alterAPIPermissions\(\) has parameter \$params with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^Function mailboxmailing_civicrm_alterAPIPermissions\(\) has parameter \$permissions with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^Function mailboxmailing_civicrm_alterMailParams\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^Function mailboxmailing_civicrm_alterMailParams\(\) has parameter \$context with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^Function mailboxmailing_civicrm_alterMailParams\(\) has parameter \$params with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^Function mailboxmailing_civicrm_config\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^Function mailboxmailing_civicrm_config\(\) has parameter \$config with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^Function mailboxmailing_civicrm_enable\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^Function mailboxmailing_civicrm_install\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^Function mailboxmailing_civicrm_permission\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^Function mailboxmailing_civicrm_permission\(\) has parameter \$permissions with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^Function mailboxmailing_civicrm_postMailing\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^Function mailboxmailing_civicrm_postMailing\(\) has parameter \$mailingId with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^Function mailboxmailing_civicrm_uninstall\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^In function "mailboxmailing_civicrm_alterMailParams", caught "Exception" must be rethrown\. Either catch a more specific exception, add a "throw" clause in the "catch" block to propagate the exception or add a "// @ignoreException" comment\.$#'
+			count: 1
+			path: mailboxmailing.php
+
+		-
+			message: '#^In function "mailboxmailing_civicrm_postMailing", caught "Exception" must be rethrown\. Either catch a more specific exception, add a "throw" clause in the "catch" block to propagate the exception or add a "// @ignoreException" comment\.$#'
+			count: 1
+			path: mailboxmailing.php

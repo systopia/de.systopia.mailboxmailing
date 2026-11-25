@@ -13,6 +13,8 @@
 | written permission from the original author(s).        |
 +--------------------------------------------------------*/
 
+declare(strict_types = 1);
+
 use CRM_Mailboxmailing_ExtensionUtil as E;
 
 class CRM_Utils_Mailboxmailing_EmailProcessor {
@@ -36,6 +38,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
    *
    * @throws \Exception
    */
+  // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
   public static function process($parameters) {
     $result = [];
 
@@ -49,6 +52,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
     //find all mail settings.
     $mailSetting->find();
     while ($mailSetting->fetch()) {
+      $mail_setting_result = [];
 
       // Get contacts in sender and recipient groups.
       try {
@@ -60,6 +64,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
         // settings set.
         $mail_setting_result['mail_settings_id'] = $mailSetting->id;
         $mail_setting_result['error_message'] = $exception->getMessage();
+        $result[] = $mail_setting_result;
         continue;
       }
 
@@ -78,15 +83,16 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
           . E::ts('Error message: %1', [
             1 => $e->getMessage(),
           ]);
+        $result[] = $mail_setting_result;
         continue;
       }
 
       // Process e-mails.
       // TODO: Fetching mails may create corrupt files for attachment parts.
       //   Find out under which circumstances and how to fix this.
-      while($mails = $store->fetchNext()) {
+      while ($mails = $store->fetchNext()) {
         foreach ($mails as $nr => $mail) {
-          /* @var \ezcMail $mail */
+          /** @var \ezcMail $mail */
 
           $processed = FALSE;
           $mailing = NULL;
@@ -95,7 +101,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
           $mail_result['message_id'] = $mail->messageId;
 
           // Check if sender is allowed to initiate mailing creation.
-          if ($sender_id = array_search(strtolower($mail->from->email), $allowed_senders)) {
+          if ($sender_id = array_search(strtolower($mail->from->email), $allowed_senders, TRUE)) {
             // Create, schedule and archive CiviCRM Mailing.
             try {
               $mailing = static::createMailing($mail, $mailSetting, $sender_id);
@@ -109,7 +115,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
           }
 
           // Check if sender is in recipient group.
-          elseif ($sender_id = array_search(strtolower($mail->from->email), $recipients)) {
+          elseif ($sender_id = array_search(strtolower($mail->from->email), $recipients, TRUE)) {
             // Send notice to sender informing them about not being allowed to
             // send mailings as recipient.
             try {
@@ -164,17 +170,32 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
    *   The mail store implementation for processing e-mails.
    */
   public static function getMailStore($mailSetting) {
-    $protocols = CRM_Core_PseudoConstant::get('CRM_Mailboxmailing_DAO_MailboxmailingMailSettings', 'protocol');
+    $protocols = array_column(
+      Civi::entity('MailboxmailingMailSettings')->getOptions('protocol'),
+      'name',
+      'id'
+    );
     if (empty($protocols[$mailSetting->protocol])) {
-      throw new Exception("Empty mail protocol");
+      throw new RuntimeException('Empty mail protocol');
     }
 
     switch ($protocols[$mailSetting->protocol]) {
       case 'IMAP':
-        return new CRM_Mailing_MailStore_Imap($mailSetting->server, $mailSetting->username, $mailSetting->password, (bool) $mailSetting->is_ssl, $mailSetting->source);
+        return new CRM_Mailing_MailStore_Imap(
+          $mailSetting->server,
+          $mailSetting->username,
+          $mailSetting->password,
+          (bool) $mailSetting->is_ssl,
+          $mailSetting->source
+        );
 
       case 'POP3':
-        return new CRM_Mailing_MailStore_Pop3($mailSetting->server, $mailSetting->username, $mailSetting->password, (bool) $mailSetting->is_ssl);
+        return new CRM_Mailing_MailStore_Pop3(
+          $mailSetting->server,
+          $mailSetting->username,
+          $mailSetting->password,
+          (bool) $mailSetting->is_ssl
+        );
 
       case 'Maildir':
         return new CRM_Mailing_MailStore_Maildir($mailSetting->source);
@@ -189,7 +210,7 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
         return new CRM_Mailing_MailStore_Mbox($mailSetting->source);
 
       default:
-        throw new Exception("Unknown protocol {$mailSetting->protocol}");
+        throw new RuntimeException("Unknown protocol {$mailSetting->protocol}");
     }
   }
 
@@ -239,18 +260,19 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
     $mailingParams['subject'] = $subject;
     $mailingParams['name'] = $subject;
 
-    /* @var \ezcMailPart[] $parts */
+    /** @var \ezcMailPart[] $parts */
     $parts = $mail->fetchParts();
     $hasBodyParts = FALSE;
     foreach ($parts as $part) {
       switch (get_class($part)) {
         case 'ezcMailText':
-          /* @var \ezcMailText $part */
+          /** @var \ezcMailText $part */
           // Add body contents.
           switch ($part->subType) {
             case 'plain':
               $mailingParamName = 'body_text';
               break;
+
             case 'html':
               $mailingParamName = 'body_html';
               break;
@@ -275,8 +297,9 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
             $hasBodyParts = TRUE;
           }
           break;
+
         case 'ezcMailFile':
-          /* @var \ezcMailFile $part */
+          /** @var \ezcMailFile $part */
           // Add file attachments.
           $attachmentCount++;
 
@@ -291,23 +314,28 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
           copy($part->fileName, $displayFileName);
 
           $mailingParams["attachFile_$attachmentCount"]['location'] = $displayFileName;
-          $mailingParams["attachFile_$attachmentCount"]['type'] = implode('/', [$part->contentType, $part->mimeType]);
+          $mailingParams["attachFile_$attachmentCount"]['type'] = implode(
+            '/',
+            [$part->contentType, $part->mimeType]
+          );
           break;
       }
     }
     if (!$hasBodyParts) {
-      throw new Exception(E::ts('Could not create mailing: No plain text or html body parts could be extracted from the e-mail.'));
+      throw new RuntimeException(
+        E::ts('Could not create mailing: No plain text or html body parts could be extracted from the e-mail.')
+      );
     }
 
-    /* @var \CRM_Mailing_BAO_Mailing $mailing */
+    /** @var \CRM_Mailing_BAO_Mailing $mailing */
     $mailing = CRM_Mailing_BAO_Mailing::create($mailingParams);
     CRM_Core_BAO_File::processAttachment($mailingParams, 'civicrm_mailing', $mailing->id);
 
     // Store the MailSettings ID in a custom field for later
     // traceability.
     $field = civicrm_api3('CustomField', 'getsingle', [
-      'custom_group_id' => "mailing_mailboxmailing",
-      'name' => "MailboxmailingMailSettingsId",
+      'custom_group_id' => 'mailing_mailboxmailing',
+      'name' => 'MailboxmailingMailSettingsId',
     ]);
     civicrm_api3('Mailing', 'create', [
       'id' => $mailing->id,
@@ -363,10 +391,10 @@ class CRM_Utils_Mailboxmailing_EmailProcessor {
       ])
     );
     $mail_params['text'] = $text;
-    $mail_params['html'] = str_replace("<br />\n<br />\n", "</p>\n<p>", '<p>'.nl2br($text).'</p>');
+    $mail_params['html'] = str_replace("<br />\n<br />\n", "</p>\n<p>", '<p>' . nl2br($text) . '</p>');
 
     if (!CRM_Utils_Mail::send($mail_params)) {
-      throw new \Exception(E::ts('Sending notification to disallowed sender failed.'));
+      throw new \RuntimeException(E::ts('Sending notification to disallowed sender failed.'));
     }
   }
 

@@ -1,27 +1,12 @@
-# Copyright CiviCRM LLC (c) 2004-2015
-# This file is distributed under the same license as the CiviCRM package.
-# If you contribute heavily to a translation and deem your work copyrightable,
-# make sure you license it to CiviCRM LLC under Academic Free License 3.0.
-msgid ""
-msgstr ""
-"Project-Id-Version: mailboxmailing\n"
-"POT-Creation-Date: 2019-05-21 13:10+0200\n"
-"Language-Team: CiviCRM Translators <civicrm-translators@lists.civicrm.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-
 #: CRM/Admin/Form/MailboxmailingMailSettings.php
 msgid "Mailbox"
 msgstr ""
 
-#: CRM/Admin/Form/MailboxmailingMailSettings.php
-#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+#: CRM/Admin/Form/MailboxmailingMailSettings.php templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
 msgid "Name"
 msgstr ""
 
-#: CRM/Admin/Form/MailboxmailingMailSettings.php
-#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+#: CRM/Admin/Form/MailboxmailingMailSettings.php templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
 msgid "Protocol"
 msgstr ""
 
@@ -29,13 +14,11 @@ msgstr ""
 msgid "- select -"
 msgstr ""
 
-#: CRM/Admin/Form/MailboxmailingMailSettings.php
-#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+#: CRM/Admin/Form/MailboxmailingMailSettings.php templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
 msgid "Server"
 msgstr ""
 
-#: CRM/Admin/Form/MailboxmailingMailSettings.php
-#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+#: CRM/Admin/Form/MailboxmailingMailSettings.php templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
 msgid "Username"
 msgstr ""
 
@@ -43,13 +26,11 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: CRM/Admin/Form/MailboxmailingMailSettings.php
-#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+#: CRM/Admin/Form/MailboxmailingMailSettings.php templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
 msgid "Source"
 msgstr ""
 
-#: CRM/Admin/Form/MailboxmailingMailSettings.php
-#: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
+#: CRM/Admin/Form/MailboxmailingMailSettings.php templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
 msgid "Use SSL?"
 msgstr ""
 
@@ -157,16 +138,8 @@ msgstr ""
 msgid "Error retrieving recipients from group: %1"
 msgstr ""
 
-#: CRM/Mailboxmailing/Upgrader/Base.php
-msgid "Upgrade %1 to revision %2"
-msgstr ""
-
 #: CRM/Mailboxmailing/Upgrader.php
 msgid "Could not create custom field for Mailing entity."
-msgstr ""
-
-#: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
-msgid "There were errors sending your mailing to this mailing list"
 msgstr ""
 
 #: CRM/Utils/Mailboxmailing/BouncesReportProcessor.php
@@ -182,21 +155,14 @@ msgid "Error message: %1"
 msgstr ""
 
 #: CRM/Utils/Mailboxmailing/EmailProcessor.php
-msgid ""
-"Could not create mailing: No plain text or html body parts could be "
-"extracted from the e-mail."
-msgstr ""
-
-#: CRM/Utils/Mailboxmailing/EmailProcessor.php
-msgid "You are not allowed to send mailings to this mailing list"
+msgid "Could not create mailing: No plain text or html body parts could be extracted from the e-mail."
 msgstr ""
 
 #: CRM/Utils/Mailboxmailing/EmailProcessor.php
 msgid "Sending notification to disallowed sender failed."
 msgstr ""
 
-#: api/v3/Job/ProcessMailboxmailing.php
-#: api/v3/Job/SendMailboxmailingBouncesReport.php
+#: api/v3/Job/ProcessMailboxmailing.php api/v3/Job/SendMailboxmailingBouncesReport.php
 msgid "MailboxmailingMailSettings ID"
 msgstr ""
 
@@ -205,9 +171,7 @@ msgid "The ID of the MailboxmailingMailSettings configuration to process."
 msgstr ""
 
 #: api/v3/Job/SendMailboxmailingBouncesReport.php
-msgid ""
-"The ID of the MailboxmailingMailSettings configuration used by Mailings to "
-"create bounce reports for."
+msgid "The ID of the MailboxmailingMailSettings configuration used by Mailings to create bounce reports for."
 msgstr ""
 
 #: api/v3/Job/SendMailboxmailingBouncesReport.php
@@ -227,8 +191,7 @@ msgid "The following template variables are available:"
 msgstr ""
 
 #: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
-msgid ""
-"WARNING: Deleting this option will result in the loss of mail settings data."
+msgid "WARNING: Deleting this option will result in the loss of mail settings data."
 msgstr ""
 
 #: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
@@ -256,9 +219,7 @@ msgid "Name of the protocol to use for polling."
 msgstr ""
 
 #: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
-msgid ""
-"Folder to poll from when using IMAP (will default to INBOX when empty), path "
-"to poll from when using Maildir, etc.."
+msgid "Folder to poll from when using IMAP (will default to INBOX when empty), path to poll from when using Maildir, etc.."
 msgstr ""
 
 #: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
@@ -266,8 +227,7 @@ msgid "Whether to use SSL for IMAP and POP3 or not."
 msgstr ""
 
 #: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
-msgid ""
-"The group of contacts allowed to send mailings using these MailSettings."
+msgid "The group of contacts allowed to send mailings using these MailSettings."
 msgstr ""
 
 #: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
@@ -307,8 +267,7 @@ msgid "The subject to use for notifications about errors sent to senders."
 msgstr ""
 
 #: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
-msgid ""
-"A Smarty template to use for notifications about errors sent to senders."
+msgid "A Smarty template to use for notifications about errors sent to senders."
 msgstr ""
 
 #: templates/CRM/Admin/Form/MailboxmailingMailSettings.tpl
@@ -346,3 +305,4 @@ msgstr ""
 #: templates/CRM/Admin/Page/MailboxmailingMailSettings.tpl
 msgid "Done"
 msgstr ""
+
